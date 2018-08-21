@@ -100,9 +100,7 @@
   :config
   (progn
   	(setq linum-relative-backend 'display-line-numbers-mode)
-    (linum-relative-on))
-  :hook
-  (fundamental-mode . linum-relative-mode))
+    (linum-relative-global-mode)))
 
 ;;
 ;; Modules
