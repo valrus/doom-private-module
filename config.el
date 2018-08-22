@@ -27,8 +27,10 @@
                        org-capture with-editor git-commit package magit))
 
 (after! 'doom-themes
-(doom/switch-theme 'doom-nord-light))
+  (doom/switch-theme 'doom-nord-light))
 
+(toggle-text-mode-auto-fill nil)
+(auto-fill-mode -1)
 
 ;;
 ;; Host-specific config
@@ -89,6 +91,10 @@
    (:prefix "o"
      :desc "Open directory browser" :n "b" #'treemacs
      )
+   (:prefix "w"
+     :desc "Maximize frame" :n "M" #'toggle-frame-maximized
+     :desc "ace-window" :n "w" #'ace-window
+     )
    )
  )
 
@@ -132,6 +138,13 @@
   ;; Add gpg-sign to rebasing by default
 ;;   (magit-define-popup-option 'magit-rebase-popup
 ;;     ?S "Sign using gpg" "--gpg-sign=" #'magit-read-gpg-secret-key))
+
+;; lang/markdown
+(add-hook! 'markdown-mode-hook
+  (progn
+    (toggle-word-wrap nil)
+    (auto-fill-mode -1)
+  ))
 
 ;; lang/org
 (setq
