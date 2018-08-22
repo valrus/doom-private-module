@@ -62,7 +62,7 @@
 
 (map!
  ;; Honestly I don't understand why this isn't the default Vim behavior
- (:map nil "U" #'undo-tree-redo)
+ (:map evil-normal-state-map "U" #'undo-tree-redo)
 
  (:after treemacs-evil
    (:map evil-treemacs-state-map
