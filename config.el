@@ -29,7 +29,6 @@
 (after! 'doom-themes
   (doom/switch-theme 'doom-nord-light))
 
-(toggle-text-mode-auto-fill nil)
 (auto-fill-mode -1)
 
 ;;
@@ -61,6 +60,15 @@
 ;;
 
 (map!
+ :desc "Redo" :n "U" #'undo-tree-redo
+
+ (:after magit
+   (:map with-editor-mode-map
+     (:prefix ","
+       :desc "Commit" :n "c" #'with-editor-finish
+       :desc "Commit" :n "a" #'with-editor-finish
+       )))
+
  (:after treemacs-evil
    (:map evil-treemacs-state-map
      "C-h" #'evil-window-left
@@ -104,9 +112,13 @@
 
 (def-package! linum-relative
   :config
-  (progn
-  	(setq linum-relative-backend 'display-line-numbers-mode)
-    (linum-relative-global-mode)))
+  (setq linum-relative-backend 'display-line-numbers-mode)
+  (linum-relative-global-mode))
+
+(def-package! evil-escape
+  :config
+  (global-set-key (kbd "ESC") 'evil-escape)
+  nil)
 
 ;;
 ;; Modules
