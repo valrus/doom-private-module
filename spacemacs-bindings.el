@@ -1,6 +1,10 @@
 ;;; ~/.doom.d/spacemacs-bindings.el -*- lexical-binding: t; -*-
 
 (map!
+ ;; Comma for mode-local shortcut
+ :n "," (λ! (push (cons t ?m) unread-command-events)
+            (push (cons t 32) unread-command-events))
+
  (:after magit
    (:map with-editor-mode-map
      (:prefix ","

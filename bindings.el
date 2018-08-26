@@ -3,10 +3,6 @@
 (map!
  :desc "Redo" :n "U" #'undo-tree-redo
 
- ;; Comma for mode-local shortcut
- :n "," (λ! (push (cons t ?m) unread-command-events)
-            (push (cons t 32) unread-command-events))
-
  (:after treemacs-evil
    (:map evil-treemacs-state-map
      "C-h" #'evil-window-left
