@@ -1,8 +1,6 @@
 ;;; ~/.doom.d/spacemacs-bindings.el -*- lexical-binding: t; -*-
 
 (map!
- :desc "Redo" :n "U" #'undo-tree-redo
-
  (:after magit
    (:map with-editor-mode-map
      (:prefix ","
@@ -10,12 +8,6 @@
        :desc "Commit" :n "a" #'with-editor-finish
        )))
 
- (:after treemacs-evil
-   (:map evil-treemacs-state-map
-     "C-h" #'evil-window-left
-     "C-l" #'evil-window-right))
-
- ;; Import Spacemacs bindings
  (:leader
    (:prefix "f"
      :desc "Save file (Spacemacs)" :n "s" #'save-buffer
@@ -35,20 +27,6 @@
      )
    (:prefix "p"
      :desc "Find project file (Spacemacs)" :n "f" #'projectile-find-file
-     )
-   )
-
- ;; Replace or add Doom bindings
- (:leader
-   (:prefix "o"
-     :desc "Open directory browser" :n "b" #'treemacs
-     )
-   (:prefix "w"
-     :desc "Maximize frame" :n "M" #'toggle-frame-maximized
-     :desc "ace-window" :n "w" #'ace-window
-     )
-   (:prefix "/"
-     :desc "Find in project" :n "/" #'+helm/project-search
      )
    )
  )
