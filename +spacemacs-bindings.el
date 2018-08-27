@@ -27,6 +27,8 @@
      :desc "Horizontal split (Spacemacs)" :n "-" #'evil-window-split
      :desc "New frame (Spacemacs)" :n "F" #'make-frame
      :desc "Next frame (Spacemacs)" :n "o" #'other-frame
+
+     ;; Displaced by other-frame keybinding
      :desc "Window enlargen" :n "O" #'doom/window-enlargen
      )
    (:prefix "p"
