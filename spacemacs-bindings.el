@@ -1,7 +1,7 @@
 ;;; ~/.doom.d/spacemacs-bindings.el -*- lexical-binding: t; -*-
 
 (map!
- ;; Comma for mode-local shortcut
+ ;; Comma for shortcut to local-leader
  :n "," (λ! (push (cons t ?m) unread-command-events)
             (push (cons t 32) unread-command-events))
 

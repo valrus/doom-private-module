@@ -26,11 +26,6 @@
                        org-footnote org-macro ob org org-clock org-agenda
                        org-capture with-editor git-commit package magit))
 
-(after! 'doom-themes
-  (doom/switch-theme 'doom-nord-light))
-
-(auto-fill-mode -1)
-
 ;;
 ;; Host-specific config
 ;;
