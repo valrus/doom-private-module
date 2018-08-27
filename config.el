@@ -68,11 +68,6 @@
   (global-set-key (kbd "ESC") 'evil-escape)
   nil)
 
-;; (def-package! rvm
-;;   :config
-;;   (progn
-;;     (rvm-use-default)))
-
 ;;
 ;; Modules
 ;;
