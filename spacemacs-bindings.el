@@ -9,7 +9,7 @@
    (:map with-editor-mode-map
      (:prefix ","
        :desc "Commit" :n "c" #'with-editor-finish
-       :desc "Commit" :n "a" #'with-editor-finish
+       :desc "Abort commit" :n "a" #'with-editor-cancel
        )))
 
  (:leader
