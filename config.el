@@ -11,6 +11,9 @@
 
 (setq-hook! 'minibuffer-setup-hook show-trailing-whitespace nil)
 
+(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+(define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
+
 ;; load heavy packages all sneaky breeky like
 (defun auto-require-packages (packages)
   (let* ((reqs (cl-remove-if #'featurep packages))
