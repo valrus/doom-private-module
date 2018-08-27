@@ -26,9 +26,6 @@
                        org-footnote org-macro ob org org-clock org-agenda
                        org-capture with-editor git-commit package magit))
 
-;; (toggle-text-mode-auto-fill nil)
-(auto-fill-mode -1)
-
 ;;
 ;; Host-specific config
 ;;
@@ -62,52 +59,8 @@
 ;; Keybindings
 ;;
 
-(map!
- ;; Honestly I don't understand why this isn't the default Vim behavior
- :n "U" 'undo-tree-redo
-
- (:after treemacs-evil
-   (:map evil-treemacs-state-map
-     "C-h" #'evil-window-left
-     "C-l" #'evil-window-right))
-
- ;; Import Spacemacs bindings
- (:leader
-   (:prefix "f"
-     :desc "Save file (Spacemacs)" :n "s" #'save-buffer
-     :desc "Find file (Spacemacs)" :n "f" #'find-file
-     )
-   (:prefix "b"
-     :desc "Previous buffer (Spacemacs)" :n "p" #'previous-buffer
-     :desc "Next buffer (Spacemacs)" :n "n" #'next-buffer
-     :desc "Switch buffer (Spacemacs)" :n "b" #'helm-buffers-list
-     )
-   (:prefix "w"
-     :desc "Vertical split (Spacemacs)" :n "|" #'evil-window-vsplit
-     :desc "Horizontal split (Spacemacs)" :n "-" #'evil-window-split
-     :desc "New frame (Spacemacs)" :n "F" #'make-frame
-     :desc "Next frame (Spacemacs)" :n "o" #'other-frame
-     :desc "Window enlargen" :n "O" #'doom/window-enlargen
-     )
-   (:prefix "p"
-     :desc "Find project file (Spacemacs)" :n "f" #'projectile-find-file
-     )
-   )
-
- ;; Replace or add Doom bindings
- (:leader
-   (:prefix "o"
-     :desc "Open directory browser" :n "b" #'treemacs
-     )
-   (:prefix "w"
-     :desc "Maximize frame" :n "M" #'toggle-frame-maximized
-     :desc "ace-window" :n "w" #'ace-window
-     )
-   (:prefix "/"
-     :desc "Find in project" :n "/" #'+helm/project-search
-     )
-   )
- )
+(load! "+bindings")
+(load! "+spacemacs-bindings")
 
 ;;
 ;; Packages
@@ -115,14 +68,18 @@
 
 (def-package! linum-relative
   :config
-  (progn
-  	(setq linum-relative-backend 'display-line-numbers-mode)
-    (linum-relative-global-mode)))
+  (setq linum-relative-backend 'display-line-numbers-mode)
+  (linum-relative-global-mode))
 
-(def-package! rvm
+(def-package! evil-escape
   :config
-  (progn
-    (rvm-use-default)))
+  (global-set-key (kbd "ESC") 'evil-escape)
+  nil)
+
+;; (def-package! rvm
+;;   :config
+;;   (progn
+;;     (rvm-use-default)))
 
 ;;
 ;; Modules
