@@ -26,9 +26,6 @@
                        org-footnote org-macro ob org org-clock org-agenda
                        org-capture with-editor git-commit package magit))
 
-(after! 'doom-themes
-  (doom/switch-theme 'doom-nord-light))
-
 ;; (toggle-text-mode-auto-fill nil)
 (auto-fill-mode -1)
 
@@ -43,6 +40,12 @@
     ivy-height 12
     ivy-posframe-font (font-spec :family "Iosevka Slab" :size 14)
     doom-font (font-spec :family "Iosevka" :size 12)))
+  ("Ians-MBP"
+   (setq
+    show-trailing-whitespace nil
+    ivy-height 12
+    ivy-posframe-font (font-spec :family "Iosevka Slab" :size 12)
+    doom-font (font-spec :family "Iosevka" :size 10)))
   (_
    (setq
     ivy-posframe-font (font-spec :family "Iosevka" :size 18)
@@ -50,11 +53,10 @@
 
 (when IS-MAC
   (setq ns-use-thin-smoothing t)
-  ;; (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; maximize first frame
   (set-frame-parameter nil 'fullscreen 'maximized))
-
 
 ;;
 ;; Keybindings
@@ -62,7 +64,7 @@
 
 (map!
  ;; Honestly I don't understand why this isn't the default Vim behavior
- (:map evil-normal-state-map "U" #'undo-tree-redo)
+ :n "U" 'undo-tree-redo
 
  (:after treemacs-evil
    (:map evil-treemacs-state-map
@@ -126,6 +128,9 @@
 ;; Modules
 ;;
 
+(after! dumb-jump
+  (setq dumb-jump-prefer-searcher 'rg))
+
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
 
@@ -156,7 +161,7 @@
 ;; lang/ruby
 (add-hook! 'ruby-mode-hook
   (progn
-    (set-fill-column 120)
+    ;; (set-fill-column 120)
     ))
 
 ;; lang/markdown

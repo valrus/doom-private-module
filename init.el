@@ -15,8 +15,8 @@
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :completion
-       (company          ; the ultimate code completion backend
-        +auto)           ; as-you-type code completion
+       company           ; the ultimate code completion backend
+       ;+auto)           ; as-you-type code completion
        (helm             ; the *other* search engine for love and life
         +fuzzy)          ; enable fuzzy search backend for helm
        ido               ; the other *other* search engine...
@@ -29,7 +29,7 @@
        doom-modeline     ; a snazzy Atom-inspired mode-line
       ;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
-       fci               ; a `fill-column' indicator
+      ;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
       ;modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
@@ -159,8 +159,17 @@
 ;; original :init / :config block. Exploit this to overwrite Doom's config.
 (def-package-hook! doom-themes
   :pre-config
-  (unless doom-theme
-    (setq doom-theme 'doom-nord-light))
-  t)
+  (setq doom-theme 'doom-nord-light)
+  nil)
+
+(def-package-hook! fill-column-indicator
+  :pre-config
+  (set-fill-column 80)
+  nil)
+
+(def-package-hook! evil-escape
+  :pre-config
+  (global-set-key (kbd "ESC") 'evil-escape)
+  )
 
 ;; `def-package-hook' also has :post-init and :post-config hooks
