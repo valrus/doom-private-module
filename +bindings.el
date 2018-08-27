@@ -8,7 +8,7 @@
      "C-h" #'evil-window-left
      "C-l" #'evil-window-right))
 
- (:after helm
+ (:after completion
    (:map helm-find-files-map
      :desc "Up one directory" "C-h" #'helm-find-files-up-one-level
      ))
