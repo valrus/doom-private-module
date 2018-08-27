@@ -14,6 +14,9 @@
      ))
 
  (:leader
+   (:prefix "b"
+     :desc "Rename buffer" :n "R" #'rename-buffer
+     )
    (:prefix "o"
      :desc "Open directory browser" :n "b" #'treemacs
      )

@@ -54,8 +54,8 @@
 ;; Keybindings
 ;;
 
-(load! "bindings")
-(load! "spacemacs-bindings")
+(load! "+bindings")
+(load! "+spacemacs-bindings")
 
 ;;
 ;; Packages
@@ -71,10 +71,10 @@
   (global-set-key (kbd "ESC") 'evil-escape)
   nil)
 
-(def-package! rvm
-  :config
-  (progn
-    (rvm-use-default)))
+;; (def-package! rvm
+;;   :config
+;;   (progn
+;;     (rvm-use-default)))
 
 ;;
 ;; Modules
