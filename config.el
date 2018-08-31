@@ -23,6 +23,9 @@
       (when reqs
         (run-with-idle-timer 1 nil #'auto-require-packages reqs)))))
 
+;; change theme
+(setq doom-theme 'doom-nord-light)
+
 (run-with-idle-timer 1 nil #'auto-require-packages
                      '(calendar find-func format-spec org-macs org-compat
                        org-faces org-entities org-list org-pcomplete org-src

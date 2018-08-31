@@ -157,10 +157,6 @@
 
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.
-(def-package-hook! doom-themes
-  :pre-config
-  (setq doom-theme 'doom-nord-light)
-  nil)
 
 (def-package-hook! fill-column-indicator
   :pre-config
