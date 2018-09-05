@@ -74,6 +74,11 @@
   (global-set-key (kbd "ESC") 'evil-escape)
   nil)
 
+(def-package! enh-ruby-mode
+  :init
+  (setq-default enh-ruby-add-encoding-comment-on-save nil)
+  t)
+
 ;;
 ;; Modules
 ;;
