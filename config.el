@@ -3,10 +3,6 @@
 (setq user-full-name    "Ian McCowan"
       user-mail-address "imccowan@gmail.com"
 
-      ;; doom-variable-pitch-font (font-spec :family "Fira Sans")
-      ;; doom-unicode-font (font-spec :family "Input Mono Narrow" :size 12)
-      doom-big-font (font-spec :family "Iosevka Slab" :size 18)
-
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode))
 
 (setq-hook! 'minibuffer-setup-hook show-trailing-whitespace nil)
@@ -22,9 +18,6 @@
       (require req)
       (when reqs
         (run-with-idle-timer 1 nil #'auto-require-packages reqs)))))
-
-;; change theme
-(setq doom-theme 'doom-nord-light)
 
 (run-with-idle-timer 1 nil #'auto-require-packages
                      '(calendar find-func format-spec org-macs org-compat
@@ -43,7 +36,6 @@
    (load! "+mbp-settings"))
   (_
    (setq
-    ivy-posframe-font (font-spec :family "Iosevka" :size 18)
     doom-font (font-spec :family "Iosevka" :size 12 :weight 'semi-light))))
 
 (when IS-MAC
@@ -78,6 +70,10 @@
 ;; Modules
 ;;
 
+;; Temporary - allow minibuffer in helm childframe
+(after! helm
+  (remove-hook 'helm-minibuffer-set-up-hook #'+helm*hide-minibuffer-maybe))
+
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
 
@@ -96,12 +92,14 @@
 ;;    "rg"  "rg --color=always $*"))
 
 ;; tools/magit
-(setq
- ;; magit-repository-directories '(("~/work" . 2))
- ;; magit-commit-arguments '("--gpg-sign=5F6C0EA160557395")
- ;; magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395")
- ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
- +magit-hub-features t)
+(after! magit
+  (setq
+   ;; magit-repository-directories '(("~/work" . 2))
+   ;; magit-commit-arguments '("--gpg-sign=5F6C0EA160557395")
+   ;; magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395")
+   ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
+   +magit-hub-features t
+   vc-handled-backends (delq 'Git vc-handled-backends)))
 
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default
