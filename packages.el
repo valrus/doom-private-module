@@ -4,3 +4,5 @@
 (package! linum-relative)
 
 (package! rvm)
+
+(package! haml-mode)
