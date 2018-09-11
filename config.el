@@ -71,6 +71,11 @@
   (setq-default enh-ruby-add-encoding-comment-on-save nil)
   t)
 
+(def-package! projectile-rails
+  :config
+  (projectile-rails-global-mode)
+  t)
+
 (def-package! haml-mode
   :mode
   "\\.haml$")
@@ -120,6 +125,9 @@
   (progn
     ;; (set-fill-column 120)
     ))
+
+(add-hook! 'projectile-after-switch-project-hook
+  (rvm-activate-corresponding-ruby))
 
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook
