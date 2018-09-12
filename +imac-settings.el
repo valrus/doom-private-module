@@ -13,5 +13,5 @@
  doom-variable-pitch-font (font-spec :family "Input Sans Condensed")
 
 ;; theme
-(setq doom-theme 'doom-nord-light)
+doom-theme 'doom-nord-light
 )
