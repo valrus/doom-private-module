@@ -3,6 +3,6 @@
 
 (package! linum-relative)
 
-(package! rvm)
-
 (package! haml-mode)
+(package! projectile-rails)
+(package! rvm)
