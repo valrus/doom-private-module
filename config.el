@@ -74,6 +74,7 @@
 (def-package! projectile-rails
   :config
   (projectile-rails-global-mode)
+  (load! "+projectile-rails-bindings")
   t)
 
 (def-package! haml-mode
