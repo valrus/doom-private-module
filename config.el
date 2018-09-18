@@ -61,10 +61,10 @@
   (setq linum-relative-backend 'display-line-numbers-mode)
   (linum-relative-global-mode))
 
-(def-package! evil-escape
-  :config
-  (global-set-key (kbd "ESC") 'evil-escape)
-  nil)
+;; (def-package! evil-escape
+;;   :config
+;;   (global-set-key (kbd "ESC") 'evil-escape)
+;;   nil)
 
 (def-package! enh-ruby-mode
   :init

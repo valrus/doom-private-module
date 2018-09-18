@@ -160,9 +160,9 @@
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.
 
-(def-package-hook! evil-escape
-  :pre-config
-  (global-set-key (kbd "ESC") 'evil-escape)
-  )
+;; (def-package-hook! evil-escape
+;;   :pre-config
+;;   (global-set-key (kbd "ESC") 'evil-escape)
+;;   )
 
 ;; `def-package-hook' also has :post-init and :post-config hooks
