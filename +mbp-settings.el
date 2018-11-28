@@ -4,9 +4,9 @@
  show-trailing-whitespace nil
 
  ;; Fonts
- doom-font (font-spec :family "Iosevka" :size 10)
- doom-unicode-font (font-spec :family "Iosevka Slab")
- doom-big-font (font-spec :family "Iosevka Slab" :size 18)
+ doom-font (font-spec :family "Iosevka" :size 10 :weight 'semi-light)
+ doom-unicode-font (font-spec :family "Iosevka")
+ doom-big-font (font-spec :family "Iosevka" :size 18)
  doom-variable-pitch-font (font-spec :family "Input Sans Condensed")
 
 ;; theme
