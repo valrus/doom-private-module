@@ -152,12 +152,6 @@
        ;; your own modules.
        (default +bindings +snippets +evil-commands))
 
-
-;; To disable a package (tells Doom to ignore def-package! blocks for this
-;; package)
-
-(def-package-hook! magit-todos :disable)
-
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.
 

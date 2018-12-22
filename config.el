@@ -31,7 +31,11 @@
 
 (pcase (system-name)
   ("iMac.local"
-   (load! "+imac-settings"))
+   (pcase (user-login-name)
+     ("ianbonanza"
+      (load! "+imac-work-settings"))
+     (_
+      (load! "+imac-home-settings"))))
   ("Ians-MBP"
    (load! "+mbp-settings"))
   (_
