@@ -38,6 +38,8 @@
       (load! "+imac-home-settings"))))
   ("Ians-MBP"
    (load! "+mbp-settings"))
+  ("galliumos"
+   (load! "+gallium-settings"))
   (_
    (setq
     doom-font (font-spec :family "Iosevka" :size 12 :weight 'semi-light))))
