@@ -90,9 +90,10 @@
 (def-package! tablature-mode
   :mode
   "\\.tab$"
-  :config
-  (load! "+tablature-mode-setup")
-  t)
+  ;; :config
+  ;; (load! "+tablature-mode-setup")
+  ;; t)
+  )
 
 ;;
 ;; Modules

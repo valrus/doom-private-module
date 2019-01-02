@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Margin Note
+# --
+
+<span class="marginnote">
+$0
+</span>
