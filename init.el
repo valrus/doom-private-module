@@ -17,13 +17,14 @@
        :completion
        (company          ; the ultimate code completion backend
         +childframe)
-       ;+auto)           ; as-you-type code completion
+       ;; +auto)           ; as-you-type code completion
        (helm             ; the *other* search engine for love and life
         +childframe
         +fuzzy)          ; enable fuzzy search backend for helm
        ido               ; the other *other* search engine...
-      ;(ivy              ; a search engine for love and life
-      ; +fuzzy)          ; enable fuzzy search backend for ivy
+       ;; (ivy              ; a search engine for love and life
+       ;;  +childframe
+       ;;  +fuzzy)          ; enable fuzzy search backend for ivy
 
        :ui
        doom              ; what makes DOOM look the way it does
@@ -152,11 +153,6 @@
        ;; your own modules.
        (default +bindings +snippets +evil-commands))
 
-
-;; To disable a package (tells Doom to ignore def-package! blocks for this
-;; package)
-
-(def-package-hook! magit-todos :disable)
 
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.

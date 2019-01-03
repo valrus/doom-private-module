@@ -81,6 +81,8 @@
   :mode
   "\\.haml$")
 
+(add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
+
 ;;
 ;; Modules
 ;;
