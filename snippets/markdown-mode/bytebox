@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: bytebox image
+# --
+
+<a href="{{ get_asset('images/posts/${1:Post Slug}/${2:Image File}') }}" rel="bytebox">
+    <img
+        alt="${3:Alt Text}"
+        src="{{ get_asset('images/posts/$1/$2') }}"
+    />
+</a>
+$0

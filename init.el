@@ -153,7 +153,6 @@
        ;; your own modules.
        (default +bindings +snippets +evil-commands))
 
-
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.
 

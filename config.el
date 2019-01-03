@@ -31,9 +31,15 @@
 
 (pcase (system-name)
   ("iMac.local"
-   (load! "+imac-settings"))
+   (pcase (user-login-name)
+     ("ianbonanza"
+      (load! "+imac-work-settings"))
+     (_
+      (load! "+imac-home-settings"))))
   ("Ians-MBP"
    (load! "+mbp-settings"))
+  ("galliumos"
+   (load! "+gallium-settings"))
   (_
    (setq
     doom-font (font-spec :family "Iosevka" :size 12 :weight 'semi-light))))
@@ -82,6 +88,14 @@
   "\\.haml$")
 
 (add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
+
+(def-package! tablature-mode
+  :mode
+  "\\.tab$"
+  ;; :config
+  ;; (load! "+tablature-mode-setup")
+  ;; t)
+  )
 
 ;;
 ;; Modules
