@@ -1,45 +1,37 @@
 ;;; Code:
 
+;; don't wait for tab-mode activation to create the mode-map
+(tab-make-mode-map)
+
+;; import tablature-mode maps suitable for normal mode
+(cl-loop for (key . action) in tab-normal-mode-map-alist
+         do (map! :map tab-mode-map :n key action))
+
 (map!
- (:after tablature-mode
    (:map tab-mode-map
      (:leader
-       (:prefix "c"
+       (:prefix ("c" . "chord")
          :desc "Analyze chord" :n "a" #'tab-analyze-chord
          :desc "Label chord" :n "p" #'tab-label-chord
          :desc "Delete chord label" :n "d" #'tab-delete-chord-label
          :desc "Goto chord label" :n "g" #'tab-goto-chord-label)
 
-       (:prefix "l"
+       (:prefix ("l" . "lyrics")
          :desc "Toggle lyric line" :n "l" #'tab-toggle-lyric-line)
 
-       (:prefix "t"
+       (:prefix ("t" . "tuning")
          :desc "Retune string" :n "r" #'tab-retune-string))
+
+
      )
-   )
  )
 
 (defun tablature/init-tablature-mode ()
   (use-package tablature-mode
     :init
-    (progn
-      (spacemacs/set-leader-keys-for-major-mode 'tab-mode
-        "ca" 'tab-analyze-chord
-        "cp" 'tab-label-chord
-        "cd" 'tab-delete-chord-label
-        "cg" 'tab-goto-chord-label
-        "ll" 'tab-toggle-lyric-line
-        "tr" 'tab-retune-string)
-
-      (spacemacs/declare-prefix-for-mode 'tab-mode "mc" "chord")
-      (spacemacs/declare-prefix-for-mode 'tab-mode "ml" "lyrics")
-      (spacemacs/declare-prefix-for-mode 'tab-mode "mt" "tuning"))
 
     :config
     (progn
-      ;; don't wait for tab-mode activation to create the mode-map
-      (tab-make-mode-map)
-
       ;; import tablature-mode maps suitable for normal mode
       (cl-loop for (key . action) in tab-normal-mode-map-alist
             do (evil-define-key 'normal tab-mode-map key action))
