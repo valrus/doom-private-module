@@ -87,6 +87,12 @@
   :mode
   "\\.haml$")
 
+(def-package! web-mode
+  :mode
+  "\\.erb")
+
+(add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
+
 (def-package! tablature-mode
   :mode
   "\\.tab$"
