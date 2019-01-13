@@ -10,19 +10,16 @@
      :desc "Previous comment" "C-k" #'log-edit-previous-comment
      (:prefix ","
        :desc "Commit" :n "c" #'with-editor-finish
-       :desc "Abort commit" :n "a" #'with-editor-cancel
-       )))
+       :desc "Abort commit" :n "a" #'with-editor-cancel)))
 
  (:leader
    (:prefix "f"
      :desc "Save file (Spacemacs)" :n "s" #'save-buffer
-     :desc "Find file (Spacemacs)" :n "f" #'find-file
-     )
+     :desc "Find file (Spacemacs)" :n "f" #'find-file)
    (:prefix "b"
      :desc "Previous buffer (Spacemacs)" :n "p" #'previous-buffer
      :desc "Next buffer (Spacemacs)" :n "n" #'next-buffer
-     :desc "Switch buffer (Spacemacs)" :n "b" #'switch-to-buffer
-     )
+     :desc "Switch buffer (Spacemacs)" :n "b" #'switch-to-buffer)
    (:prefix "w"
      :desc "Vertical split (Spacemacs)" :n "|" #'evil-window-vsplit
      :desc "Horizontal split (Spacemacs)" :n "-" #'evil-window-split
@@ -31,10 +28,6 @@
      :desc "Delete window (Spacemacs)" :n "d" #'evil-quit
 
      ;; Displaced by other-frame keybinding
-     :desc "Window enlargen" :n "O" #'doom/window-enlargen
-     )
+     :desc "Window enlargen" :n "O" #'doom/window-enlargen)
    (:prefix "p"
-     :desc "Find project file (Spacemacs)" :n "f" #'projectile-find-file
-     )
-   )
- )
+     :desc "Find project file (Spacemacs)" :n "f" #'projectile-find-file)))
