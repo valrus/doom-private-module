@@ -96,10 +96,9 @@
 (def-package! tablature-mode
   :mode
   "\\.tab$"
-  ;; :config
-  ;; (load! "+tablature-mode-setup")
-  ;; t)
-  )
+  :config
+  (load! "+tablature-mode-setup")
+  t)
 
 ;;
 ;; Modules
@@ -136,6 +135,15 @@
    +magit-hub-features t
    git-commit-summary-max-length 70
    vc-handled-backends (delq 'Git vc-handled-backends)))
+
+(after! elisp-mode
+  (map!
+   :localleader
+   :map emacs-lisp-mode-map
+   "e" nil
+   :nv "x" #'macrostep-expand
+   (:prefix "e"
+     :nv "e" #'eval-last-sexp)))
 
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default
