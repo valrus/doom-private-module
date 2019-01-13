@@ -1,6 +1,23 @@
 ;;; Code:
 
-(map!)
+(map!
+ (:after tablature-mode
+   (:map tab-mode-map
+     (:leader
+       (:prefix "c"
+         :desc "Analyze chord" :n "a" #'tab-analyze-chord
+         :desc "Label chord" :n "p" #'tab-label-chord
+         :desc "Delete chord label" :n "d" #'tab-delete-chord-label
+         :desc "Goto chord label" :n "g" #'tab-goto-chord-label)
+
+       (:prefix "l"
+         :desc "Toggle lyric line" :n "l" #'tab-toggle-lyric-line)
+
+       (:prefix "t"
+         :desc "Retune string" :n "r" #'tab-retune-string))
+     )
+   )
+ )
 
 (defun tablature/init-tablature-mode ()
   (use-package tablature-mode
