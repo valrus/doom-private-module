@@ -100,6 +100,10 @@
   (load! "+tablature-mode-setup")
   t)
 
+(def-package! ivy
+  :config
+  (setq ivy-use-selectable-prompt t))
+
 ;;
 ;; Modules
 ;;
