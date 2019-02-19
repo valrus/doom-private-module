@@ -145,6 +145,9 @@
    (:prefix "e"
      :nv "e" #'eval-last-sexp)))
 
+(after! avy
+  (setq avy-all-windows t))
+
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default
 ;;   (magit-define-popup-option 'magit-rebase-popup
