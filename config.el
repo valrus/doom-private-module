@@ -167,8 +167,7 @@
 (add-hook! 'markdown-mode-hook
   (progn
     (toggle-word-wrap nil)
-    (auto-fill-mode -1)
-  ))
+    (auto-fill-mode -1)))
 
 ;; lang/org
 (setq

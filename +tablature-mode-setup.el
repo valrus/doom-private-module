@@ -22,103 +22,100 @@
        (:prefix ("t" . "tuning")
          :desc "Retune string" :n "r" #'tab-retune-string))
 
+     :ni (kbd "<left>") #'tab-backward-char
+     :ni (kbd "<right>") #'tab-forward-char
+     :ni (kbd "<down>") #'evil-next-line
+     :ni (kbd "<up>") #'evil-previous-line
 
-     )
- )
+     :i " " #'tab-insert
 
-(defun tablature/init-tablature-mode ()
-  (use-package tablature-mode
-    :init
+      :n "h" #'tab-backward-char
+      :n "j" #'tab-down-string
+      :n "k" #'tab-up-string
+      :n "l" #'tab-forward-char
 
-    :config
-    (progn
-      ;; import tablature-mode maps suitable for normal mode
-      (cl-loop for (key . action) in tab-normal-mode-map-alist
-            do (evil-define-key 'normal tab-mode-map key action))
+      :n "H" #'tab-backward-barline
+      :n "J" #'tab-down-staff
+      :n "K" #'tab-up-staff
+      :n "L" #'tab-forward-barline
 
-      ;; Any mode bindings
-      (dolist (mode '(normal insert))
-        (evil-define-key mode tab-mode-map (kbd "<left>") 'tab-backward-char)
-        (evil-define-key mode tab-mode-map (kbd "<right>") 'tab-forward-char)
-        (evil-define-key mode tab-mode-map (kbd "<down>") 'evil-next-line)
-        (evil-define-key mode tab-mode-map (kbd "<up>") 'evil-previous-line))
+      :n "C-j" #'tab-lower-string
+      :n "C-k" #'tab-higher-string
+      :n "C-l" #'tab-toggle-lyric-line
 
-      ;; Insert mode bindings
-      (evil-define-key 'insert tab-mode-map " " 'tab-insert)
+      :n "o" #'tab-make-staff
 
-      ;; Normal mode bindings
-      (evil-define-key 'normal tab-mode-map "h" 'tab-backward-char)
-      (evil-define-key 'normal tab-mode-map "j" 'tab-down-string)
-      (evil-define-key 'normal tab-mode-map "k" 'tab-up-string)
-      (evil-define-key 'normal tab-mode-map "l" 'tab-forward-char)
+      :n "w" #'tab-forward-barline
+      :n "b" #'tab-backward-barline
 
-      (evil-define-key 'normal tab-mode-map "H" 'tab-backward-barline)
-      (evil-define-key 'normal tab-mode-map "J" 'tab-down-staff)
-      (evil-define-key 'normal tab-mode-map "K" 'tab-up-staff)
-      (evil-define-key 'normal tab-mode-map "L" 'tab-forward-barline)
+      ;; Not sure what I#'m going to do with these yet
+      ;; (evil-define-key #'normal tab-mode-map "{" #'chord-mode
+      ;; (evil-define-key #'normal tab-mode-map "}" #'lead-mode
 
-      (evil-define-key 'normal tab-mode-map (kbd "C-j") 'tab-lower-string)
-      (evil-define-key 'normal tab-mode-map (kbd "C-k") 'tab-higher-string)
-      (evil-define-key 'normal tab-mode-map (kbd "C-l") 'tab-toggle-lyric-line)
+      :n "<S-left>" #'tab-backward-char
+      :n "<S-right>" #'tab-forward-char
+      :n "<S-down>" #'tab-down-staff
+      :n "<S-up>" #'tab-up-staff
 
-      (evil-define-key 'normal tab-mode-map "o" 'tab-make-staff)
+      :n "x" #'tab-delete-current-note
+      :n "X" #'tab-delete-chord-forward
 
-      (evil-define-key 'normal tab-mode-map "w" 'tab-forward-barline)
-      (evil-define-key 'normal tab-mode-map "b" 'tab-backward-barline)
+      :n "dc" #'tab-delete-chord-forward
 
-      ;; Not sure what I'm going to do with these yet
-      ;; (evil-define-key 'normal tab-mode-map "{" 'chord-mode)
-      ;; (evil-define-key 'normal tab-mode-map "}" 'lead-mode)
-
-      (evil-define-key 'normal tab-mode-map (kbd "<S-left>") 'tab-backward-char)
-      (evil-define-key 'normal tab-mode-map (kbd "<S-right>") 'tab-forward-char)
-      (evil-define-key 'normal tab-mode-map (kbd "<S-down>") 'tab-down-staff)
-      (evil-define-key 'normal tab-mode-map (kbd "<S-up>") 'tab-up-staff)
-
-      (evil-define-key 'normal tab-mode-map "x" 'tab-delete-current-note)
-      (evil-define-key 'normal tab-mode-map "X" 'tab-delete-chord-forward)
-
-      (evil-define-key 'normal tab-mode-map "dc" 'tab-delete-chord-forward)
-
-      (evil-define-key 'normal tab-mode-map "|" 'tab-barline-in-place)
+      :n "|" #'tab-barline-in-place
 
       ; Visual mode bindings
-      (evil-define-key 'visual tab-mode-map "+" 'tab-transpose))))
+      :v "+" #'tab-transpose))
 
+(def-modeline-segment! +tablature-minor-mode
+  "Lead/chord mode indicator for tablature mode."
+  (format "%s : %d" (if lead-mode "Lead" "Chord") tab-position-as-string))
 
-(defun tablature/setup-normal-mode-line ()
-  (setq mode-line-format
-        (list ""
-              'mode-line-modified
-              'mode-line-buffer-identification
-              "   "
-              'global-mode-string
-              "   %[("
-              'mode-name
-              'minor-mode-alist
-              "--"
-              'tab-position-as-string
-              'tab-pending-embellishment
-              "%n"
-              'mode-line-process
-              ")%]----"
-              '(line-number-mode "L%l--")
-              '(-3 . "%p")
-              "-%-")))
+(if (featurep! :ui modeline)
+    (def-modeline-format! '+tablature
+      '(+mode-line-bar " " +mode-line-buffer-id "  " +tablature-minor-mode))
+  (def-modeline! '+tablature
+    '(bar matches " " buffer-info "  " +tablature-minor-mode)))
 
+;; Defunct: normal mode-line for non-Doom
+;; (defun tablature/setup-normal-mode-line ()
+;;   (setq mode-line-format
+;;         (list ""
+;;               'mode-line-modified
+;;               'mode-line-buffer-identification
+;;               "   "
+;;               'global-mode-string
+;;               "   %[("
+;;               'mode-name
+;;               'minor-mode-alist
+;;               "--"
+;;               'tab-position-as-string
+;;               'tab-pending-embellishment
+;;               "%n"
+;;               'mode-line-process
+;;               ")%]----"
+;;               '(line-number-mode "L%l--")
+;;               '(-3 . "%p")
+;;               "-%-")))
 
-(defun tablature/post-init-spaceline ()
-  (spaceline-define-segment tablature
-    (when (equal major-mode 'tab-mode)
-      (list
-       (if lead-mode "Lead" "Chord")
-       tab-position-as-string
-       ))
-    :separator ":")
+;; Defunct: spaceline mode-line
+;; (defun tablature/post-init-spaceline ()
+;;   (spaceline-define-segment tablature
+;;     (when (equal major-mode 'tab-mode)
+;;       (list
+;;        (if lead-mode "Lead" "Chord")
+;;        tab-position-as-string
+;;        ))
+;;     :separator ":")
 
-  (spaceline-toggle-tablature-on)
-  (spaceline-spacemacs-theme 'tablature))
+;;   (spaceline-spacemacs-theme 'tablature))
 
+(defun +tablature-mode|init-modeline ()
+  (funcall (if (featurep! :ui modeline)
+               #'set-modeline!
+             #'doom-set-modeline)
+           '+tablature))
+(add-hook 'tab-mode-hook tablature/tab-mode-settings)
 
 (defun tablature/tab-mode-line ()
   (if (not (configuration-layer/package-usedp 'spaceline))
@@ -126,18 +123,13 @@
     (progn
       (setq-local spaceline-line-column-p nil))))
 
-
 (defun tablature/tab-mode-settings ()
   (tablature/tab-mode-line)
   (chord-mode)
-  (setq-local evil-insert-state-cursor '("chartreuse3" box))
-  (setq-local evil-move-cursor-back nil)
   (setq-local indent-tabs-mode t)
-  (setq-local tab-width 4))
+  (setq-local tab-width 4)
+  (+tablature-mode|init-modeline))
 
-
-(defun tablature/post-init-tablature-mode ()
-  (add-hook 'tab-mode-hook 'tablature/tab-mode-settings))
 
 
 ;;; packages.el ends here
