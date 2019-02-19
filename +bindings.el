@@ -10,8 +10,17 @@
 
  (:after helm-files
    (:map helm-find-files-map
-     :desc "Up one directory" "C-h" #'helm-find-files-up-one-level
-     ))
+     :desc "Up one directory" "C-h" #'helm-find-files-up-one-level))
+
+ (:after ivy
+   (:leader
+     (:prefix "/"
+       :desc "Find in project" :n "/" #'+ivy/project-search)))
+
+ (:after helm
+   (:leader
+     (:prefix "/"
+     :desc "Find in project" :n "/" #'+helm/project-search)))
 
  (:leader
    (:prefix "b"
@@ -22,10 +31,4 @@
      )
    (:prefix "w"
      :desc "Maximize frame" :n "M" #'toggle-frame-maximized
-     :desc "ace-window" :n "w" #'ace-window
-     )
-   (:prefix "/"
-     :desc "Find in project" :n "/" #'+helm/project-search
-     )
-   )
- )
+     :desc "ace-window" :n "w" #'ace-window)))

@@ -18,23 +18,22 @@
        (company          ; the ultimate code completion backend
         +childframe)
        ;; +auto)           ; as-you-type code completion
-       (helm             ; the *other* search engine for love and life
-        +childframe
-        +fuzzy)          ; enable fuzzy search backend for helm
-       ido               ; the other *other* search engine...
-       ;; (ivy              ; a search engine for love and life
+       ;; (helm             ; the *other* search engine for love and life
        ;;  +childframe
-       ;;  +fuzzy)          ; enable fuzzy search backend for ivy
+       ;;  +fuzzy)          ; enable fuzzy search backend for helm
+       ido               ; the other *other* search engine...
+       ivy               ; a search engine for love and life
+        ;; +fuzzy)          ; enable fuzzy search backend for ivy
 
        :ui
        doom              ; what makes DOOM look the way it does
        doom-dashboard    ; a nifty splash screen for Emacs
-       doom-modeline     ; a snazzy Atom-inspired mode-line
+      ;doom-modeline     ; a snazzy Atom-inspired mode-line
       ;doom-quit         ; DOOM quit-message prompts when you quit Emacs
        evil-goggles      ; display visual hints when editing in evil
       ;fci               ; a `fill-column' indicator
        hl-todo           ; highlight TODO/FIXME/NOTE tags
-      ;modeline          ; snazzy, Atom-inspired modeline, plus API
+       modeline          ; snazzy, Atom-inspired modeline, plus API
        nav-flash         ; blink the current line after jumping
       ;neotree           ; a project drawer, like NERDTree for vim
        treemacs          ; a project drawer, like neotree but cooler
@@ -114,7 +113,8 @@
       ;php               ; perl's insecure younger brother
       ;plantuml          ; diagrams for confusing people more
       ;purescript        ; javascript, but functional
-       python            ; beautiful is better than ugly
+       (python           ; beautiful is better than ugly
+        +pyenv)
       ;qt                ; the 'cutest' gui framework ever
       ;racket            ; a DSL for DSLs
       ;rest              ; Emacs as a REST client
