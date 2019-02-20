@@ -48,16 +48,17 @@
        window-select     ; visually switch windows
 
        :editor
+       fold
        multiple-cursors  ; editing in many places at once
       ;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
 
        :emacs
        dired             ; making dired pretty [functional]
-       ediff             ; comparing files in Emacs
+      ;ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
       ;eshell            ; a consistent, cross-platform shell (WIP)
-       hideshow          ; basic code-folding support
+      ;hideshow          ; basic code-folding support [deprecated]
        imenu             ; an imenu sidebar and searchable code index
       ;term              ; terminals in Emacs
        vc                ; version-control and Emacs, sitting in a tree
@@ -83,7 +84,7 @@
       ;clojure           ; java with a lisp
       ;common-lisp       ; if you've seen one lisp, you've seen them all
       ;crystal           ; ruby at the speed of c
-      ;csharp            ; unity, .NET, and mono shenanigans
+       csharp            ; unity, .NET, and mono shenanigans
        data              ; config/data formats
       ;erlang            ; an elegant language for a more civilized age
       ;elixir            ; erlang done right
