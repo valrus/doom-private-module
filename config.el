@@ -152,6 +152,10 @@
 (after! avy
   (setq avy-all-windows t))
 
+(after! counsel
+  (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
+        counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
+
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default
 ;;   (magit-define-popup-option 'magit-rebase-popup
