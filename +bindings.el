@@ -17,10 +17,10 @@
      (:prefix "/"
        :desc "Find in project" :n "/" #'+ivy/project-search)))
 
- (:after helm
-   (:leader
-     (:prefix "/"
-     :desc "Find in project" :n "/" #'+helm/project-search)))
+ ;; (:after helm
+ ;;   (:leader
+ ;;     (:prefix "/"
+ ;;     :desc "Find in project" :n "/" #'+helm/project-search)))
 
  (:leader
    (:prefix "b"
