@@ -104,6 +104,15 @@
   :config
   (setq ivy-use-selectable-prompt t))
 
+(def-package! winum
+  :config
+  (setq-default
+   winum-format "[%s]"
+   winum-scope 'frame-local
+   winum-auto-setup-mode-line nil)
+  (winum-mode)
+  (load! "+winum-bindings"))
+
 ;;
 ;; Modules
 ;;
