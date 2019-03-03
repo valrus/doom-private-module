@@ -124,6 +124,11 @@
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
 
+(after! doom-modeline
+  (def-modeline-format! 'main
+    '(bar window-number matches buffer-info remote-host buffer-position selection-info)
+    '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
+
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
 
