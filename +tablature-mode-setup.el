@@ -9,7 +9,7 @@
 
 (map!
    (:map tab-mode-map
-     (:leader
+     (:localleader
        (:prefix ("c" . "chord")
          :desc "Analyze chord" :n "a" #'tab-analyze-chord
          :desc "Label chord" :n "p" #'tab-label-chord
@@ -67,16 +67,6 @@
       ; Visual mode bindings
       :v "+" #'tab-transpose))
 
-(def-modeline-segment! +tablature-minor-mode
-  "Lead/chord mode indicator for tablature mode."
-  (format "%s : %d" (if lead-mode "Lead" "Chord") tab-position-as-string))
-
-(if (featurep! :ui modeline)
-    (def-modeline-format! '+tablature
-      '(+mode-line-bar " " +mode-line-buffer-id "  " +tablature-minor-mode))
-  (def-modeline! '+tablature
-    '(bar matches " " buffer-info "  " +tablature-minor-mode)))
-
 ;; Defunct: normal mode-line for non-Doom
 ;; (defun tablature/setup-normal-mode-line ()
 ;;   (setq mode-line-format
@@ -110,26 +100,28 @@
 
 ;;   (spaceline-spacemacs-theme 'tablature))
 
-(defun +tablature-mode|init-modeline ()
-  (funcall (if (featurep! :ui modeline)
-               #'set-modeline!
-             #'doom-set-modeline)
-           '+tablature))
-(add-hook 'tab-mode-hook tablature/tab-mode-settings)
 
-(defun tablature/tab-mode-line ()
-  (if (not (configuration-layer/package-usedp 'spaceline))
-      (tablature/setup-normal-mode-line)
-    (progn
-      (setq-local spaceline-line-column-p nil))))
+;; Comment from Henrik about modeline:
+;; The simplest way is to add the segments to global-mode-string variable (accepts anything you'd put in mode-line-format).
+;; Otherwise, you may want to look at the documentation for def-modeline-format! (for defining preset modelines out of segments),
+;; def-modeline-segment! for defining the parts, and set-modeline! for activating modelines.
+;; I guess there's no better example than those calls at the bottom of ui/modeline/config.el.
 
-(defun tablature/tab-mode-settings ()
-  (tablature/tab-mode-line)
+(defun tablature-modeline-info ()
+  (format "%s : %d" (if lead-mode "Lead" "Chord") tab-position))
+
+(defun +tablature-mode|tab-mode-settings ()
   (chord-mode)
   (setq-local indent-tabs-mode t)
-  (setq-local tab-width 4)
-  (+tablature-mode|init-modeline))
+  (setq-local tab-width 4))
 
+(add-to-list 'global-mode-string '(:eval (when (eq major-mode 'tab-mode) (tablature-modeline-info))))
 
+(progn
+(setq tab-mode-hook nil)
+(setq lead-mode-hook nil)
+(setq chord-mode-hook nil)
+(add-hook! tab-mode '+tablature-mode|tab-mode-settings)
+(add-hook! (lead-mode chord-mode) '+tablature-mode|init-modeline))
 
 ;;; packages.el ends here
