@@ -10,21 +10,6 @@
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
 
-;; load heavy packages all sneaky breeky like
-(defun auto-require-packages (packages)
-  (let* ((reqs (cl-remove-if #'featurep packages))
-         (req (pop reqs)))
-    (when req
-      (require req)
-      (when reqs
-        (run-with-idle-timer 1 nil #'auto-require-packages reqs)))))
-
-(run-with-idle-timer 1 nil #'auto-require-packages
-                     '(calendar find-func format-spec org-macs org-compat
-                       org-faces org-entities org-list org-pcomplete org-src
-                       org-footnote org-macro ob org org-clock org-agenda
-                       org-capture with-editor git-commit package magit))
-
 ;;
 ;; Host-specific config
 ;;
@@ -104,6 +89,16 @@
   :config
   (setq ivy-use-selectable-prompt t))
 
+(def-package! winum
+  :init
+  (setq-default
+   winum-format "[%s]"
+   winum-scope 'frame-local
+   winum-auto-setup-mode-line nil)
+  :config
+  (winum-mode)
+  (load! "+winum-bindings"))
+
 ;;
 ;; Modules
 ;;
@@ -114,6 +109,11 @@
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
+
+(after! doom-modeline
+  (def-modeline-format! 'main
+    '(bar window-number matches buffer-info remote-host buffer-position selection-info)
+    '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
 
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))

@@ -7,6 +7,7 @@
 (package! web-mode)
 (package! projectile-rails)
 (package! rvm)
+(package! winum)
 
 ;; To disable a package
 

@@ -31,5 +31,4 @@
      :desc "Open directory browser" :n "b" #'treemacs
      )
    (:prefix "w"
-     :desc "Maximize frame" :n "M" #'toggle-frame-maximized
-     :desc "ace-window" :n "w" #'ace-window)))
+     :desc "Maximize frame" :n "M" #'toggle-frame-maximized)))
