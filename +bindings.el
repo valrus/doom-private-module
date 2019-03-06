@@ -17,14 +17,15 @@
      (:prefix "/"
        :desc "Find in project" :n "/" #'+ivy/project-search)))
 
- (:after helm
-   (:leader
-     (:prefix "/"
-     :desc "Find in project" :n "/" #'+helm/project-search)))
+ ;; (:after helm
+ ;;   (:leader
+ ;;     (:prefix "/"
+ ;;     :desc "Find in project" :n "/" #'+helm/project-search)))
 
  (:leader
    (:prefix "b"
      :desc "Rename buffer" :n "R" #'rename-buffer
+     :desc "Kill buffer" :n "d" #'kill-this-buffer ; consistency with `SPC w d'
      )
    (:prefix "o"
      :desc "Open directory browser" :n "b" #'treemacs

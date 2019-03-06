@@ -170,6 +170,9 @@
 (add-hook! 'projectile-after-switch-project-hook
   (rvm-activate-corresponding-ruby))
 
+(defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
+  (rvm-activate-corresponding-ruby))
+
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook
   (progn
