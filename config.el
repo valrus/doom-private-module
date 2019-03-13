@@ -103,6 +103,11 @@
 ;; Modules
 ;;
 
+;; tools/lsp
+
+(after! lsp-ui
+  (setq-default lsp-ui-sideline nil))
+
 ;; Temporary - allow minibuffer in helm childframe
 (after! helm
   (remove-hook 'helm-minibuffer-set-up-hook #'+helm*hide-minibuffer-maybe))
@@ -138,7 +143,10 @@
    ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
    +magit-hub-features t
    git-commit-summary-max-length 70
-   vc-handled-backends (delq 'Git vc-handled-backends)))
+   vc-handled-backends (delq 'Git vc-handled-backends))
+
+  ;; workaround for hang when magit status buffer closes
+  (define-key magit-status-mode-map [remap magit-mode-bury-buffer] nil))
 
 (after! elisp-mode
   (map!
@@ -162,16 +170,16 @@
 ;;     ?S "Sign using gpg" "--gpg-sign=" #'magit-read-gpg-secret-key))
 
 ;; lang/ruby
-(add-hook! 'ruby-mode-hook
-  (progn
-    ;; (set-fill-column 120)
-    ))
+;; (add-hook! 'ruby-mode-hook
+;;   (progn
+;;     (set-fill-column 120)
+;;     ))
 
 (add-hook! 'projectile-after-switch-project-hook
   (rvm-activate-corresponding-ruby))
 
-(defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
-  (rvm-activate-corresponding-ruby))
+;; (defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
+;;   (rvm-activate-corresponding-ruby))
 
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook

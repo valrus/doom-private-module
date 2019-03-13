@@ -69,6 +69,7 @@
       ;ein               ; tame Jupyter notebooks with emacs
        flycheck
       ;gist              ; interacting with github gists
+      ;lsp
        macos             ; MacOS-specific commands
       ;make              ; run make tasks from Emacs
        magit             ;
@@ -121,7 +122,7 @@
       ;qt                ; the 'cutest' gui framework ever
       ;racket            ; a DSL for DSLs
       ;rest              ; Emacs as a REST client
-       ruby              ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
+       (ruby +lsp)       ; 1.step do {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
       ;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
       ;scala             ; java, but good
        (sh +zsh)        ; she sells (ba|z)sh shells on the C xor
