@@ -138,7 +138,11 @@
    ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
    +magit-hub-features t
    git-commit-summary-max-length 70
-   vc-handled-backends (delq 'Git vc-handled-backends)))
+   vc-handled-backends (delq 'Git vc-handled-backends))
+
+  ;; Temporary workaround for +magit/quit hang with lots of buffers
+  (define-key magit-status-mode-map [remap magit-mode-bury-buffer] nil))
+
 
 (after! elisp-mode
   (map!
