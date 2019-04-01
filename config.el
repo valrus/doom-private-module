@@ -59,7 +59,10 @@
 
 (def-package! enh-ruby-mode
   :init
-  (setq-default enh-ruby-add-encoding-comment-on-save nil)
+  (setq-default
+   enh-ruby-add-encoding-comment-on-save nil
+   enh-ruby-deep-indent-paren nil
+   enh-ruby-deep-indent-construct nil)
   t)
 
 (def-package! projectile-rails
@@ -142,7 +145,7 @@
    ;; magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395")
    ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
    +magit-hub-features t
-   git-commit-summary-max-length 70
+   git-commit-summary-max-length 80
    vc-handled-backends (delq 'Git vc-handled-backends))
 
   ;; Temporary workaround for +magit/quit hang with lots of buffers
@@ -163,6 +166,11 @@
 (after! counsel
   (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
+
+(after! ivy
+  (map!
+   :map ivy-minibuffer-map
+   "C-d" #'ivy-kill-line))
 
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default
