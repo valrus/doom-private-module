@@ -14,6 +14,9 @@
  doom-theme 'doom-nord-light
  )
 
+(after! org
+  (setq org-directory "~/Dropbox (Personal)/Work Share/org/todo.org"))
+
 (def-package! rvm
   :config
   (progn

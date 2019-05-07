@@ -1,5 +1,13 @@
 ;;; ~/.doom.d/spacemacs-bindings.el -*- lexical-binding: t; -*-
 
+
+(map!
+   (:map with-editor-mode-map
+     :desc "Previous comment" "C-k" #'log-edit-previous-comment
+     (:prefix ","
+       :desc "Commit" :n "c" #'with-editor-finish
+       :desc "Abort commit" :n "a" #'with-editor-cancel)))
+
 (map!
  ;; Comma for shortcut to local-leader
  :n "," (λ! (push (cons t ?m) unread-command-events)

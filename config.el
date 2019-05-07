@@ -10,6 +10,8 @@
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
 
+(global-auto-revert-mode)
+
 ;;
 ;; Host-specific config
 ;;
@@ -46,6 +48,10 @@
 ;;
 ;; Packages
 ;;
+
+(def-package! evil
+  :config
+  (setq-default evil-kill-on-visual-paste nil))
 
 (def-package! linum-relative
   :config
@@ -90,7 +96,9 @@
 
 (def-package! ivy
   :config
-  (setq ivy-use-selectable-prompt t))
+  (setq
+   ivy-use-selectable-prompt t
+   +ivy-buffer-icons t))
 
 (def-package! winum
   :init
