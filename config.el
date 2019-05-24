@@ -3,7 +3,7 @@
 (setq user-full-name    "Ian McCowan"
       user-mail-address "imccowan@gmail.com"
 
-      +pretty-code-enabled-modes '(emacs-lisp-mode org-mode))
+      +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode))
 
 (setq-hook! 'minibuffer-setup-hook show-trailing-whitespace nil)
 
