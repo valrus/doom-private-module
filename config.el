@@ -190,9 +190,10 @@
 ;;   (progn
 ;;     (set-fill-column 120)
 ;;     ))
+;;
 
-(add-hook! 'projectile-after-switch-project-hook
-  (rvm-activate-corresponding-ruby))
+(after! rvm
+  (rvm-use-default))
 
 ;; (defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
 ;;   (rvm-activate-corresponding-ruby))
@@ -213,3 +214,5 @@
  ;; font. This bugs me. Personally, markdown #-marks for headlines are more
  ;; elegant.
  org-bullets-bullet-list '("#"))
+
+;; (setq lsp-print-io t)
