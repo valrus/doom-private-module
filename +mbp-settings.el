@@ -11,7 +11,7 @@
  doom-variable-pitch-font (font-spec :family "Iosevka")
 
 ;; theme
- doom-theme 'doom-nord-light
+ doom-theme 'doom-solarized-light
  )
 
 (after! org
