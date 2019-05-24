@@ -22,6 +22,13 @@
  ;;   (:map helm-find-files-map
  ;;     :desc "Up one directory" "C-h" #'helm-find-files-up-one-level))
 
+ (:after projectile-rails
+   (:map enh-ruby-mode-map
+     (:localleader
+       (:prefix "r"
+         (:prefix ("f" . "find")
+           :desc "Find view" :n "v" #'projectile-rails-find-view)))))
+
  (:leader
    (:prefix "b"
      :desc "Rename buffer" :n "R" #'rename-buffer
