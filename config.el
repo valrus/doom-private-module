@@ -180,6 +180,11 @@
    :map ivy-minibuffer-map
    "C-d" #'ivy-kill-line))
 
+(after! flycheck
+  (setq-default
+   +flycheck-on-escape nil
+   flycheck-check-syntax-automatically '(save mode-enable)))
+
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default
 ;;   (magit-define-popup-option 'magit-rebase-popup
