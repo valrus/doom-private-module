@@ -8,10 +8,6 @@
      "C-h" #'evil-window-left
      "C-l" #'evil-window-right))
 
- (:after helm-files
-   (:map helm-find-files-map
-     :desc "Up one directory" "C-h" #'helm-find-files-up-one-level))
-
  (:after ivy
    (:leader
      (:prefix "/"
@@ -21,6 +17,10 @@
  ;;   (:leader
  ;;     (:prefix "/"
  ;;     :desc "Find in project" :n "/" #'+helm/project-search)))
+ ;;
+ ;; (:after helm-files
+ ;;   (:map helm-find-files-map
+ ;;     :desc "Up one directory" "C-h" #'helm-find-files-up-one-level))
 
  (:leader
    (:prefix "b"
