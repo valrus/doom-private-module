@@ -1,11 +1,6 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-(doom! :feature
-      ;debugger          ; FIXME stepping through code, to help you add bugs
-      ;(syntax-checker   ; tasing you for every semicolon you forget
-      ; +childframe)     ; use childframes for error popups (Emacs 26+ only)
-
-       :completion
+(doom! :completion
        (company          ; the ultimate code completion backend
         +childframe)
        ;; +auto)           ; as-you-type code completion
@@ -52,35 +47,37 @@
 
        :emacs
        dired             ; making dired pretty [functional]
-      ;ediff             ; comparing files in Emacs
        electric          ; smarter, keyword-based electric-indent
-      ;eshell            ; a consistent, cross-platform shell (WIP)
-      ;hideshow          ; basic code-folding support [deprecated]
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
+      ;eshell            ; a consistent, cross-platform shell (WIP)
        term              ; terminals in Emacs
 
        :tools
+      ;ansible
+      ;debugger          ; FIXME stepping through code, to help you add bugs
        editorconfig      ; let someone else argue about tabs vs spaces
       ;ein               ; tame Jupyter notebooks with emacs
        eval              ; run code, run (also, repls)
-       flycheck
+      (flycheck +childframe)
       ;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +devdocs         ; ...on devdocs.io online
         +docsets)        ; ...or in Dash docsets locally
       ;lsp
        macos             ; MacOS-specific commands
+       magit
       ;make              ; run make tasks from Emacs
-       magit             ;
       ;password-store    ; password manager for nerds
       ;pdf               ; pdf enhancements
       ;prodigy           ; FIXME managing external services & code builders
       ;rgb               ; creating color strings
+      ;terraform
       ;tmux              ; an API for interacting with tmux
       ;upload            ; map local to remote projects via ssh/ftp
       ;wakatime
+      ;vterm
 
        :lang
       ;assembly          ; assembly for fun or debugging
@@ -144,10 +141,6 @@
       ;(write            ; emacs as a word processor (latex + org + markdown)
       ; +wordnut         ; wordnet (wn) search
       ; +langtool)       ; a proofreader (grammar/style check) for Emacs
-
-       :collab
-      ;floobits          ; peer programming for a price
-      ;impatient-mode    ; show off code over HTTP
 
        :config
        ;; For literate config users. This will tangle+compile a config.org
