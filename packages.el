@@ -8,6 +8,8 @@
 (package! projectile-rails)
 (package! rvm)
 (package! winum)
+(package! ivy-prescient)
+(package! which-key-posframe)
 
 ;; To disable a package
 
