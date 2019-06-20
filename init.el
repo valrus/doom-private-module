@@ -2,13 +2,17 @@
 
 (doom! :completion
        (company          ; the ultimate code completion backend
-        +childframe)
+        +tng
+        )
        ;; +auto)           ; as-you-type code completion
        ;; (helm             ; the *other* search engine for love and life
        ;;  +childframe
        ;;  +fuzzy)          ; enable fuzzy search backend for helm
        ido               ; the other *other* search engine...
-       ivy               ; a search engine for love and life
+       (ivy              ; a search engine for love and life
+        +icons
+        +prescient
+        )
         ;; +fuzzy)          ; enable fuzzy search backend for ivy
 
        :ui
@@ -23,10 +27,11 @@
        nav-flash         ; blink the current line after jumping
       ;neotree           ; a project drawer, like NERDTree for vim
        ophints           ; display visual hints when editing in evil
-       treemacs          ; a project drawer, like neotree but cooler
+      ;treemacs          ; a project drawer, like neotree but cooler
        (popup            ; tame sudden yet inevitable temporary windows
         +all             ; catch all popups that start with an asterix
-        +defaults)       ; default popup rules
+        +defaults        ; default popup rules
+        )
        pretty-code       ; replace bits of code with pretty symbols
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
       ;unicode           ; extended unicode support for various languages
@@ -37,7 +42,8 @@
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :editor
-       (evil +everywhere); come to the dark side, we have cookies
+       (evil
+         +everywhere)
        file-templates    ; auto-snippets for empty files
        fold
        multiple-cursors  ; editing in many places at once
@@ -46,7 +52,8 @@
        snippets          ; my elves. They type so I don't have to
 
        :emacs
-       dired             ; making dired pretty [functional]
+       (dired
+        +icons)
        electric          ; smarter, keyword-based electric-indent
        vc                ; version-control and Emacs, sitting in a tree
 
@@ -60,7 +67,8 @@
        editorconfig      ; let someone else argue about tabs vs spaces
       ;ein               ; tame Jupyter notebooks with emacs
        eval              ; run code, run (also, repls)
-      (flycheck +childframe)
+       flycheck
+       ;+childframe)
       ;gist              ; interacting with github gists
        (lookup           ; helps you navigate your code and documentation
         +devdocs         ; ...on devdocs.io online

@@ -85,8 +85,6 @@
   :mode
   "\\.erb")
 
-(add-to-list 'auto-mode-alist '("\\.log\\'" . display-ansi-colors))
-
 (def-package! tablature-mode
   :mode
   "\\.tab$"
@@ -120,8 +118,8 @@
   (setq-default lsp-ui-sideline nil))
 
 ;; Temporary - allow minibuffer in helm childframe
-(after! helm
-  (remove-hook 'helm-minibuffer-set-up-hook #'+helm*hide-minibuffer-maybe))
+;; (after! helm
+;;   (remove-hook 'helm-minibuffer-set-up-hook #'+helm*hide-minibuffer-maybe))
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))

@@ -21,3 +21,6 @@
   :config
   (progn
     (rvm-use-default)))
+
+(after! flycheck
+  (setq flycheck-scss-lint-executable "emacs-scss-lint"))
