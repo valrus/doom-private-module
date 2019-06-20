@@ -5,12 +5,16 @@
 
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode))
 
-(setq-hook! 'minibuffer-setup-hook show-trailing-whitespace nil)
+(setq-hook! 'minibuffer-setup-hook
+  show-trailing-whitespace nil
+  ;; room for icons
+  line-spacing 1)
 
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
 
-(global-auto-revert-mode)
+;; seems slow, barely works
+;; (global-auto-revert-mode)
 
 ;;
 ;; Host-specific config
@@ -96,7 +100,8 @@
   :config
   (setq
    ivy-use-selectable-prompt t
-   +ivy-buffer-icons t))
+   +ivy-buffer-icons t)
+  (remove-hook 'ivy-mode-hook #'ivy-rich-mode))
 
 (def-package! winum
   :init
@@ -107,6 +112,19 @@
   :config
   (winum-mode)
   (load! "+winum-bindings"))
+
+;; (def-package! ivy-prescient
+;;   :config
+;;   (ivy-prescient-mode))
+
+;; (def-package! which-key-posframe
+;;   :config
+;;   (which-key-posframe-mode))
+
+(def-package! company
+  :config
+  (setq-default
+   company-idle-delay nil))
 
 ;;
 ;; Modules

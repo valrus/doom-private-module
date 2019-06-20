@@ -2,17 +2,16 @@
 
 (doom! :completion
        (company          ; the ultimate code completion backend
-        +tng
-        )
-       ;; +auto)           ; as-you-type code completion
+        +tng) ; complete using only TAB
+       ;+childframe)
        ;; (helm             ; the *other* search engine for love and life
        ;;  +childframe
        ;;  +fuzzy)          ; enable fuzzy search backend for helm
-       ido               ; the other *other* search engine...
-       (ivy              ; a search engine for love and life
-        +icons
+       ;; ido               ; the other *other* search engine...
+       (ivy               ; a search engine for love and life
+        ;; +childframe
         +prescient
-        )
+        +icons)
         ;; +fuzzy)          ; enable fuzzy search backend for ivy
 
        :ui
@@ -35,7 +34,7 @@
        pretty-code       ; replace bits of code with pretty symbols
       ;tabbar            ; FIXME an (incomplete) tab bar for Emacs
       ;unicode           ; extended unicode support for various languages
-       vc-gutter         ; vcs diff in the fringe
+       ;; vc-gutter         ; vcs diff in the fringe
       ;vi-tilde-fringe   ; fringe tildes to mark beyond EOB
       ;(window-select    ; visually switch windows
       ; +switch-window)
@@ -52,7 +51,8 @@
        snippets          ; my elves. They type so I don't have to
 
        :emacs
-       (dired
+       (dired             ; making dired pretty [functional]
+       ;+ranger
         +icons)
        electric          ; smarter, keyword-based electric-indent
        vc                ; version-control and Emacs, sitting in a tree
