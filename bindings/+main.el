@@ -1,4 +1,4 @@
-;;; ~/.doom.d/bindings.el -*- lexical-binding: t; -*-
+;;; ~/.doom.d/bindings/+main.el -*- lexical-binding: t; -*-
 
 (map!
  :desc "Redo" :n "U" #'undo-tree-redo
@@ -33,6 +33,7 @@
    (:prefix "b"
      :desc "Rename buffer" :n "R" #'rename-buffer
      :desc "Kill buffer" :n "d" #'kill-this-buffer ; consistency with `SPC w d'
+     :desc "Revert buffer" :n "v" (lambda! (revert-buffer t t))
      )
    (:prefix "o"
      :desc "Open directory browser" :n "b" #'treemacs

@@ -1,4 +1,4 @@
-;;; ~/.doom.d/+winum-bindings.el -*- lexical-binding: t; -*-
+;;; ~/.doom.d/bindings/+winum.el -*- lexical-binding: t; -*-
 
 (map!
  (:leader

@@ -1,5 +1,4 @@
-;;; ~/.doom.d/spacemacs-bindings.el -*- lexical-binding: t; -*-
-
+;;; ~/.doom.d/bindings/+spacemacs.el -*- lexical-binding: t; -*-
 
 (map!
    (:map with-editor-mode-map

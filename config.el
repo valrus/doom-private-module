@@ -5,16 +5,20 @@
 
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode))
 
-(setq-hook! 'minibuffer-setup-hook
-  show-trailing-whitespace nil
-  ;; room for icons
-  line-spacing 1)
+(defun make-fancy-minibuffer ()
+  (setq
+   show-trailing-whitespace nil
+   ;; room for icons
+   line-spacing 1)
+  (set (make-local-variable 'face-remapping-alist)
+       '((default :family "Iosevka Slab" :height 1.2 :weight))))
+
+(add-hook! 'minibuffer-setup-hook 'make-fancy-minibuffer)
 
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
 
-;; seems slow, barely works
-;; (global-auto-revert-mode)
+(global-auto-revert-mode t)
 
 ;;
 ;; Host-specific config
@@ -46,8 +50,8 @@
 ;; Keybindings
 ;;
 
-(load! "+bindings")
-(load! "+spacemacs-bindings")
+(load! "bindings/+main")
+(load! "bindings/+spacemacs")
 
 ;;
 ;; Packages
@@ -78,7 +82,7 @@
 (def-package! projectile-rails
   :config
   (projectile-rails-global-mode)
-  (load! "+projectile-rails-bindings")
+  ;; (load! "+projectile-rails-bindings")
   t)
 
 (def-package! haml-mode
@@ -101,7 +105,8 @@
   (setq
    ivy-use-selectable-prompt t
    +ivy-buffer-icons t)
-  (remove-hook 'ivy-mode-hook #'ivy-rich-mode))
+  (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
+  (load! "bindings/+ivy.el"))
 
 (def-package! winum
   :init
@@ -111,11 +116,7 @@
    winum-auto-setup-mode-line nil)
   :config
   (winum-mode)
-  (load! "+winum-bindings"))
-
-;; (def-package! ivy-prescient
-;;   :config
-;;   (ivy-prescient-mode))
+  (load! "bindings/+winum"))
 
 ;; (def-package! which-key-posframe
 ;;   :config
@@ -193,8 +194,7 @@
 
 (after! ivy
   (map!
-   :map ivy-minibuffer-map
-   "C-d" #'ivy-kill-line))
+   ))
 
 (after! flycheck
   (setq-default
