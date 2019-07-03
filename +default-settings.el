@@ -16,3 +16,5 @@
  ;; theme
  doom-theme 'doom-solarized-light
 )
+
+(set-face-attribute 'minibuffer-prompt nil :family "Iosevka Slab" :weight 'bold)

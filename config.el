@@ -39,7 +39,6 @@
   (set (make-local-variable 'face-remapping-alist) minibuffer-font-spec))
 
 (add-hook! 'minibuffer-setup-hook 'make-fancy-minibuffer)
-(set-face-attribute 'minibuffer-prompt nil :family "Iosevka Slab" :weight 'bold)
 
 (when IS-MAC
   (setq ns-use-thin-smoothing t)
