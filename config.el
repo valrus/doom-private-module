@@ -5,16 +5,6 @@
 
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode))
 
-(defun make-fancy-minibuffer ()
-  (setq
-   show-trailing-whitespace nil
-   ;; room for icons
-   line-spacing 1)
-  (set (make-local-variable 'face-remapping-alist)
-       '((default :family "Iosevka Slab" :height 1.2 :weight))))
-
-(add-hook! 'minibuffer-setup-hook 'make-fancy-minibuffer)
-
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
 
@@ -23,6 +13,8 @@
 ;;
 ;; Host-specific config
 ;;
+
+(load! "+default-settings")
 
 (pcase (system-name)
   ("iMac.local"
@@ -38,6 +30,16 @@
   (_
    (setq
     doom-font (font-spec :family "Iosevka" :size 12 :weight 'semi-light))))
+
+(defun make-fancy-minibuffer ()
+  (setq
+   show-trailing-whitespace nil
+   ;; room for icons
+   line-spacing 1)
+  (set (make-local-variable 'face-remapping-alist) minibuffer-font-spec))
+
+(add-hook! 'minibuffer-setup-hook 'make-fancy-minibuffer)
+(set-face-attribute 'minibuffer-prompt nil :family "Iosevka Slab" :weight 'bold)
 
 (when IS-MAC
   (setq ns-use-thin-smoothing t)
@@ -191,10 +193,6 @@
 (after! counsel
   (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
-
-(after! ivy
-  (map!
-   ))
 
 (after! flycheck
   (setq-default

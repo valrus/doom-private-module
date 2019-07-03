@@ -3,6 +3,7 @@
 
 (package! linum-relative)
 
+(package! deadgrep)
 (package! haml-mode)
 (package! web-mode)
 (package! projectile-rails)
