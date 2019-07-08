@@ -109,13 +109,13 @@
   (load! "bindings/+ivy.el"))
 
 (def-package! winum
-  :init
-  (setq-default
-   winum-format "[%s]"
-   winum-scope 'frame-local
-   winum-auto-setup-mode-line nil)
+  ;; :init
+  ;; (setq-default
+  ;;  winum-format "[%s]"
+  ;;  winum-scope 'frame-local
+  ;;  winum-auto-setup-mode-line nil)
   :config
-  (winum-mode)
+  ;; (winum-mode)
   (load! "bindings/+winum"))
 
 ;; (def-package! which-key-posframe
@@ -136,10 +136,6 @@
 (after! lsp-ui
   (setq-default lsp-ui-sideline nil))
 
-;; Temporary - allow minibuffer in helm childframe
-;; (after! helm
-;;   (remove-hook 'helm-minibuffer-set-up-hook #'+helm*hide-minibuffer-maybe))
-
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
 
@@ -150,17 +146,6 @@
 
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
-
-;; emacs/eshell
-;; (after! eshell
-;;   (set-eshell-alias!
-;;    "f"   "find-file $1"
-;;    "l"   "ls -lh"
-;;    "d"   "dired $1"
-;;    "gl"  "(call-interactively 'magit-log-current)"
-;;    "gs"  "magit-status"
-;;    "gc"  "magit-commit"
-;;    "rg"  "rg --color=always $*"))
 
 ;; tools/magit
 (after! magit
@@ -177,13 +162,7 @@
   (define-key magit-status-mode-map [remap magit-mode-bury-buffer] nil))
 
 (after! elisp-mode
-  (map!
-   :localleader
-   :map emacs-lisp-mode-map
-   "e" nil
-   :nv "x" #'macrostep-expand
-   (:prefix "e"
-     :nv "e" #'eval-last-sexp)))
+  (load! "bindings/+elisp"))
 
 (after! avy
   (setq avy-all-windows t))
@@ -193,13 +172,16 @@
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
 
 (after! ivy
-  (map!
-   ))
+  (load! "bindings/+ivy"))
 
 (after! flycheck
   (setq-default
    +flycheck-on-escape nil
    flycheck-check-syntax-automatically '(save mode-enable)))
+
+;; Don't create new workspaces for new frames
+(after! persp-mode
+  (setq-default persp-interactive-init-frame-behaviour-override -1))
 
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default

@@ -11,7 +11,12 @@
  (:after ivy
    (:leader
      (:prefix "/"
-       :desc "Find in project" :n "/" #'+ivy/project-search)))
+       :desc "Search project" :n "/" #'+default/search-project)))
+
+ (:after deadgrep
+   (:leader
+     (:prefix "/"
+       :desc "Find with deadgrep" :n "p" #'+deadgrep)))
 
  ;; (:after helm
  ;;   (:leader

@@ -1,5 +1,6 @@
 ;;; ~/.doom.d/bindings/+winum.el -*- lexical-binding: t; -*-
 
+;; SPC n to switch to winum-numbered window n
 (map!
  (:leader
     :desc "Switch to window 1" :n "1" #'winum-select-window-1

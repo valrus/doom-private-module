@@ -3,11 +3,11 @@
 
 (package! linum-relative)
 
+(package! deadgrep)
 (package! haml-mode)
 (package! web-mode)
 (package! projectile-rails)
 (package! rvm)
-(package! winum)
 (package! ivy-prescient)
 (package! which-key-posframe)
 
