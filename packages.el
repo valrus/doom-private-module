@@ -8,7 +8,6 @@
 (package! web-mode)
 (package! projectile-rails)
 (package! rvm)
-(package! ivy-prescient)
 (package! which-key-posframe)
 
 ;; To disable a package

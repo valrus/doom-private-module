@@ -128,6 +128,10 @@
   (setq-default
    company-idle-delay nil))
 
+(def-package! deadgrep
+  :config
+  (load! "bindings/+deadgrep"))
+
 ;;
 ;; Modules
 ;;
