@@ -6,6 +6,7 @@
 (package! deadgrep)
 (package! haml-mode)
 (package! web-mode)
+(package! inflections)
 (package! projectile-rails)
 (package! rvm)
 (package! which-key-posframe)

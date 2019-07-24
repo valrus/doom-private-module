@@ -81,6 +81,8 @@
   t)
 
 (def-package! projectile-rails
+  :requires
+  inflections
   :config
   (projectile-rails-global-mode)
   ;; (load! "+projectile-rails-bindings")
