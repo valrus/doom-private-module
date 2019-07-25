@@ -45,7 +45,8 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; maximize first frame
-  (set-frame-parameter nil 'fullscreen 'maximized))
+  (set-frame-parameter nil 'fullscreen 'maximized)
+  (mac-auto-operator-composition-mode))
 
 ;;
 ;; Keybindings
@@ -81,6 +82,8 @@
   t)
 
 (def-package! projectile-rails
+  :requires
+  inflections
   :config
   (projectile-rails-global-mode)
   ;; (load! "+projectile-rails-bindings")
@@ -144,10 +147,19 @@
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
 
+;; default modeline
+;; (after! doom-modeline
+;;   (def-modeline-format! 'main
+;;     '(bar window-number matches buffer-info remote-host buffer-position selection-info)
+;;     '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
+
 (after! doom-modeline
   (def-modeline-format! 'main
-    '(bar window-number matches buffer-info remote-host buffer-position selection-info)
-    '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
+    '(bar window-number modals buffer-info remote-host buffer-position parrot selection-info)
+    '(misc-info persp-name irc mu4e github debug input-method lsp major-mode process vcs checker))
+  (setq
+   doom-modeline-icon t
+   doom-modeline-major-mode-color-icon t))
 
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))

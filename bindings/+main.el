@@ -30,6 +30,10 @@
          (:prefix ("f" . "find")
            :desc "Find view" :n "v" #'projectile-rails-find-view)))))
 
+ (:map smerge-mode-map
+   (:leader
+     :desc "Smerge hydra" :n "=" #'+vc/smerge-hydra/body))
+
  (:leader
    (:prefix "b"
      :desc "Rename buffer" :n "R" #'rename-buffer

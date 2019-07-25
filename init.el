@@ -22,6 +22,7 @@
  ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
  ;; fci               ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
+ hydra
  indent-guides
  modeline          ; snazzy, Atom-inspired modeline, plus API
  nav-flash         ; blink the current line after jumping
