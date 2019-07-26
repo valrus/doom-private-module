@@ -76,7 +76,7 @@
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
  ;; lsp
- macos             ; MacOS-specific commands
+ ;; macos             ; MacOS-specific commands
  magit
  ;; make              ; run make tasks from Emacs
  ;; password-store    ; password manager for nerds

@@ -24,7 +24,7 @@
 ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
 
 (after! org
-  (setq org-directory "~/Dropbox (Personal)/Work Share/org/todo.org"))
+  (setq org-directory "~/Dropbox (Personal)/Work Share/org/"))
 
 (def-package! rvm
   :config
