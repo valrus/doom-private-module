@@ -1,5 +1,20 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+;;; Helpers to find per-machine settings
+(defun local-config-dir ()
+  (pcase (system-name)
+    ("iMac.local"
+     (pcase (user-login-name)
+       ("ianbonanza" "imac-work/")
+       (_ "imac-home/")))
+    ("Ians-MBP" "macbook/")
+    ("galliumos" "gallium/")
+    (_ "default/")))
+
+(defun local-config-file (file-name)
+  (concat (local-config-dir) file-name))
+
+;;; Actual init starts here
 (doom!
  :completion
  (company          ; the ultimate code completion backend
@@ -99,7 +114,7 @@
  data              ; config/data formats
  ;; erlang            ; an elegant language for a more civilized age
  ;; elixir            ; erlang done right
- elm               ; care for a cup of TEA?
+ ;; elm               ; care for a cup of TEA?
  emacs-lisp        ; drown in parentheses
  ;; ess               ; emacs speaks statistics
  ;; go                ; the hipster dialect
@@ -108,7 +123,7 @@
  ;; (java +meghanada) ; the poster child for carpal tunnel syndrome
  ;; javascript        ; all(hope(abandon(ye(who(enter(here))))))
  ;; julia             ; a better, faster MATLAB
- latex             ; writing papers in Emacs has never been so fun
+ ;; latex             ; writing papers in Emacs has never been so fun
  ;; ledger            ; an accounting system in Emacs
  ;; lua               ; one-based indices? one-based indices
  markdown          ; writing docs for people to ignore
@@ -131,9 +146,9 @@
  ;; qt                ; the 'cutest' gui framework ever
  ;; racket            ; a DSL for DSLs
  ;; rest              ; Emacs as a REST client
- (ruby
-  +rvm)
-  ;; +lsp)
+ ;; (ruby
+ ;;  +rvm)
+ ;;  +lsp)
  ;; rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
  ;; scala             ; java, but good
  (sh +zsh)        ; she sells (ba|z)sh shells on the C xor
@@ -163,6 +178,8 @@
  ;; and additional ex commands for evil-mode. Use it as a reference for
  ;; your own modules.
  (default +bindings +snippets +evil-commands))
+
+(load! "+init.el" (local-config-dir) t)
 
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.

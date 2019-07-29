@@ -15,21 +15,7 @@
 ;;
 
 (load! "+default-settings")
-
-(pcase (system-name)
-  ("iMac.local"
-   (pcase (user-login-name)
-     ("ianbonanza"
-      (load! "+imac-work-settings"))
-     (_
-      (load! "+imac-home-settings"))))
-  ("Ians-MBP"
-   (load! "+mbp-settings"))
-  ("galliumos"
-   (load! "+gallium-settings"))
-  (_
-   (setq
-    doom-font (font-spec :family "Iosevka" :size 12 :weight 'semi-light))))
+(load! "+config.el" (local-config-dir) t)
 
 (defun make-fancy-minibuffer ()
   (setq
@@ -113,11 +99,10 @@
   (load! "bindings/+ivy.el"))
 
 (def-package! winum
-  ;; :init
-  ;; (setq-default
-  ;;  winum-format "[%s]"
-  ;;  winum-scope 'frame-local
-  ;;  winum-auto-setup-mode-line nil)
+  :init
+  (setq-default
+   winum-scope 'frame-local
+   winum-auto-assign-0-to-minibuffer t)
   :config
   ;; (winum-mode)
   (load! "bindings/+winum"))
