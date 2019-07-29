@@ -5,14 +5,20 @@
   (pcase (system-name)
     ("iMac.local"
      (pcase (user-login-name)
-       ("ianbonanza" "imac-work/")
-       (_ "imac-home/")))
-    ("Ians-MBP" "macbook/")
-    ("galliumos" "gallium/")
-    (_ "default/")))
+       ("ianbonanza" "imac-work")
+       (_ "imac-home")))
+    ("Ians-MBP" "macbook")
+    ("galliumos" "gallium")
+    (_ "default")))
 
 (defun local-config-file (file-name)
-  (concat (local-config-dir) file-name))
+  (concat (local-config-dir) "/" file-name))
+
+(defun local-config-work-p ()
+  (member (local-config-dir) '("imac-work" "macbook")))
+
+(defun local-config-home-p ()
+  (member (local-config-dir) '("imac-home" "gallium")))
 
 ;;; Actual init starts here
 (doom!
@@ -114,7 +120,7 @@
  data              ; config/data formats
  ;; erlang            ; an elegant language for a more civilized age
  ;; elixir            ; erlang done right
- ;; elm               ; care for a cup of TEA?
+ (:if (local-config-home-p) elm)
  emacs-lisp        ; drown in parentheses
  ;; ess               ; emacs speaks statistics
  ;; go                ; the hipster dialect
@@ -123,7 +129,7 @@
  ;; (java +meghanada) ; the poster child for carpal tunnel syndrome
  ;; javascript        ; all(hope(abandon(ye(who(enter(here))))))
  ;; julia             ; a better, faster MATLAB
- ;; latex             ; writing papers in Emacs has never been so fun
+ (:if (local-config-home-p) latex)
  ;; ledger            ; an accounting system in Emacs
  ;; lua               ; one-based indices? one-based indices
  markdown          ; writing docs for people to ignore
@@ -146,9 +152,8 @@
  ;; qt                ; the 'cutest' gui framework ever
  ;; racket            ; a DSL for DSLs
  ;; rest              ; Emacs as a REST client
- ;; (ruby
- ;;  +rvm)
- ;;  +lsp)
+ (:if (local-config-work-p) (ruby +rvm))
+ ;; (ruby +rvm +lsp)
  ;; rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
  ;; scala             ; java, but good
  (sh +zsh)        ; she sells (ba|z)sh shells on the C xor

@@ -9,5 +9,10 @@
 (package! magit-todos :disable t)
 
 ;; Local-specific packages
-(load! "+packages.el" (local-config-dir) t)
-;; (load! (local-config-file "+packages.el") nil t)
+(cond ((local-config-home-p)
+       (package! tablature-mode :recipe (:fetcher github :repo "valrus/tablature-mode")))
+      ((local-config-work-p)
+       (package! haml-mode)
+       (package! web-mode)
+       (package! projectile-rails)
+       (package! rvm)))
