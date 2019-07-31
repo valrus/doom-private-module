@@ -42,7 +42,8 @@
      :desc "Revert buffer" :n "v" (lambda! (revert-buffer t t))
      )
    (:prefix "o"
-     :desc "Open directory browser" :n "b" #'treemacs
-     )
+     ;; :desc "Open directory browser" :n "b" #'treemacs
+     (:prefix "a"
+       :desc "Open todo file" :n "f" #'popup-todo-file))
    (:prefix "w"
      :desc "Maximize frame" :n "M" #'toggle-frame-maximized)))

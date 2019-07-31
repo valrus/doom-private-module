@@ -7,6 +7,8 @@
 (cl-loop for (key . action) in tablature-normal-mode-map-alist
          do (map! :map tablature-mode-map :n key action))
 
+(map! (:map tablature-mode-map :i "SPC" #'tablature-advance))
+
 (map!
    (:map tablature-mode-map
      (:localleader
@@ -27,47 +29,50 @@
      :ni (kbd "<down>") #'evil-next-line
      :ni (kbd "<up>") #'evil-previous-line
 
-     :i " " #'tablature-insert
+     :i "SPC" #'tablature-advance
 
-      :n "h" #'tablature-backward-char
-      :n "j" #'tablature-down-string
-      :n "k" #'tablature-up-string
-      :n "l" #'tablature-forward-char
+     :n "h" #'tablature-backward-char
+     :n "j" #'tablature-down-string
+     :n "k" #'tablature-up-string
+     :n "l" #'tablature-forward-char
 
-      :n "H" #'tablature-backward-barline
-      :n "J" #'tablature-down-staff
-      :n "K" #'tablature-up-staff
-      :n "L" #'tablature-forward-barline
+     :n "H" #'tablature-backward-barline
+     :n "J" #'tablature-down-staff
+     :n "K" #'tablature-up-staff
+     :n "L" #'tablature-forward-barline
 
-      :n "C-j" #'tablature-lower-string
-      :n "C-k" #'tablature-higher-string
-      :n "C-l" #'tablature-toggle-lyric-line
+     :n "C-j" #'tablature-lower-string
+     :n "C-k" #'tablature-higher-string
+     :n "C-l" #'tablature-toggle-lyric-line
 
-      :n "o" #'tablature-make-staff
+     :n "o" #'tablature-make-staff
 
-      :n "w" #'tablature-forward-barline
-      :n "b" #'tablature-backward-barline
+     :n "w" #'tablature-forward-barline
+     :n "b" #'tablature-backward-barline
 
-      ;; Not sure what I'm going to do with these yet
-      ;; (evil-define-key 'normal tablature-mode-map "{" #'chord-mode
-      ;; (evil-define-key 'normal tablature-mode-map "}" #'lead-mode
-      :n "{" #'tablature-up-staff
-      :n "}" #'tablature-down-staff
+     ;; Not sure what I'm going to do with these yet
+     ;; (evil-define-key 'normal tablature-mode-map "{" #'chord-mode
+     ;; (evil-define-key 'normal tablature-mode-map "}" #'lead-mode
+     :n "{" #'ensure-chord-mode
+     :n "}" #'ensure-lead-mode
 
-      :n "<S-left>" #'tablature-backward-char
-      :n "<S-right>" #'tablature-forward-char
-      :n "<S-down>" #'tablature-down-staff
-      :n "<S-up>" #'tablature-up-staff
+     :n "<S-left>" #'tablature-backward-char
+     :n "<S-right>" #'tablature-forward-char
+     :n "<S-down>" #'tablature-down-staff
+     :n "<S-up>" #'tablature-up-staff
 
-      :n "x" #'tablature-delete-current-note
-      :n "X" #'tablature-delete-chord-forward
+     :n "x" #'tablature-delete-current-note
+     :n "X" #'tablature-delete-chord-forward
 
-      :n "dc" #'tablature-delete-chord-forward
+     :n "dc" #'tablature-delete-chord-forward
 
-      :n "|" #'tablature-barline-in-place
+     :n "|" #'tablature-barline-in-place
 
-      ; Visual mode bindings
-      :v "+" #'tablature-transpose))
+     ;; Visual mode bindings
+     :v "+" #'tablature-transpose))
+
+;; TODO
+;; * fix RETURN in insert mode
 
 ;; Defunct: normal mode-line for non-Doom
 ;; (defun tablature/setup-normal-mode-line ()
@@ -123,7 +128,6 @@
 (setq tablature-mode-hook nil)
 (setq lead-mode-hook nil)
 (setq chord-mode-hook nil)
-(add-hook! tablature-mode '+tablature-mode|tablature-mode-settings)
-(add-hook! (lead-mode chord-mode) '+tablature-mode|init-modeline))
+(add-hook! tablature-mode '+tablature-mode|tablature-mode-settings))
 
 ;;; packages.el ends here

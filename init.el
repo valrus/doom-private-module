@@ -1,5 +1,26 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+;;; Helpers to find per-machine settings
+(defun local-config-dir ()
+  (pcase (system-name)
+    ("iMac.local"
+     (pcase (user-login-name)
+       ("ianbonanza" "imac-work")
+       (_ "imac-home")))
+    ("Ians-MBP" "macbook")
+    ("galliumos" "gallium")
+    (_ "default")))
+
+(defun local-config-file (file-name)
+  (concat (local-config-dir) "/" file-name))
+
+(defun local-config-work-p ()
+  (member (local-config-dir) '("imac-work" "macbook")))
+
+(defun local-config-home-p ()
+  (member (local-config-dir) '("imac-home" "gallium")))
+
+;;; Actual init starts here
 (doom!
  :completion
  (company          ; the ultimate code completion backend
@@ -16,11 +37,11 @@
  ;; +fuzzy)          ; enable fuzzy search backend for ivy
 
  :ui
+ ;; deft              ; notational velocity for Emacs
  doom              ; what makes DOOM look the way it does
  doom-dashboard    ; a nifty splash screen for Emacs
- ;; doom-modeline     ; a snazzy Atom-inspired mode-line
  ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
- ;; fci               ; a `fill-column' indicator
+ fill-column    ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  hydra
  indent-guides
@@ -28,7 +49,6 @@
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
- ;; treemacs          ; a project drawer, like neotree but cooler
  (popup            ; tame sudden yet inevitable temporary windows
   +all             ; catch all popups that start with an asterix
   +defaults        ; default popup rules
@@ -36,6 +56,7 @@
  (pretty-code       ; replace bits of code with pretty symbols
   )
  ;; tabbar            ; FIXME an (incomplete) tab bar for Emacs
+ ;; treemacs          ; a project drawer, like neotree but cooler
  ;; unicode           ; extended unicode support for various languages
  ;; vc-gutter         ; vcs diff in the fringe
  ;; vi-tilde-fringe   ; fringe tildes to mark beyond EOB
@@ -44,10 +65,11 @@
  workspaces        ; tab emulation, persistence & separate workspaces
 
  :editor
- (evil
-  +everywhere)
+ (evil +everywhere)
  file-templates    ; auto-snippets for empty files
  fold
+ ;; (format +onsave)  ; automated prettiness
+ ;; lispy             ; vim for lisp, for people who dont like vim
  multiple-cursors  ; editing in many places at once
  ;; parinfer          ; turn lisp into python, sort of
  rotate-text       ; cycle region at point between text candidates
@@ -77,10 +99,10 @@
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
  ;; lsp
- macos             ; MacOS-specific commands
+ ;; macos             ; MacOS-specific commands
  magit
  ;; make              ; run make tasks from Emacs
- ;; password-store    ; password manager for nerds
+ ;; pass              ; password manager for nerds
  ;; pdf               ; pdf enhancements
  ;; prodigy           ; FIXME managing external services & code builders
  ;; rgb               ; creating color strings
@@ -88,9 +110,9 @@
  ;; tmux              ; an API for interacting with tmux
  ;; upload            ; map local to remote projects via ssh/ftp
  ;; wakatime
- ;; vterm
 
  :lang
+ ;;agda              ; types of types of types of types...
  ;; assembly          ; assembly for fun or debugging
  ;; (cc +irony +rtags); C/C++/Obj-C madness
  ;; clojure           ; java with a lisp
@@ -100,16 +122,18 @@
  data              ; config/data formats
  ;; erlang            ; an elegant language for a more civilized age
  ;; elixir            ; erlang done right
- elm               ; care for a cup of TEA?
+ (:if (local-config-home-p) elm)
  emacs-lisp        ; drown in parentheses
  ;; ess               ; emacs speaks statistics
+ ;; fsharp           ; ML stands for Microsoft's Language
  ;; go                ; the hipster dialect
  ;; (haskell +intero) ; a language that's lazier than I am
  ;; hy                ; readability of scheme w/ speed of python
  ;; (java +meghanada) ; the poster child for carpal tunnel syndrome
  ;; javascript        ; all(hope(abandon(ye(who(enter(here))))))
  ;; julia             ; a better, faster MATLAB
- latex             ; writing papers in Emacs has never been so fun
+ ;; kotlin            ; a better, slicker Java(Script)
+ (:if (local-config-home-p) latex)
  ;; ledger            ; an accounting system in Emacs
  ;; lua               ; one-based indices? one-based indices
  markdown          ; writing docs for people to ignore
@@ -132,20 +156,22 @@
  ;; qt                ; the 'cutest' gui framework ever
  ;; racket            ; a DSL for DSLs
  ;; rest              ; Emacs as a REST client
- (ruby
-  +rvm)
-  ;; +lsp)
+ (:if (local-config-work-p) (ruby +rvm))
+ ;; (ruby +rvm +lsp)
  ;; rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
  ;; scala             ; java, but good
  (sh +zsh)        ; she sells (ba|z)sh shells on the C xor
  ;; solidity          ; do you need a blockchain? No.
  ;; swift             ; who asked for emoji variables?
+ ;; terra             ; Earth and Moon in alignment for performance.
  ;; web               ; the tubes
+ ;; vala              ; GObjective-C
 
  ;; Applications are complex and opinionated modules that transform Emacs
  ;; toward a specific purpose. They may have additional dependencies and
  ;; should be loaded late.
  :app
+ ;; calendar
  ;; (email +gmail)    ; emacs as an email client
  ;; irc               ; how neckbeards socialize
  ;; (rss +org)        ; emacs as an RSS reader

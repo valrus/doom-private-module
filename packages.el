@@ -2,17 +2,18 @@
 ;;; ~/.doom.d/packages.el
 
 (package! linum-relative)
-
 (package! deadgrep)
-(package! haml-mode)
-(package! web-mode)
-(package! inflections)
-(package! projectile-rails)
-(package! rvm)
 (package! which-key-posframe)
 
-;; To disable a package
-
+;; Disabled packages
 (package! magit-todos :disable t)
 
-(package! tablature-mode :recipe (:fetcher github :repo "valrus/tablature-mode"))
+;; Local-specific packages
+(cond
+ ((local-config-home-p)
+  (package! tablature-mode :recipe (:fetcher github :repo "valrus/tablature-mode")))
+ ((local-config-work-p)
+  (package! haml-mode)
+  (package! web-mode)
+  (package! projectile-rails)
+  (package! rvm)))

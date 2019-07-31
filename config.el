@@ -15,21 +15,7 @@
 ;;
 
 (load! "+default-settings")
-
-(pcase (system-name)
-  ("iMac.local"
-   (pcase (user-login-name)
-     ("ianbonanza"
-      (load! "+imac-work-settings"))
-     (_
-      (load! "+imac-home-settings"))))
-  ("Ians-MBP"
-   (load! "+mbp-settings"))
-  ("galliumos"
-   (load! "+gallium-settings"))
-  (_
-   (setq
-    doom-font (font-spec :family "Iosevka" :size 12 :weight 'semi-light))))
+(load! "+config.el" (local-config-dir) t)
 
 (defun make-fancy-minibuffer ()
   (setq
@@ -113,11 +99,10 @@
   (load! "bindings/+ivy.el"))
 
 (def-package! winum
-  ;; :init
-  ;; (setq-default
-  ;;  winum-format "[%s]"
-  ;;  winum-scope 'frame-local
-  ;;  winum-auto-setup-mode-line nil)
+  :init
+  (setq-default
+   winum-scope 'frame-local
+   winum-auto-assign-0-to-minibuffer t)
   :config
   ;; (winum-mode)
   (load! "bindings/+winum"))
@@ -147,10 +132,19 @@
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
 
+;; default modeline
+;; (after! doom-modeline
+;;   (def-modeline-format! 'main
+;;     '(bar window-number matches buffer-info remote-host buffer-position selection-info)
+;;     '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
+
 (after! doom-modeline
   (def-modeline-format! 'main
-    '(bar window-number matches buffer-info remote-host buffer-position selection-info)
-    '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
+    '(bar window-number modals buffer-info remote-host buffer-position parrot selection-info)
+    '(misc-info persp-name irc mu4e github debug input-method lsp major-mode process vcs checker))
+  (setq
+   doom-modeline-icon t
+   doom-modeline-major-mode-color-icon t))
 
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
