@@ -14,8 +14,8 @@
 ;; Host-specific config
 ;;
 
-(load! "+default-settings")
-(load! "+config.el" (local-config-dir) t)
+;; (load! "local/+default")
+(load! (concat "local/+" (local-config-dir)))
 
 (defun make-fancy-minibuffer ()
   (setq
@@ -58,26 +58,6 @@
 ;;   :config
 ;;   (global-set-key (kbd "ESC") 'evil-escape)
 ;;   nil)
-
-(def-package! enh-ruby-mode
-  :init
-  (setq-default
-   enh-ruby-add-encoding-comment-on-save nil
-   enh-ruby-deep-indent-paren nil
-   enh-ruby-deep-indent-construct nil)
-  t)
-
-(def-package! projectile-rails
-  :requires
-  inflections
-  :config
-  (projectile-rails-global-mode)
-  ;; (load! "+projectile-rails-bindings")
-  t)
-
-(def-package! haml-mode
-  :mode
-  "\\.haml$")
 
 (def-package! web-mode
   :mode
