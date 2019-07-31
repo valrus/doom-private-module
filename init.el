@@ -22,6 +22,7 @@
  ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
  ;; fci               ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
+ hydra
  indent-guides
  modeline          ; snazzy, Atom-inspired modeline, plus API
  nav-flash         ; blink the current line after jumping
@@ -32,7 +33,8 @@
   +all             ; catch all popups that start with an asterix
   +defaults        ; default popup rules
   )
- pretty-code       ; replace bits of code with pretty symbols
+ (pretty-code       ; replace bits of code with pretty symbols
+  )
  ;; tabbar            ; FIXME an (incomplete) tab bar for Emacs
  ;; unicode           ; extended unicode support for various languages
  ;; vc-gutter         ; vcs diff in the fringe

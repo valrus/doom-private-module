@@ -45,7 +45,8 @@
   (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; maximize first frame
-  (set-frame-parameter nil 'fullscreen 'maximized))
+  (set-frame-parameter nil 'fullscreen 'maximized)
+  (mac-auto-operator-composition-mode t))
 
 ;;
 ;; Keybindings
