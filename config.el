@@ -32,7 +32,7 @@
   ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; maximize first frame
   (set-frame-parameter nil 'fullscreen 'maximized)
-  (mac-auto-operator-composition-mode))
+  (mac-auto-operator-composition-mode t))
 
 ;;
 ;; Keybindings
