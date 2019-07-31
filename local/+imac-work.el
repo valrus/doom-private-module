@@ -22,3 +22,5 @@
  )
 
 (set-face-attribute 'minibuffer-prompt nil :family "IBM Plex Mono" :weight 'bold)
+
+(load! "+work")
