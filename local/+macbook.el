@@ -1,8 +1,6 @@
 ;;; ~/.doom.d/+mbp-settings.el -*- lexical-binding: t; -*-
 
 (setq
- show-trailing-whitespace nil
-
  ;; Fonts
  doom-font (font-spec :family "Iosevka" :size 10 :weight 'light)
  doom-serif-font (font-spec :family "Iosevka Slab" :size 10 :weight 'light)
@@ -14,10 +12,12 @@
  doom-theme 'doom-solarized-light
 
  ;; ui
- ;; ns-use-proxy-icon nil
- mac-use-title-bar t
  ;; frame-title-format nil
- )
+ ;; ns-use-proxy-icon nil
+ mac-use-title-bar t)
+
+(setq-default
+ show-trailing-whitespace nil)
 
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 ;; for dark themes

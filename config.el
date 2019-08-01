@@ -14,8 +14,8 @@
 ;; Host-specific config
 ;;
 
-(load! "+default-settings")
-(load! "+config.el" (local-config-dir) t)
+(load! "local/+default")
+(load! (concat "local/" (local-config-file)))
 
 (defun make-fancy-minibuffer ()
   (setq
