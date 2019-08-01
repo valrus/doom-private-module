@@ -34,6 +34,7 @@
    (:leader
      :desc "Smerge hydra" :n "=" #'+vc/smerge-hydra/body))
 
+ ;; global bindings
  (:leader
    (:prefix "b"
      :desc "Rename buffer" :n "R" #'rename-buffer

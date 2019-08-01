@@ -32,7 +32,7 @@
   ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; maximize first frame
   (set-frame-parameter nil 'fullscreen 'maximized)
-  (mac-auto-operator-composition-mode))
+  (mac-auto-operator-composition-mode t))
 
 ;;
 ;; Keybindings
@@ -58,26 +58,6 @@
 ;;   :config
 ;;   (global-set-key (kbd "ESC") 'evil-escape)
 ;;   nil)
-
-(def-package! enh-ruby-mode
-  :init
-  (setq-default
-   enh-ruby-add-encoding-comment-on-save nil
-   enh-ruby-deep-indent-paren nil
-   enh-ruby-deep-indent-construct nil)
-  t)
-
-(def-package! projectile-rails
-  :requires
-  inflections
-  :config
-  (projectile-rails-global-mode)
-  ;; (load! "+projectile-rails-bindings")
-  t)
-
-(def-package! haml-mode
-  :mode
-  "\\.haml$")
 
 (def-package! web-mode
   :mode

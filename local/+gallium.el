@@ -8,12 +8,10 @@
  doom-serif-font (font-spec :family "Iosevka Term Slab" :size 14)
  doom-unicode-font (font-spec :family "Iosevka Term")
  doom-big-font (font-spec :family "Iosevka Term" :size 20)
+ minibuffer-font-spec '((default :family "Iosevka Term" :height 1.2))
 
 ;; theme
  doom-theme 'doom-nord
  )
 
-(def-package! rvm
-  :config
-  (progn
-    (rvm-use-default)))
+(set-face-attribute 'minibuffer-prompt nil :family "Iosevka Term" :weight 'bold)
