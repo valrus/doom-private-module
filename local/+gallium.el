@@ -10,8 +10,10 @@
  doom-big-font (font-spec :family "Iosevka Term" :size 20)
  minibuffer-font-spec '((default :family "Iosevka Term" :height 1.2))
 
-;; theme
+ ;; theme
  doom-theme 'doom-nord
- )
+
+ ;; this makes emacs hang on quit
+ x-select-enable-clipboard-manager nil)
 
 (set-face-attribute 'minibuffer-prompt nil :family "Iosevka Term" :weight 'bold)
