@@ -1,7 +1,7 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
 ;;; Helpers to find per-machine settings
-(defun local-config-dir ()
+(defun local-config-name ()
   (pcase (system-name)
     ("iMac.local"
      (pcase (user-login-name)
@@ -11,14 +11,14 @@
     ("galliumos" "gallium")
     (_ "default")))
 
-(defun local-config-file (file-name)
-  (concat (local-config-dir) "/" file-name))
+(defun local-config-file ()
+  (format "+%s.el" (local-config-name)))
 
 (defun local-config-work-p ()
-  (member (local-config-dir) '("imac-work" "macbook")))
+  (member (local-config-name) '("imac-work" "macbook")))
 
 (defun local-config-home-p ()
-  (member (local-config-dir) '("imac-home" "gallium")))
+  (member (local-config-name) '("imac-home" "gallium")))
 
 ;;; Actual init starts here
 (doom!
@@ -41,7 +41,7 @@
  doom              ; what makes DOOM look the way it does
  doom-dashboard    ; a nifty splash screen for Emacs
  ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
- fill-column    ; a `fill-column' indicator
+ ;; fill-column    ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  hydra
  indent-guides

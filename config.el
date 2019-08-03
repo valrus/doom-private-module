@@ -14,8 +14,8 @@
 ;; Host-specific config
 ;;
 
-;; (load! "local/+default")
-(load! (concat "local/+" (local-config-dir)))
+(load! "local/+default")
+(load! (concat "local/" (local-config-file)))
 
 (defun make-fancy-minibuffer ()
   (setq
