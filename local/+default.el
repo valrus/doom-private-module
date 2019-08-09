@@ -11,10 +11,11 @@
  doom-unicode-font (font-spec :family "Iosevka" :weight 'light)
  doom-big-font (font-spec :family "Iosevka" :size 20)
  doom-variable-pitch-font (font-spec :family "Iosevka")
- minibuffer-font-spec '((default :family "Iosevka Slab" :height 1.2))
 
  ;; theme
  doom-theme 'doom-solarized-light
 )
 
-(set-face-attribute 'minibuffer-prompt nil :family "Iosevka Slab" :weight 'bold)
+;; minibuffer
+(setq minibuffer-font-spec '((default :family "Iosevka")))
+(set-face-attribute 'minibuffer-prompt nil :family "Iosevka" :weight 'bold)

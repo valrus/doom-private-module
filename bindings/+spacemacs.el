@@ -24,8 +24,6 @@
      :desc "Save file (Spacemacs)" :n "s" #'save-buffer
      :desc "Find file (Spacemacs)" :n "f" #'find-file)
    (:prefix "b"
-     :desc "Previous buffer (Spacemacs)" :n "p" #'previous-buffer
-     :desc "Next buffer (Spacemacs)" :n "n" #'next-buffer
      :desc "Switch buffer (Spacemacs)" :n "b" #'switch-to-buffer)
    (:prefix "w"
      :desc "Vertical split (Spacemacs)" :n "|" #'evil-window-vsplit

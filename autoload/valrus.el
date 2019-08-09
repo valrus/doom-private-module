@@ -6,6 +6,13 @@
   (let ((inhibit-read-only t))
     (ansi-color-apply-on-region (point-min) (point-max))))
 
+(defun popup-file (filepath)
+  (select-window (display-buffer-in-side-window (find-file-noselect filepath) ())))
+
 (defun popup-todo-file ()
   (interactive)
-  (select-window (display-buffer-in-side-window (find-file-noselect (concat org-directory "todo.org")) ())))
+  (popup-file (concat org-directory "todo.org")))
+
+(defun popup-work-notes ()
+  (interactive)
+  (popup-file (concat org-directory "work.org")))
