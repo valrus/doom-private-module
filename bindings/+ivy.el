@@ -5,3 +5,10 @@
  "C-k" #'ivy-previous-line
  "C-j" #'ivy-next-line
  "C-d" #'ivy-kill-line)
+
+(defun ivy-refine (x)
+  (refine x))
+
+(ivy-set-actions
+ 'counsel-set-variable
+ '(("r" ivy-refine "refine")))

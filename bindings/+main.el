@@ -30,6 +30,12 @@
          (:prefix ("f" . "find")
            :desc "Find view" :n "v" #'projectile-rails-find-view)))))
 
+ (:after refine
+   (:leader
+     (:prefix "h"
+       (:prefix "C-v"
+         :desc "Set variable with refine" :n #'refine))))
+
  (:map smerge-mode-map
    (:leader
      :desc "Smerge hydra" :n "=" #'+vc/smerge-hydra/body))
@@ -39,11 +45,12 @@
    (:prefix "b"
      :desc "Rename buffer" :n "R" #'rename-buffer
      :desc "Kill buffer" :n "d" #'kill-this-buffer ; consistency with `SPC w d'
-     :desc "Revert buffer" :n "v" (lambda! (revert-buffer t t))
-     )
+     :desc "Revert buffer" :n "v" (lambda! (revert-buffer t t)))
+
    (:prefix "o"
-     ;; :desc "Open directory browser" :n "b" #'treemacs
-     (:prefix "a"
-       :desc "Open todo file" :n "f" #'popup-todo-file))
+     (:prefix ("f" . "open file")
+       :desc "Open work notes" :n "w" #'popup-work-notes
+       :desc "Open todo file" :n "t" #'popup-todo-file))
+
    (:prefix "w"
      :desc "Maximize frame" :n "M" #'toggle-frame-maximized)))
