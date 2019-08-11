@@ -61,6 +61,7 @@
      :n "<S-down>" #'tablature-down-staff
      :n "<S-up>" #'tablature-up-staff
 
+     :ni "-" #'tablature-delete-note
      :n "x" #'tablature-delete-current-note
      :n "X" #'tablature-delete-chord-forward
 

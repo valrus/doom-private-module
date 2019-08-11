@@ -33,3 +33,5 @@
 
 (after! flycheck
   (setq flycheck-scss-lint-executable "emacs-scss-lint"))
+
+(load! "+work")

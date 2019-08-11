@@ -13,5 +13,6 @@
  doom-variable-pitch-font (font-spec :family "Input Sans Condensed")
 
  ;; theme
- doom-theme 'doom-nord
-)
+ doom-theme 'doom-nord)
+
+(load! "+home")
