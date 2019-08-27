@@ -1,6 +1,8 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; ~/.doom.d/packages.el
 
+(load! "autoload/configs")
+
 (package! linum-relative)
 (package! deadgrep)
 (package! which-key-posframe)
@@ -8,6 +10,7 @@
 
 ;; Disabled packages
 (package! magit-todos :disable t)
+(package! smartparens :disable t)
 
 ;; Local-specific packages
 (cond

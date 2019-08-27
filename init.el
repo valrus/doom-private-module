@@ -1,37 +1,19 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
-;;; Helpers to find per-machine settings
-(defun local-config-name ()
-  (pcase (system-name)
-    ("iMac.local"
-     (pcase (user-login-name)
-       ("ianbonanza" "imac-work")
-       (_ "imac-home")))
-    ("Ians-MBP" "macbook")
-    ("galliumos" "gallium")
-    (_ "default")))
-
-(defun local-config-file ()
-  (format "+%s.el" (local-config-name)))
-
-(defun local-config-work-p ()
-  (member (local-config-name) '("imac-work" "macbook")))
-
-(defun local-config-home-p ()
-  (member (local-config-name) '("imac-home" "gallium")))
+(load! "autoload/configs")
 
 ;;; Actual init starts here
 (doom!
  :completion
  (company          ; the ultimate code completion backend
-  +tng) ; complete using only TAB
- ;; +childframe)
+  +tng ; complete using only TAB
+  +childframe)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
  ;;  +fuzzy)          ; enable fuzzy search backend for helm
  ;; ido               ; the other *other* search engine...
  (ivy               ; a search engine for love and life
-  ;; +childframe
+  +childframe
   +prescient
   +icons)
  ;; +fuzzy)          ; enable fuzzy search backend for ivy
@@ -92,8 +74,8 @@
  editorconfig      ; let someone else argue about tabs vs spaces
  ;; ein               ; tame Jupyter notebooks with emacs
  eval              ; run code, run (also, repls)
- flycheck
- ;; +childframe)
+ (flycheck
+  +childframe)
  ;; gist              ; interacting with github gists
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
@@ -200,3 +182,17 @@
 ;;   )
 
 ;; `def-package-hook' also has :post-init and :post-config hooks
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("10461a3c8ca61c52dfbbdedd974319b7f7fd720b091996481c8fb1dded6c6116" "a6e3dec0d16222cc5747743c87ef7da79186f7282e2ec4ff74c7f08ed7fe28d2" "a28d89cf398c60dade1b0a7e3dce9d4691c236c05a050b7e6ba808bfce2622e1" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

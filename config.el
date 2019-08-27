@@ -20,8 +20,9 @@
 (defun make-fancy-minibuffer ()
   (setq
    show-trailing-whitespace nil
-   ;; room for icons
-   line-spacing 2)
+   ;; room for icons (if not using childframes)
+   ;; line-spacing 2
+   )
   (set (make-local-variable 'face-remapping-alist) minibuffer-font-spec))
 
 (add-hook! 'minibuffer-setup-hook 'make-fancy-minibuffer)
