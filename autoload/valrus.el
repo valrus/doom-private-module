@@ -16,3 +16,4 @@
 (defun popup-work-notes ()
   (interactive)
   (popup-file (concat org-directory "work.org")))
+
