@@ -1,6 +1,8 @@
 ;; -*- no-byte-compile: t; -*-
 ;;; ~/.doom.d/packages.el
 
+(load! "autoload/configs")
+
 (package! linum-relative)
 (package! deadgrep)
 (package! which-key-posframe)
