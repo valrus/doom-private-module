@@ -115,7 +115,7 @@
  ;; javascript        ; all(hope(abandon(ye(who(enter(here))))))
  ;; julia             ; a better, faster MATLAB
  ;; kotlin            ; a better, slicker Java(Script)
- (:if (local-config-home-p) latex)
+ ;; (:if (local-config-home-p) latex)
  ;; ledger            ; an accounting system in Emacs
  ;; lua               ; one-based indices? one-based indices
  markdown          ; writing docs for people to ignore
@@ -171,7 +171,7 @@
  ;; a Spacemacs-inspired keybinding scheme, a custom yasnippet library,
  ;; and additional ex commands for evil-mode. Use it as a reference for
  ;; your own modules.
- (default +bindings +snippets +evil-commands))
+ (default +bindings +smartparens))
 
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.
