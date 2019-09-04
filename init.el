@@ -36,6 +36,7 @@
   +defaults        ; default popup rules
   )
  (pretty-code       ; replace bits of code with pretty symbols
+  ;; +iosevka
   )
  ;; tabbar            ; FIXME an (incomplete) tab bar for Emacs
  ;; treemacs          ; a project drawer, like neotree but cooler

@@ -3,14 +3,13 @@
 
 (load! "autoload/configs")
 
-(package! linum-relative)
 (package! deadgrep)
 (package! which-key-posframe)
 (package! refine)
 
 ;; Disabled packages
 (package! magit-todos :disable t)
-(package! smartparens :disable t)
+;; (package! smartparens :disable t)
 
 ;; Local-specific packages
 (cond

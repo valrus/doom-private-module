@@ -17,6 +17,9 @@
 (setq minibuffer-font-spec '((default :family "Iosevka")))
 (set-face-attribute 'minibuffer-prompt nil :family "Iosevka" :weight 'bold)
 
+(after! org
+  (setq org-directory "~/Dropbox/Work Share/org/"))
+
 ;; posframes
 (when (featurep! :completion ivy +childframe)
   (setq

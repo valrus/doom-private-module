@@ -3,7 +3,8 @@
 (setq user-full-name    "Ian McCowan"
       user-mail-address "imccowan@gmail.com"
 
-      +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode))
+      +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode)
+      display-line-numbers-type 'relative)
 
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
@@ -28,8 +29,6 @@
 (add-hook! 'minibuffer-setup-hook 'make-fancy-minibuffer)
 
 (when IS-MAC
-  (setq ns-use-thin-smoothing t)
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
   ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; maximize first frame
   (set-frame-parameter nil 'fullscreen 'maximized)
@@ -50,21 +49,8 @@
   :config
   (setq-default evil-kill-on-visual-paste nil))
 
-(def-package! linum-relative
-  :config
-  (setq linum-relative-backend 'display-line-numbers-mode)
-  (linum-relative-global-mode))
-
-;; (def-package! evil-escape
-;;   :config
-;;   (global-set-key (kbd "ESC") 'evil-escape)
-;;   nil)
-
-(def-package! web-mode
-  :mode
-  "\\.erb")
-
 (def-package! tablature-mode
+  :defer t
   :mode
   "\\.tab$"
   :config
@@ -72,6 +58,7 @@
   t)
 
 (def-package! ivy
+  :defer t
   :config
   (setq
    ivy-use-selectable-prompt t
@@ -80,6 +67,7 @@
   (load! "bindings/+ivy.el"))
 
 (def-package! winum
+  :defer t
   :init
   (setq-default
    winum-scope 'frame-local
@@ -93,11 +81,13 @@
 ;;   (which-key-posframe-mode))
 
 (def-package! company
+  :defer t
   :config
   (setq-default
    company-idle-delay nil))
 
 (def-package! deadgrep
+  :defer t
   :config
   (load! "bindings/+deadgrep"))
 
@@ -139,10 +129,10 @@
    ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
    +magit-hub-features t
    git-commit-summary-max-length 80
-   vc-handled-backends (delq 'Git vc-handled-backends))
+   vc-handled-backends (delq 'Git vc-handled-backends)))
 
   ;; Temporary workaround for +magit/quit hang with lots of buffers
-  (define-key magit-status-mode-map [remap magit-mode-bury-buffer] nil))
+  ;; (define-key magit-status-mode-map [remap magit-mode-bury-buffer] nil))
 
 (after! elisp-mode
   (load! "bindings/+elisp"))
@@ -165,6 +155,10 @@
 ;; Don't create new workspaces for new frames
 (after! persp-mode
   (setq-default persp-interactive-init-frame-behaviour-override -1))
+
+;; Don't autopair
+(after! smartparens
+  (smartparens-global-mode -1))
 
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default
@@ -191,14 +185,15 @@
     (auto-fill-mode -1)))
 
 ;; lang/org
-(setq
- ;; org-directory (expand-file-name "~/work/org/")
- org-agenda-files (list org-directory)
- org-ellipsis " ▼ "
+(after! org
+  (setq-default
+   ;; org-directory (expand-file-name "~/work/org/")
+   org-agenda-files (list org-directory)
+   org-ellipsis " ▼ "))
 
  ;; The standard unicode characters are usually misaligned depending on the
  ;; font. This bugs me. Personally, markdown #-marks for headlines are more
  ;; elegant.
- org-bullets-bullet-list '("#"))
+ ;; org-bullets-bullet-list '("#"))
 
 ;; (setq lsp-print-io t)

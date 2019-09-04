@@ -10,7 +10,7 @@
  doom-font (font-spec :family "Iosevka" :size 12 :weight 'light)
  doom-unicode-font (font-spec :family "Iosevka Slab" :weight 'light)
  doom-big-font (font-spec :family "Iosevka" :size 20)
- doom-variable-pitch-font (font-spec :family "Input Sans Condensed")
+ doom-variable-pitch-font (font-spec :family "Iosevka Aile")
 
  ;; theme
  doom-theme 'doom-nord)
