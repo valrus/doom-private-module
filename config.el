@@ -49,11 +49,6 @@
   :config
   (setq-default evil-kill-on-visual-paste nil))
 
-;; (use-package! evil-escape
-;;   :config
-;;   (global-set-key (kbd "ESC") 'evil-escape)
-;;   nil)
-
 (use-package! tablature-mode
   :defer t
   :mode
@@ -97,6 +92,7 @@
     [return] #'company-complete-common))
 
 (use-package! deadgrep
+  :defer t
   :config
   (load! "bindings/+deadgrep"))
 
@@ -162,6 +158,20 @@
 (after! persp-mode
   (setq-default persp-interactive-init-frame-behaviour-override -1))
 
+;; Don't autopair
+(after! smartparens
+  (smartparens-global-mode -1))
+
+(after! olivetti
+  (setq-default
+   olivetti-minimum-body-width 120
+   olivetti-body-width 120))
+
+(after! typo
+  ;; disable smart quotes
+  (define-key typo-mode-map (kbd "'") nil)
+  (define-key typo-mode-map (kbd "\"") nil))
+
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default
 ;;   (magit-define-popup-option 'magit-rebase-popup
@@ -183,18 +193,24 @@
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook
   (progn
+    (olivetti-mode 1)
+    (typo-mode 1)
     (toggle-word-wrap nil)
     (auto-fill-mode -1)))
 
+;; (after! poet
+;;  (add-hook! (markdown-mode-hook org-mode-hook) (load-theme-buffer-local 'poet (current-buffer))))
+
 ;; lang/org
-(setq
- ;; org-directory (expand-file-name "~/work/org/")
- org-agenda-files (list org-directory)
- org-ellipsis " ▼ "
+(after! org
+  (setq-default
+   ;; org-directory (expand-file-name "~/work/org/")
+   org-agenda-files (list org-directory)
+   org-ellipsis " ▼ "))
 
  ;; The standard unicode characters are usually misaligned depending on the
  ;; font. This bugs me. Personally, markdown #-marks for headlines are more
  ;; elegant.
- org-bullets-bullet-list '("#"))
+ ;; org-bullets-bullet-list '("#"))
 
 ;; (setq lsp-print-io t)
