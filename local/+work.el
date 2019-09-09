@@ -19,3 +19,9 @@
 (def-package! haml-mode
   :mode
   "\\.haml$")
+
+;; Some files have a LOT of errors; use a less resource-intensive highlight mode
+(after! flycheck
+  (setq-default
+   flycheck-error-list-highlight-overlays t
+   flycheck-highlighting-mode 'lines))

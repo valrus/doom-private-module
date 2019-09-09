@@ -3,7 +3,8 @@
 (setq user-full-name    "Ian McCowan"
       user-mail-address "imccowan@gmail.com"
 
-      +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode))
+      +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode)
+      display-line-numbers-type 'relative)
 
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
@@ -29,8 +30,6 @@
 
 (when IS-MAC
   (setq ns-use-thin-smoothing t)
-  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-  ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
   ;; maximize first frame
   (set-frame-parameter nil 'fullscreen 'maximized)
   (mac-auto-operator-composition-mode t))
@@ -46,58 +45,58 @@
 ;; Packages
 ;;
 
-(def-package! evil
+(use-package! evil
   :config
   (setq-default evil-kill-on-visual-paste nil))
 
-(def-package! linum-relative
-  :config
-  (setq linum-relative-backend 'display-line-numbers-mode)
-  (linum-relative-global-mode))
-
-;; (def-package! evil-escape
+;; (use-package! evil-escape
 ;;   :config
 ;;   (global-set-key (kbd "ESC") 'evil-escape)
 ;;   nil)
 
-(def-package! web-mode
-  :mode
-  "\\.erb")
-
-(def-package! tablature-mode
+(use-package! tablature-mode
+  :defer t
   :mode
   "\\.tab$"
   :config
   (load! "+tablature-mode-setup")
   t)
 
-(def-package! ivy
+(use-package! ivy
+  :defer t
   :config
   (setq
    ivy-use-selectable-prompt t
    +ivy-buffer-icons t)
   (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
-  (load! "bindings/+ivy.el"))
+  (load! "bindings/+ivy"))
 
-(def-package! winum
+(use-package! winum
+  :defer t
   :init
   (setq-default
    winum-scope 'frame-local
    winum-auto-assign-0-to-minibuffer t)
   :config
-  ;; (winum-mode)
   (load! "bindings/+winum"))
 
-;; (def-package! which-key-posframe
-;;   :config
-;;   (which-key-posframe-mode))
+(use-package! which-key-posframe
+  :defer t
+  :config
+  (which-key-posframe-enable))
 
-(def-package! company
+(use-package! company
+  :defer t
   :config
   (setq-default
-   company-idle-delay nil))
+   company-idle-delay nil)
+  :when (featurep! +tng)
+  :config
+  (define-key! company-active-map
+    "RET" #'company-complete-common
+    [return] #'company-complete-common))
 
-(def-package! deadgrep
+(use-package! deadgrep
   :config
   (load! "bindings/+deadgrep"))
 
@@ -139,10 +138,10 @@
    ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
    +magit-hub-features t
    git-commit-summary-max-length 80
-   vc-handled-backends (delq 'Git vc-handled-backends))
+   vc-handled-backends (delq 'Git vc-handled-backends)))
 
   ;; Temporary workaround for +magit/quit hang with lots of buffers
-  (define-key magit-status-mode-map [remap magit-mode-bury-buffer] nil))
+  ;; (define-key magit-status-mode-map [remap magit-mode-bury-buffer] nil))
 
 (after! elisp-mode
   (load! "bindings/+elisp"))
@@ -153,9 +152,6 @@
 (after! counsel
   (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
-
-(after! ivy
-  (load! "bindings/+ivy"))
 
 (after! flycheck
   (setq-default
