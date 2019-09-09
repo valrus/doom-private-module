@@ -160,6 +160,16 @@
 (after! smartparens
   (smartparens-global-mode -1))
 
+(after! olivetti
+  (setq-default
+   olivetti-minimum-body-width 120
+   olivetti-body-width 120))
+
+(after! typo
+  ;; disable smart quotes
+  (define-key typo-mode-map (kbd "'") nil)
+  (define-key typo-mode-map (kbd "\"") nil))
+
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default
 ;;   (magit-define-popup-option 'magit-rebase-popup
@@ -181,8 +191,13 @@
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook
   (progn
+    (olivetti-mode 1)
+    (typo-mode 1)
     (toggle-word-wrap nil)
     (auto-fill-mode -1)))
+
+;; (after! poet
+;;  (add-hook! (markdown-mode-hook org-mode-hook) (load-theme-buffer-local 'poet (current-buffer))))
 
 ;; lang/org
 (after! org

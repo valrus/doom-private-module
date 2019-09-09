@@ -36,6 +36,12 @@
        (:prefix "C-v"
          :desc "Set variable with refine" :n #'refine))))
 
+  (:after olivetti
+    (:leader
+      (:prefix "w"
+        (:prefix "m"
+          :desc "Olivetti mode" :n "o" #'olivetti-mode))))
+
  (:map smerge-mode-map
    (:leader
      :desc "Smerge hydra" :n "=" #'+vc/smerge-hydra/body))
