@@ -29,7 +29,7 @@
 (add-hook! 'minibuffer-setup-hook 'make-fancy-minibuffer)
 
 (when IS-MAC
-  ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  (setq ns-use-thin-smoothing t)
   ;; maximize first frame
   (set-frame-parameter nil 'fullscreen 'maximized)
   (mac-auto-operator-composition-mode t))
@@ -45,11 +45,11 @@
 ;; Packages
 ;;
 
-(def-package! evil
+(use-package! evil
   :config
   (setq-default evil-kill-on-visual-paste nil))
 
-(def-package! tablature-mode
+(use-package! tablature-mode
   :defer t
   :mode
   "\\.tab$"
@@ -57,36 +57,41 @@
   (load! "+tablature-mode-setup")
   t)
 
-(def-package! ivy
+(use-package! ivy
   :defer t
   :config
   (setq
    ivy-use-selectable-prompt t
    +ivy-buffer-icons t)
   (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
-  (load! "bindings/+ivy.el"))
+  (load! "bindings/+ivy"))
 
-(def-package! winum
+(use-package! winum
   :defer t
   :init
   (setq-default
    winum-scope 'frame-local
    winum-auto-assign-0-to-minibuffer t)
   :config
-  ;; (winum-mode)
   (load! "bindings/+winum"))
 
-;; (def-package! which-key-posframe
-;;   :config
-;;   (which-key-posframe-mode))
+(use-package! which-key-posframe
+  :defer t
+  :config
+  (which-key-posframe-enable))
 
-(def-package! company
+(use-package! company
   :defer t
   :config
   (setq-default
-   company-idle-delay nil))
+   company-idle-delay nil)
+  :when (featurep! +tng)
+  :config
+  (define-key! company-active-map
+    "RET" #'company-complete-common
+    [return] #'company-complete-common))
 
-(def-package! deadgrep
+(use-package! deadgrep
   :defer t
   :config
   (load! "bindings/+deadgrep"))
@@ -144,9 +149,6 @@
   (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
 
-(after! ivy
-  (load! "bindings/+ivy"))
-
 (after! flycheck
   (setq-default
    +flycheck-on-escape nil
@@ -159,6 +161,16 @@
 ;; Don't autopair
 (after! smartparens
   (smartparens-global-mode -1))
+
+(after! olivetti
+  (setq-default
+   olivetti-minimum-body-width 120
+   olivetti-body-width 120))
+
+(after! typo
+  ;; disable smart quotes
+  (define-key typo-mode-map (kbd "'") nil)
+  (define-key typo-mode-map (kbd "\"") nil))
 
 ;;(after! magit
   ;; Add gpg-sign to rebasing by default
@@ -181,8 +193,13 @@
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook
   (progn
+    (olivetti-mode 1)
+    (typo-mode 1)
     (toggle-word-wrap nil)
     (auto-fill-mode -1)))
+
+;; (after! poet
+;;  (add-hook! (markdown-mode-hook org-mode-hook) (load-theme-buffer-local 'poet (current-buffer))))
 
 ;; lang/org
 (after! org
