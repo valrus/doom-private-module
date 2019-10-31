@@ -24,4 +24,5 @@
 (after! flycheck
   (setq-default
    flycheck-error-list-highlight-overlays t
-   flycheck-highlighting-mode 'lines))
+   flycheck-highlighting-mode 'nil
+   flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))

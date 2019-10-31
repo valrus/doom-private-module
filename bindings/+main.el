@@ -54,7 +54,7 @@
      :desc "Revert buffer" :n "v" (lambda! (revert-buffer t t)))
 
    (:prefix "o"
-     (:prefix ("f" . "open file")
+     (:prefix ("o" . "open file")
        :desc "Open work notes" :n "w" #'popup-work-notes
        :desc "Open todo file" :n "t" #'popup-todo-file))
 
