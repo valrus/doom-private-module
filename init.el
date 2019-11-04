@@ -75,13 +75,8 @@
  editorconfig      ; let someone else argue about tabs vs spaces
  ;; ein               ; tame Jupyter notebooks with emacs
  eval              ; run code, run (also, repls)
-<<<<<<< HEAD
  (flycheck)
  ;; +childframe)
-=======
- flycheck
-  ;;+childframe)
->>>>>>> faa931cc63675fd2da2f8084c67630777f38151c
  ;; gist              ; interacting with github gists
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
