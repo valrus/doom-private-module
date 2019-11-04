@@ -10,6 +10,7 @@
 
 ;; Disabled packages
 (package! magit-todos :disable t)
+(package! solaire-mode :disable t)
 ;; (package! smartparens :disable t)
 
 ;; Local-specific packages

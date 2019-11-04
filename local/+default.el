@@ -14,8 +14,8 @@
  doom-theme 'doom-solarized-light)
 
 ;; line numbers must be monospaced
-(set-face-attribute 'line-number nil :family "Iosevka")
-(set-face-attribute 'line-number-current-line nil :family "Iosevka")
+(custom-set-faces!
+ '((line-number line-number-current-line) :family "Iosevka"))
 
 ;; minibuffer
 (setq minibuffer-font-spec '((default :family "Iosevka")))

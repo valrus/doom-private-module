@@ -1,17 +1,19 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+(load! "autoload/configs")
+
 ;;; Actual init starts here
 (doom!
  :completion
- (company          ; the ultimate code completion backend
-  +tng ; complete using only TAB
-  +childframe)
+ (company)          ; the ultimate code completion backend
+ ;; +tng) ; complete using only TAB
+ ;; +childframe)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
  ;;  +fuzzy)          ; enable fuzzy search backend for helm
  ;; ido               ; the other *other* search engine...
  (ivy               ; a search engine for love and life
-  +childframe
+ ;; +childframe
   +prescient
   +icons)
  ;; +fuzzy)          ; enable fuzzy search backend for ivy
@@ -73,8 +75,8 @@
  editorconfig      ; let someone else argue about tabs vs spaces
  ;; ein               ; tame Jupyter notebooks with emacs
  eval              ; run code, run (also, repls)
- (flycheck
-  +childframe)
+ (flycheck)
+ ;; +childframe)
  ;; gist              ; interacting with github gists
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
@@ -116,7 +118,7 @@
  ;; kotlin            ; a better, slicker Java(Script)
  ;; (:if (local-config-home-p) latex)
  ;; ledger            ; an accounting system in Emacs
- ;; lua               ; one-based indices? one-based indices
+ lua               ; one-based indices? one-based indices
  markdown          ; writing docs for people to ignore
  ;; nim               ; python + lisp at the speed of c
  ;; nix               ; I hereby declare "nix geht mehr!"

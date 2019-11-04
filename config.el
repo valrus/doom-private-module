@@ -31,8 +31,7 @@
 (when IS-MAC
   (setq ns-use-thin-smoothing t)
   ;; maximize first frame
-  (set-frame-parameter nil 'fullscreen 'maximized)
-  (mac-auto-operator-composition-mode t))
+  (set-frame-parameter nil 'fullscreen 'maximized))
 
 ;;
 ;; Keybindings
@@ -83,7 +82,7 @@
 (use-package! company
   :defer t
   :config
-  (setq-default
+  (setq
    company-idle-delay nil)
   :when (featurep! +tng)
   :config
@@ -91,10 +90,19 @@
     "RET" #'company-complete-common
     [return] #'company-complete-common))
 
+(use-package! counsel
+  :defer t
+  :config
+  (setq
+   counsel-rg-base-command "rg -S --no-heading --line-number -M 500 --color never %s ."))
+
 (use-package! deadgrep
   :defer t
   :config
   (load! "bindings/+deadgrep"))
+
+(use-package! refine
+  :defer t)
 
 ;;
 ;; Modules
@@ -152,7 +160,7 @@
 (after! flycheck
   (setq-default
    +flycheck-on-escape nil
-   flycheck-check-syntax-automatically '(save mode-enable)))
+   flycheck-check-syntax-automatically '(save)))
 
 ;; Don't create new workspaces for new frames
 (after! persp-mode
