@@ -36,9 +36,13 @@
   :config
   (setq-default
    flycheck-error-list-highlight-overlays t
+<<<<<<< HEAD
    flycheck-highlighting-mode nil
    flycheck-checker-error-threshold 100)
   :when (not (featurep! +childframe))
   :config
   (setq-default
+=======
+   flycheck-highlighting-mode 'nil
+>>>>>>> faa931cc63675fd2da2f8084c67630777f38151c
    flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
