@@ -26,7 +26,7 @@
 (after! org
   (setq org-directory "~/Dropbox (Personal)/Work Share/org/"))
 
-(def-package! rvm
+(use-package! rvm
   :config
   (progn
     (rvm-use-default)))
