@@ -12,6 +12,10 @@
  :n "," (λ! (push (cons t ?m) unread-command-events)
             (push (cons t 32) unread-command-events))
 
+ ;; Use C-a as the window operations prefix for when I accidentally think I'm in tmux
+ :n "C-a" (λ! (push (cons t ?w) unread-command-events)
+              (push (cons t 32) unread-command-events))
+
  (:after magit
    (:map with-editor-mode-map
      :desc "Previous comment" "C-k" #'log-edit-previous-comment
