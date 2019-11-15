@@ -3,7 +3,7 @@
 (setq user-full-name    "Ian McCowan"
       user-mail-address "imccowan@gmail.com"
 
-      +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode)
+      +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
       display-line-numbers-type 'relative)
 
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
