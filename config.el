@@ -46,7 +46,14 @@
 
 (use-package! evil
   :config
-  (setq-default evil-kill-on-visual-paste nil))
+  (setq-default evil-kill-on-visual-paste nil
+                evil-split-window-below t
+                evil-vsplit-window-right t))
+
+;; (use-package! moody
+;;   :defer t
+;;   :config
+;;   (setq x-underline-at-descent-line t))
 
 (use-package! tablature-mode
   :defer t
