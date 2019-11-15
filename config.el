@@ -60,6 +60,7 @@
   :defer t
   :config
   (setq
+   ivy-dynamic-exhibit-delay-ms 100
    ivy-use-selectable-prompt t
    +ivy-buffer-icons t)
   (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
