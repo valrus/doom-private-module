@@ -226,10 +226,10 @@
    ;; org-bullets-bullet-list '("①" "②" "③" "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩")))
    org-bullets-bullet-list '("◴" "◵" "◶" "◷" "⊚" "⊛" "⊗" "⊕" "⊘" "⊙")))
 
+;; ui/popup
 
- ;; The standard unicode characters are usually misaligned depending on the
- ;; font. This bugs me. Personally, markdown #-marks for headlines are more
- ;; elegant.
- ;; org-bullets-bullet-list '("#"))
+(after! popup
+  (setq +popup-margin-width nil))
+
 
 ;; (setq lsp-print-io t)
