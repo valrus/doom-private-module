@@ -3,6 +3,10 @@
 (map!
  :desc "Redo" :n "U" #'undo-tree-redo
 
+ (:leader
+   (:prefix "h"
+     :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
+
  (:after treemacs-evil
    (:map evil-treemacs-state-map
      "C-h" #'evil-window-left
