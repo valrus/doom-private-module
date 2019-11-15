@@ -219,10 +219,13 @@
 
 ;; lang/org
 (after! org
-  (setq-default
+  (setq
    ;; org-directory (expand-file-name "~/work/org/")
    org-agenda-files (list org-directory)
-   org-ellipsis " ▼ "))
+   org-ellipsis " ▼ "
+   ;; org-bullets-bullet-list '("①" "②" "③" "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩")))
+   org-bullets-bullet-list '("◴" "◵" "◶" "◷" "⊚" "⊛" "⊗" "⊕" "⊘" "⊙")))
+
 
  ;; The standard unicode characters are usually misaligned depending on the
  ;; font. This bugs me. Personally, markdown #-marks for headlines are more
