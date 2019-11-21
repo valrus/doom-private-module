@@ -3,7 +3,9 @@
 ;; enh-ruby-mode is intolerably slow on some buffers
 (advice-add #'+ruby-init-h :override #'ruby-mode)
 
-(setq so-long-threshold 500)
+(setq
+ so-long-threshold 500
+ doom-gc-cons-threshold 4194304)
 
 (use-package! ruby-mode
   :defer t

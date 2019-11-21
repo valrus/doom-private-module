@@ -231,5 +231,15 @@
 (after! popup
   (setq +popup-margin-width nil))
 
+;; apps/irc
+
+(after! irc
+  (set-irc-server! "chat.freenode.net"
+    `(:tls t
+      :port 6697
+      :nick "valrus"
+      ;; :sasl-username "valrus"
+      ;; :sasl-password "n/a"
+      :channels ("#hammerspoon"))))
 
 ;; (setq lsp-print-io t)
