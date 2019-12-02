@@ -1,5 +1,9 @@
 ;;; ~/.doom.d/bindings/+main.el -*- lexical-binding: t; -*-
 
+
+(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+(define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
+
 (map!
  :desc "Redo" :n "U" #'undo-tree-redo
 
@@ -18,14 +22,14 @@
        :desc "Search project" :n "/" #'+default/search-project
        :desc "Find with deadgrep" :n "p" #'deadgrep)))
 
- ;; (:after helm
- ;;   (:leader
- ;;     (:prefix "/"
- ;;     :desc "Find in project" :n "/" #'+helm/project-search)))
- ;;
- ;; (:after helm-files
- ;;   (:map helm-find-files-map
- ;;     :desc "Up one directory" "C-h" #'helm-find-files-up-one-level))
+ (:after helm
+   (:leader
+     (:prefix "/"
+     :desc "Find in project" :n "/" #'+helm/project-search)))
+
+ (:after helm-files
+   (:map helm-find-files-map
+     :desc "Up one directory" "C-h" #'helm-find-files-up-one-level))
 
  (:after projectile-rails
    (:map enh-ruby-mode-map

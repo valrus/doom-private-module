@@ -16,6 +16,9 @@
        :desc "Commit" :n "c" #'with-editor-finish
        :desc "Abort commit" :n "a" #'with-editor-cancel)))
 
+ ;; Keep old search prefix until I'm used to "s"
+ :leader "/" doom-leader-search-map
+
  (:leader
    (:prefix "f"
      :desc "Save file (Spacemacs)" :n "s" #'save-buffer
