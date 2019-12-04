@@ -40,5 +40,5 @@
   :config
   (setq-default
    flycheck-error-list-highlight-overlays t
-   flycheck-highlighting-mode 'nil
+   flycheck-highlighting-mode nil
    flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))

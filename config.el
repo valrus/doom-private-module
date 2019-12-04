@@ -6,9 +6,6 @@
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
       display-line-numbers-type 'relative)
 
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-(define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
-
 (global-auto-revert-mode t)
 
 ;;
@@ -168,7 +165,30 @@
 (after! flycheck
   (setq-default
    +flycheck-on-escape nil
-   flycheck-check-syntax-automatically '(save)))
+   flycheck-check-syntax-automatically '(save))
+  ;; fringe stuff - mess with later
+  ;; where does fringe-helper-define come from?
+  ;; (setq-default
+  ;;  left-fringe-width 16
+  ;;  right-fringe-width 16)
+
+  ;; (fringe-helper-define
+  ;;  'flycheck-fringe-bitmap-double-arrow 'center
+  ;;  "......XX"
+  ;;  ".....XXX"
+  ;;  "....XXXX"
+  ;;  "...XXXXX"
+  ;;  "..XXXXXX"
+  ;;  ".XXXXXXX"
+  ;;  "XXXXXXXX"
+  ;;  "XXXXXXXX"
+  ;;  ".XXXXXXX"
+  ;;  "..XXXXXX"
+  ;;  "...XXXXX"
+  ;;  "....XXXX"
+  ;;  ".....XXX"
+  ;;  "......XX")
+  )
 
 ;; Don't create new workspaces for new frames
 (after! persp-mode
