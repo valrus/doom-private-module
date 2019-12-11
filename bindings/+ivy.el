@@ -9,6 +9,6 @@
 (defun ivy-refine (x)
   (refine x))
 
-(ivy-set-actions
+(ivy-add-actions
  'counsel-set-variable
  '(("r" ivy-refine "refine")))

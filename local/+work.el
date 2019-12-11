@@ -1,6 +1,23 @@
 ;;; ~/.doom.d/local/+work.el -*- lexical-binding: t; -*-
 
-(def-package! enh-ruby-mode
+;; enh-ruby-mode is intolerably slow on some buffers
+(advice-add #'+ruby-init-h :override #'ruby-mode)
+
+(setq
+ so-long-threshold 500
+ doom-gc-cons-threshold 4194304)
+
+(use-package! ruby-mode
+  :defer t
+  :init
+  (setq-default
+   ruby-align-to-stmt-keywords t
+   ruby-deep-arglist nil
+   ruby-deep-indent-paren nil
+   ruby-insert-encoding-magic-comment nil))
+
+(use-package! enh-ruby-mode
+  :defer t
   :init
   (setq-default
    enh-ruby-add-encoding-comment-on-save nil
@@ -8,7 +25,8 @@
    enh-ruby-deep-indent-construct nil)
   t)
 
-(def-package! projectile-rails
+(use-package! projectile-rails
+  :defer t
   :requires
   inflections
   :config
@@ -16,12 +34,11 @@
   ;; (load! "+projectile-rails-bindings")
   t)
 
-(def-package! haml-mode
-  :mode
-  "\\.haml$")
-
 ;; Some files have a LOT of errors; use a less resource-intensive highlight mode
-(after! flycheck
+(use-package! flycheck
+  :defer t
+  :config
   (setq-default
    flycheck-error-list-highlight-overlays t
-   flycheck-highlighting-mode 'lines))
+   flycheck-highlighting-mode nil
+   flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))

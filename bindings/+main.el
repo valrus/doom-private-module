@@ -1,7 +1,15 @@
 ;;; ~/.doom.d/bindings/+main.el -*- lexical-binding: t; -*-
 
+
+(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+(define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
+
 (map!
  :desc "Redo" :n "U" #'undo-tree-redo
+
+ (:leader
+   (:prefix "h"
+     :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
 
  (:after treemacs-evil
    (:map evil-treemacs-state-map
@@ -14,14 +22,14 @@
        :desc "Search project" :n "/" #'+default/search-project
        :desc "Find with deadgrep" :n "p" #'deadgrep)))
 
- ;; (:after helm
- ;;   (:leader
- ;;     (:prefix "/"
- ;;     :desc "Find in project" :n "/" #'+helm/project-search)))
- ;;
- ;; (:after helm-files
- ;;   (:map helm-find-files-map
- ;;     :desc "Up one directory" "C-h" #'helm-find-files-up-one-level))
+ (:after helm
+   (:leader
+     (:prefix "/"
+     :desc "Find in project" :n "/" #'+helm/project-search)))
+
+ (:after helm-files
+   (:map helm-find-files-map
+     :desc "Up one directory" "C-h" #'helm-find-files-up-one-level))
 
  (:after projectile-rails
    (:map enh-ruby-mode-map
@@ -54,9 +62,12 @@
      :desc "Revert buffer" :n "v" (lambda! (revert-buffer t t)))
 
    (:prefix "o"
-     (:prefix ("f" . "open file")
+     (:prefix ("o" . "open org file")
        :desc "Open work notes" :n "w" #'popup-work-notes
        :desc "Open todo file" :n "t" #'popup-todo-file))
+
+   (:prefix "TAB"
+     :desc "Create workspace" :n "c" #'+workspace/new)
 
    (:prefix "w"
      :desc "Maximize frame" :n "M" #'toggle-frame-maximized)))

@@ -1,17 +1,19 @@
 ;;; init.el -*- lexical-binding: t; -*-
 
+(load! "autoload/configs")
+
 ;;; Actual init starts here
 (doom!
  :completion
- (company          ; the ultimate code completion backend
-  +tng ; complete using only TAB
-  +childframe)
+ (company)          ; the ultimate code completion backend
+ ;; +tng) ; complete using only TAB
+ ;; +childframe)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
  ;;  +fuzzy)          ; enable fuzzy search backend for helm
  ;; ido               ; the other *other* search engine...
  (ivy               ; a search engine for love and life
-  +childframe
+ ;; +childframe
   +prescient
   +icons)
  ;; +fuzzy)          ; enable fuzzy search backend for ivy
@@ -36,7 +38,7 @@
  (pretty-code       ; replace bits of code with pretty symbols
   ;; +iosevka
   )
- ;; tabbar            ; FIXME an (incomplete) tab bar for Emacs
+ ;; tabs              ; FIXME an (incomplete) tab bar for Emacs
  ;; treemacs          ; a project drawer, like neotree but cooler
  ;; unicode           ; extended unicode support for various languages
  ;; vc-gutter         ; vcs diff in the fringe
@@ -61,6 +63,7 @@
   ;; +ranger
   +icons)
  electric          ; smarter, keyword-based electric-indent
+ (ibuffer +icons)
  vc                ; version-control and Emacs, sitting in a tree
 
  :term
@@ -70,11 +73,13 @@
  :tools
  ;; ansible
  ;; debugger          ; FIXME stepping through code, to help you add bugs
+ direnv
  editorconfig      ; let someone else argue about tabs vs spaces
  ;; ein               ; tame Jupyter notebooks with emacs
  eval              ; run code, run (also, repls)
- (flycheck
-  +childframe)
+ (flycheck)
+ ;; +childframe)
+ ;; flyspell
  ;; gist              ; interacting with github gists
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
@@ -116,7 +121,7 @@
  ;; kotlin            ; a better, slicker Java(Script)
  ;; (:if (local-config-home-p) latex)
  ;; ledger            ; an accounting system in Emacs
- ;; lua               ; one-based indices? one-based indices
+ lua               ; one-based indices? one-based indices
  markdown          ; writing docs for people to ignore
  ;; nim               ; python + lisp at the speed of c
  ;; nix               ; I hereby declare "nix geht mehr!"
@@ -154,7 +159,7 @@
  :app
  ;; calendar
  ;; (email +gmail)    ; emacs as an email client
- ;; irc               ; how neckbeards socialize
+ irc               ; how neckbeards socialize
  ;; (rss +org)        ; emacs as an RSS reader
  ;; twitter           ; twitter client https://twitter.com/vnought
  ;; (write            ; emacs as a word processor (latex + org + markdown)

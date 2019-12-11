@@ -2,6 +2,9 @@
 ;;; ~/.doom.d/packages.el
 
 (package! deadgrep)
+;; Doesn't do anything without some kinda messing around
+;; (not compatible with doom's modeline?)
+;; (package! moody)
 (package! which-key-posframe)
 (package! refine)
 (package! typo)
@@ -10,6 +13,7 @@
 
 ;; Disabled packages
 (package! magit-todos :disable t)
+(package! solaire-mode :disable t)
 ;; (package! smartparens :disable t)
 
 ;; Local-specific packages

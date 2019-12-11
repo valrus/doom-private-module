@@ -3,11 +3,8 @@
 (setq user-full-name    "Ian McCowan"
       user-mail-address "imccowan@gmail.com"
 
-      +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode)
+      +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
       display-line-numbers-type 'relative)
-
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-(define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
 
 (global-auto-revert-mode t)
 
@@ -31,8 +28,7 @@
 (when IS-MAC
   (setq ns-use-thin-smoothing t)
   ;; maximize first frame
-  (set-frame-parameter nil 'fullscreen 'maximized)
-  (mac-auto-operator-composition-mode t))
+  (set-frame-parameter nil 'fullscreen 'maximized))
 
 ;;
 ;; Keybindings
@@ -47,7 +43,14 @@
 
 (use-package! evil
   :config
-  (setq-default evil-kill-on-visual-paste nil))
+  (setq-default evil-kill-on-visual-paste nil
+                evil-split-window-below t
+                evil-vsplit-window-right t))
+
+;; (use-package! moody
+;;   :defer t
+;;   :config
+;;   (setq x-underline-at-descent-line t))
 
 (use-package! tablature-mode
   :defer t
@@ -61,6 +64,7 @@
   :defer t
   :config
   (setq
+   ivy-dynamic-exhibit-delay-ms 100
    ivy-use-selectable-prompt t
    +ivy-buffer-icons t)
   (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
@@ -83,7 +87,7 @@
 (use-package! company
   :defer t
   :config
-  (setq-default
+  (setq
    company-idle-delay nil)
   :when (featurep! +tng)
   :config
@@ -91,10 +95,19 @@
     "RET" #'company-complete-common
     [return] #'company-complete-common))
 
+(use-package! counsel
+  :defer t
+  :config
+  (setq
+   counsel-rg-base-command "rg -S --no-heading --line-number -M 500 --color never %s ."))
+
 (use-package! deadgrep
   :defer t
   :config
   (load! "bindings/+deadgrep"))
+
+(use-package! refine
+  :defer t)
 
 ;;
 ;; Modules
@@ -152,7 +165,30 @@
 (after! flycheck
   (setq-default
    +flycheck-on-escape nil
-   flycheck-check-syntax-automatically '(save mode-enable)))
+   flycheck-check-syntax-automatically '(save))
+  ;; fringe stuff - mess with later
+  ;; where does fringe-helper-define come from?
+  ;; (setq-default
+  ;;  left-fringe-width 16
+  ;;  right-fringe-width 16)
+
+  ;; (fringe-helper-define
+  ;;  'flycheck-fringe-bitmap-double-arrow 'center
+  ;;  "......XX"
+  ;;  ".....XXX"
+  ;;  "....XXXX"
+  ;;  "...XXXXX"
+  ;;  "..XXXXXX"
+  ;;  ".XXXXXXX"
+  ;;  "XXXXXXXX"
+  ;;  "XXXXXXXX"
+  ;;  ".XXXXXXX"
+  ;;  "..XXXXXX"
+  ;;  "...XXXXX"
+  ;;  "....XXXX"
+  ;;  ".....XXX"
+  ;;  "......XX")
+  )
 
 ;; Don't create new workspaces for new frames
 (after! persp-mode
@@ -203,14 +239,27 @@
 
 ;; lang/org
 (after! org
-  (setq-default
+  (setq
    ;; org-directory (expand-file-name "~/work/org/")
    org-agenda-files (list org-directory)
-   org-ellipsis " ▼ "))
+   org-ellipsis " ▼ "
+   ;; org-bullets-bullet-list '("①" "②" "③" "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩")))
+   org-bullets-bullet-list '("◴" "◵" "◶" "◷" "⊚" "⊛" "⊗" "⊕" "⊘" "⊙")))
 
- ;; The standard unicode characters are usually misaligned depending on the
- ;; font. This bugs me. Personally, markdown #-marks for headlines are more
- ;; elegant.
- ;; org-bullets-bullet-list '("#"))
+;; ui/popup
+
+(after! popup
+  (setq +popup-margin-width nil))
+
+;; apps/irc
+
+(after! irc
+  (set-irc-server! "chat.freenode.net"
+    `(:tls t
+      :port 6697
+      :nick "valrus"
+      ;; :sasl-username "valrus"
+      ;; :sasl-password "n/a"
+      :channels ("#hammerspoon"))))
 
 ;; (setq lsp-print-io t)
