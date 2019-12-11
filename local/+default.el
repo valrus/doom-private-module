@@ -42,4 +42,4 @@
   (setq-default
    ivy-height 12
    ivy-posframe-width 100
-   ivy-posframe-font (font-spec :family "Iosevka Slab" :size 14)))
+   ivy-posframe-font (font-spec :family "Iosevka" :size 14)))
