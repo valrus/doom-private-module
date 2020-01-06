@@ -6,6 +6,8 @@
 
 (map!
  :desc "Redo" :n "U" #'undo-tree-redo
+ :desc "Page up" :nvi "C-k" #'evil-scroll-page-up
+ :desc "Page down" :nvi "C-j" #'evil-scroll-page-down
 
  (:leader
    (:prefix "h"
