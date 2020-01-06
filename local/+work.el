@@ -42,3 +42,6 @@
    flycheck-error-list-highlight-overlays t
    flycheck-highlighting-mode nil
    flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
+
+;; emacs-mac-port only
+(mac-auto-operator-composition-mode t)
