@@ -6,8 +6,6 @@
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
       display-line-numbers-type 'relative)
 
-(global-auto-revert-mode t)
-
 ;;
 ;; Host-specific config
 ;;
@@ -64,7 +62,7 @@
   :defer t
   :config
   (setq
-   ivy-dynamic-exhibit-delay-ms 100
+   ivy-dynamic-exhibit-delay-ms 400
    ivy-use-selectable-prompt t
    +ivy-buffer-icons t)
   (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
@@ -165,7 +163,7 @@
 (after! flycheck
   (setq-default
    +flycheck-on-escape nil
-   flycheck-check-syntax-automatically '(save))
+   flycheck-check-syntax-automatically nil)
   ;; fringe stuff - mess with later
   ;; where does fringe-helper-define come from?
   ;; (setq-default
