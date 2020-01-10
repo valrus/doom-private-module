@@ -5,15 +5,15 @@
 ;;; Actual init starts here
 (doom!
  :completion
- (company)          ; the ultimate code completion backend
+ (company          ; the ultimate code completion backend
  ;; +tng) ; complete using only TAB
- ;; +childframe)
+  +childframe)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
  ;;  +fuzzy)          ; enable fuzzy search backend for helm
  ;; ido               ; the other *other* search engine...
  (ivy               ; a search engine for love and life
- ;; +childframe
+  +childframe
   +prescient
   +icons)
  ;; +fuzzy)          ; enable fuzzy search backend for ivy
@@ -27,7 +27,8 @@
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  hydra
  indent-guides
- modeline          ; snazzy, Atom-inspired modeline, plus API
+ (modeline         ; snazzy, Atom-inspired modeline, plus API
+  +light)
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
@@ -36,7 +37,7 @@
   +defaults        ; default popup rules
   )
  (pretty-code       ; replace bits of code with pretty symbols
-  ;; +iosevka
+  ;; +iosevka ; needs a patched font
   )
  ;; tabs              ; FIXME an (incomplete) tab bar for Emacs
  ;; treemacs          ; a project drawer, like neotree but cooler
@@ -46,17 +47,21 @@
  (window-select    ; visually switch windows
   +numbers)
  workspaces        ; tab emulation, persistence & separate workspaces
+ ;; zen
 
  :editor
  (evil +everywhere)
  file-templates    ; auto-snippets for empty files
  fold
  ;; (format +onsave)  ; automated prettiness
+ ;; god
  ;; lispy             ; vim for lisp, for people who dont like vim
  multiple-cursors  ; editing in many places at once
+ ;; objed
  ;; parinfer          ; turn lisp into python, sort of
  rotate-text       ; cycle region at point between text candidates
  snippets          ; my elves. They type so I don't have to
+ ;; word-wrap
 
  :emacs
  (dired             ; making dired pretty [functional]
@@ -77,8 +82,8 @@
  editorconfig      ; let someone else argue about tabs vs spaces
  ;; ein               ; tame Jupyter notebooks with emacs
  eval              ; run code, run (also, repls)
- (flycheck)
- ;; +childframe)
+ (flycheck
+  +childframe)
  ;; flyspell
  ;; gist              ; interacting with github gists
  (lookup           ; helps you navigate your code and documentation
