@@ -40,6 +40,12 @@
          (:prefix ("f" . "find")
            :desc "Find view" :n "v" #'projectile-rails-find-view)))))
 
+ (:after org
+   (:map org-mode-map
+     (:localleader
+       (:prefix ("c" . "controls")
+         :desc "Org C-c C-c" :n "c" #'org-ctrl-c-ctrl-c))))
+
  (:after refine
    (:leader
      (:prefix "h"
