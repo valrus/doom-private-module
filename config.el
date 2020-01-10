@@ -6,7 +6,7 @@
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
       display-line-numbers-type 'relative)
 
-(global-auto-revert-mode t)
+(global-auto-revert-mode -1)
 
 ;;
 ;; Host-specific config
