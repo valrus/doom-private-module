@@ -13,7 +13,8 @@
 
  (:after magit
    (:map with-editor-mode-map
-     :desc "Previous comment" "C-k" #'log-edit-previous-comment
+     :desc "Previous comment" "C-S-k" #'log-edit-previous-comment
+     :desc "Next comment" "C-S-j" #'log-edit-next-comment
      (:localleader
        :desc "Commit" :n "c" #'with-editor-finish
        :desc "Abort commit" :n "a" #'with-editor-cancel)))
