@@ -61,7 +61,8 @@
    (:prefix "b"
      :desc "Rename buffer" :n "R" #'rename-buffer
      :desc "Kill buffer" :n "d" #'kill-this-buffer ; consistency with `SPC w d'
-     :desc "Revert buffer" :n "v" (lambda! (revert-buffer t t)))
+     :desc "Revert buffer" :n "v" (lambda! (revert-buffer t t))
+     :desc "Flycheck buffer" :n "c" #'flycheck-buffer)
 
    (:prefix "o"
      (:prefix ("o" . "open org file")
