@@ -127,7 +127,7 @@
 ;;     '(bar window-number matches buffer-info remote-host buffer-position selection-info)
 ;;     '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
 
-(after! doom-modeline
+(after! modeline
   (def-modeline-format! 'main
     '(bar window-number modals buffer-info remote-host buffer-position parrot selection-info)
     '(misc-info persp-name irc mu4e github debug input-method lsp major-mode process vcs checker))
