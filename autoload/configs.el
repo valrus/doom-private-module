@@ -9,6 +9,7 @@
        ("ianbonanza" "imac-work")
        (_ "imac-home")))
     ("Ians-MBP" "macbook")
+    ("Ians-MacBook-Pro.local" "macbook")
     ("galliumos" "gallium")
     (_ "default")))
 

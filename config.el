@@ -127,13 +127,13 @@
 ;;     '(bar window-number matches buffer-info remote-host buffer-position selection-info)
 ;;     '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
 
-(after! modeline
-  (def-modeline-format! 'main
-    '(bar window-number modals buffer-info remote-host buffer-position parrot selection-info)
-    '(misc-info persp-name irc mu4e github debug input-method lsp major-mode process vcs checker))
-  (setq
-   doom-modeline-icon t
-   doom-modeline-major-mode-color-icon t))
+;; (after! modeline
+;;   (def-modeline-format! 'main
+;;     '(bar window-number modals buffer-info remote-host buffer-position parrot selection-info)
+;;     '(misc-info persp-name irc mu4e github debug input-method lsp major-mode process vcs checker))
+;;   (setq
+;;    doom-modeline-icon t
+;;    doom-modeline-major-mode-color-icon t))
 
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
@@ -165,7 +165,8 @@
 (after! flycheck
   (setq-default
    +flycheck-on-escape nil
-   flycheck-check-syntax-automatically nil)
+   flycheck-check-syntax-automatically nil
+   flycheck-display-errors-delay 1)
   ;; fringe stuff - mess with later
   ;; where does fringe-helper-define come from?
   ;; (setq-default
