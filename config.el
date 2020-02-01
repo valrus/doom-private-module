@@ -165,7 +165,8 @@
 (after! flycheck
   (setq-default
    +flycheck-on-escape nil
-   flycheck-check-syntax-automatically nil)
+   flycheck-check-syntax-automatically nil
+   flycheck-display-errors-delay 1)
   ;; fringe stuff - mess with later
   ;; where does fringe-helper-define come from?
   ;; (setq-default
