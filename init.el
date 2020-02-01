@@ -63,6 +63,12 @@
  snippets          ; my elves. They type so I don't have to
  ;; word-wrap
 
+ :checkers
+ ;; grammar
+ ;; spell
+ (syntax
+  +childframe)
+
  :emacs
  (dired             ; making dired pretty [functional]
   ;; +ranger
@@ -82,9 +88,6 @@
  editorconfig      ; let someone else argue about tabs vs spaces
  ;; ein               ; tame Jupyter notebooks with emacs
  eval              ; run code, run (also, repls)
- (flycheck
-  +childframe)
- ;; flyspell
  ;; gist              ; interacting with github gists
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
