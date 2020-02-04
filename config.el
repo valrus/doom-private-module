@@ -243,6 +243,7 @@
   (setq
    ;; org-directory (expand-file-name "~/work/org/")
    org-agenda-files (list org-directory)
+   org-use-fast-todo-selection nil
    org-ellipsis " ▼ "
    ;; org-bullets-bullet-list '("①" "②" "③" "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩")))
    org-bullets-bullet-list '("◴" "◵" "◶" "◷" "⊚" "⊛" "⊗" "⊕" "⊘" "⊙")))
