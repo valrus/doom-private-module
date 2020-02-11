@@ -9,7 +9,9 @@
 (package! refine)
 (package! typo)
 ;; (package! poet-theme)
-(package! olivetti)
+;; (package! olivetti)
+(package! org-roam
+  :recipe (:host github :repo "jethrokuan/org-roam"))
 
 ;; Disabled packages
 (package! magit-todos :disable t)

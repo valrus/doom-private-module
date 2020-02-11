@@ -109,6 +109,14 @@
 (use-package! refine
   :defer t)
 
+(use-package! org-roam
+  :after org
+  :defer t
+  :hook (org-mode . org-roam-mode)
+  :custom (org-roam-directory org-directory)
+  :config
+  (load! "bindings/+org-roam"))
+
 ;;
 ;; Modules
 ;;
@@ -163,6 +171,7 @@
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
 
 (after! flycheck
+  (advice-add #'flycheck-may-check-automatically :override #'ignore)
   (setq-default
    +flycheck-on-escape nil
    flycheck-check-syntax-automatically nil
@@ -200,6 +209,8 @@
   (smartparens-global-mode -1))
 
 (after! olivetti
+  (add-hook! 'markdown-mode-hook
+    (olivetti-mode 1))
   (setq-default
    olivetti-minimum-body-width 120
    olivetti-body-width 120))
@@ -230,7 +241,6 @@
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook
   (progn
-    (olivetti-mode 1)
     (typo-mode 1)
     (toggle-word-wrap nil)
     (auto-fill-mode -1)))
@@ -263,5 +273,8 @@
       ;; :sasl-username "valrus"
       ;; :sasl-password "n/a"
       :channels ("#hammerspoon"))))
+
+(after! undo-tree
+ (setq-default undo-tree-auto-save-history nil))
 
 ;; (setq lsp-print-io t)
