@@ -104,6 +104,7 @@
 (use-package! deadgrep
   :defer t
   :config
+  (setq-default deadgrep-project-root-function #'doom-project-root)
   (load! "bindings/+deadgrep"))
 
 (use-package! refine
