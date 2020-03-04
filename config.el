@@ -114,9 +114,19 @@
   :after org
   :defer t
   :hook (org-mode . org-roam-mode)
-  :custom (org-roam-directory org-directory)
+  :custom
+  (org-roam-directory (concat org-directory "roam"))
   :config
   (load! "bindings/+org-roam"))
+
+(use-package! org-journal
+  :after org
+  :defer t
+  :custom
+  (org-journal-dir (concat org-directory "journal"))
+  (org-journal-file-format "%Y-%m-%d")
+  :config
+  (load! "bindings/+org-journal"))
 
 ;;
 ;; Modules
@@ -143,6 +153,10 @@
   (setq
    doom-modeline-icon t
    doom-modeline-major-mode-color-icon t))
+
+(after! popup
+  (setq-default
+   +popup-defaults '(:side top :height 0.16 :width 40 :quit t :select ignore :ttl 5)))
 
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))

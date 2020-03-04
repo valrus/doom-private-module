@@ -12,6 +12,8 @@
 ;; (package! olivetti)
 (package! org-roam
   :recipe (:host github :repo "jethrokuan/org-roam"))
+(package! org-journal
+  :recipe (:host github :repo "bastibe/org-journal"))
 
 ;; Disabled packages
 (package! magit-todos :disable t)
