@@ -49,7 +49,7 @@
  (window-select    ; visually switch windows
   +numbers)
  workspaces        ; tab emulation, persistence & separate workspaces
- ;; zen
+ zen
 
  :editor
  (evil +everywhere)
@@ -141,7 +141,7 @@
  ;; nix               ; I hereby declare "nix geht mehr!"
  ;; ocaml             ; an objective camel
  (org              ; organize your plain life in plain text
-  +brain
+  ;; +brain
   ;; +dragndrop
   ;; +jupyter
   ;; +pandoc

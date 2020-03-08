@@ -46,7 +46,7 @@
         #'display-truncated-posframe)
   (setq-default
    ivy-height 12
-   ivy-posframe-width 100
+   ivy-posframe-width 200
    ivy-posframe-font (font-spec :family "Iosevka Slab" :size 14)))
 
 (add-to-list 'default-frame-alist '(inhibit-double-buffering . t))

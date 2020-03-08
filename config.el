@@ -104,10 +104,29 @@
 (use-package! deadgrep
   :defer t
   :config
+  (setq-default deadgrep-project-root-function #'doom-project-root)
   (load! "bindings/+deadgrep"))
 
 (use-package! refine
   :defer t)
+
+(use-package! org-roam
+  :after org
+  :defer t
+  :hook (org-mode . org-roam-mode)
+  :custom
+  (org-roam-directory (concat org-directory "roam"))
+  :config
+  (load! "bindings/+org-roam"))
+
+(use-package! org-journal
+  :after org
+  :defer t
+  :custom
+  (org-journal-dir (concat org-directory "journal"))
+  (org-journal-file-format "%Y-%m-%d")
+  :config
+  (load! "bindings/+org-journal"))
 
 ;;
 ;; Modules
@@ -134,6 +153,10 @@
   (setq
    doom-modeline-icon t
    doom-modeline-major-mode-color-icon t))
+
+(after! popup
+  (setq-default
+   +popup-defaults '(:side top :height 0.16 :width 40 :quit t :select ignore :ttl 5)))
 
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
@@ -163,6 +186,7 @@
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
 
 (after! flycheck
+  (advice-add #'flycheck-may-check-automatically :override #'ignore)
   (setq-default
    +flycheck-on-escape nil
    flycheck-check-syntax-automatically nil
@@ -200,6 +224,8 @@
   (smartparens-global-mode -1))
 
 (after! olivetti
+  (add-hook! 'markdown-mode-hook
+    (olivetti-mode 1))
   (setq-default
    olivetti-minimum-body-width 120
    olivetti-body-width 120))
@@ -230,7 +256,6 @@
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook
   (progn
-    (olivetti-mode 1)
     (typo-mode 1)
     (toggle-word-wrap nil)
     (auto-fill-mode -1)))
@@ -263,5 +288,8 @@
       ;; :sasl-username "valrus"
       ;; :sasl-password "n/a"
       :channels ("#hammerspoon"))))
+
+(after! undo-tree
+ (setq-default undo-tree-auto-save-history nil))
 
 ;; (setq lsp-print-io t)
