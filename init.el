@@ -1,4 +1,6 @@
 ;;; init.el -*- lexical-binding: t; -*-
+;; workaround for gnu find on mac
+(setq exec-path (append '("/usr/local/opt/findutils/libexec/gnubin") exec-path))
 
 (load! "autoload/configs")
 
@@ -27,8 +29,8 @@
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  hydra
  indent-guides
- (modeline         ; snazzy, Atom-inspired modeline, plus API
-  +light)
+ modeline         ; snazzy, Atom-inspired modeline, plus API
+ ;; +light)
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil

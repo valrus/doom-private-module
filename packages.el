@@ -19,7 +19,8 @@
 ;; Local-specific packages
 (cond
  ((local-config-home-p)
-  (package! tablature-mode :recipe (:host github :repo "valrus/tablature-mode")))
+  (package! tablature-mode :recipe (:host github :repo "valrus/tablature-mode"))
+  (unpin! tablature-mode))
  ((local-config-work-p)
   (package! haml-mode)
   (package! web-mode)
