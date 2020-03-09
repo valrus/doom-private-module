@@ -50,4 +50,4 @@
             (append '("bundle" "exec") command)))))
 
 ;; emacs-mac-port only
-(mac-auto-operator-composition-mode t)
+;; (mac-auto-operator-composition-mode t)
