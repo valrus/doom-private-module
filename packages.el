@@ -12,6 +12,11 @@
 ;; (package! olivetti)
 (package! org-roam
   :recipe (:host github :repo "jethrokuan/org-roam"))
+(package! lsp-ui :pin "134d9b725d21f8889f3dc72dddc418c6c6561f0e")
+;; light
+(package! modus-operandi-theme)
+;; dark
+(package! modus-vivendi-theme)
 
 ;; Disabled packages
 (package! magit-todos :disable t)

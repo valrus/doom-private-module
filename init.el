@@ -98,7 +98,7 @@
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
- lsp
+ ;; lsp
  ;; macos             ; MacOS-specific commands
  magit
  ;; make              ; run make tasks from Emacs
@@ -158,7 +158,7 @@
  ;; qt                ; the 'cutest' gui framework ever
  ;; racket            ; a DSL for DSLs
  ;; rest              ; Emacs as a REST client
- (:if (local-config-work-p) (ruby +rvm +lsp +rails))
+ (:if (local-config-work-p) (ruby +rvm +rails))
  ;; (ruby +rvm +lsp)
  ;; rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
  ;; scala             ; java, but good
