@@ -11,7 +11,7 @@
  doom-variable-pitch-font (font-spec :family "Iosevka")
 
  ;; theme
- doom-theme 'doom-solarized-light)
+ doom-theme 'modus-operandi)
 
 ;; line numbers must be monospaced
 (custom-set-faces!

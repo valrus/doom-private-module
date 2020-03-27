@@ -147,6 +147,7 @@
   ;; +pandoc
   ;; +gnuplot
   ;; +present
+  +journal
   )
  ;; perl              ; write code no one else can comprehend
  ;; php               ; perl's insecure younger brother
@@ -157,7 +158,7 @@
  ;; qt                ; the 'cutest' gui framework ever
  ;; racket            ; a DSL for DSLs
  ;; rest              ; Emacs as a REST client
- (:if (local-config-work-p) (ruby +rvm))
+ (:if (local-config-work-p) (ruby +rvm +rails))
  ;; (ruby +rvm +lsp)
  ;; rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
  ;; scala             ; java, but good

@@ -5,7 +5,10 @@
 
 (setq
  so-long-threshold 500
- doom-gc-cons-threshold 4194304)
+ doom-gc-cons-threshold 4194304
+
+ ;; theme
+ doom-theme 'modus-operandi)
 
 (use-package! ruby-mode
   :defer t
@@ -50,4 +53,4 @@
             (append '("bundle" "exec") command)))))
 
 ;; emacs-mac-port only
-(mac-auto-operator-composition-mode t)
+;; (mac-auto-operator-composition-mode t)

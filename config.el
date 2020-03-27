@@ -4,7 +4,7 @@
       user-mail-address "imccowan@gmail.com"
 
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
-      display-line-numbers-type 'relative)
+      display-line-numbers-type nil)
 
 (global-auto-revert-mode -1)
 
@@ -99,7 +99,7 @@
   :defer t
   :config
   (setq
-   counsel-rg-base-command "rg -S --no-heading --line-number -M 500 --color never %s ."))
+   counsel-rg-base-command "rg -S --no-heading --line-number --max-columns 300 --max-columns-preview --color never %s ."))
 
 (use-package! deadgrep
   :defer t
@@ -184,6 +184,9 @@
 (after! counsel
   (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
+
+(after! lsp-mode
+  (setq lsp-log-io t))
 
 (after! flycheck
   (advice-add #'flycheck-may-check-automatically :override #'ignore)
