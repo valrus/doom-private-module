@@ -250,6 +250,11 @@
 (after! rvm
   (rvm-use-default))
 
+(after! elm
+  (setq-default
+   elm-format-on-save-mode t
+   elm-format-on-save t))
+
 ;; (defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
 ;;   (rvm-activate-corresponding-ruby))
 
