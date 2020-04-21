@@ -148,6 +148,7 @@
   ;; +gnuplot
   ;; +present
   +journal
+  +roam
   )
  ;; perl              ; write code no one else can comprehend
  ;; php               ; perl's insecure younger brother
