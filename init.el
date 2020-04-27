@@ -77,6 +77,7 @@
   +icons)
  electric          ; smarter, keyword-based electric-indent
  (ibuffer +icons)
+ undo
  vc                ; version-control and Emacs, sitting in a tree
 
  :term
