@@ -89,11 +89,11 @@
   :config
   (setq
    company-idle-delay nil)
-  :when (featurep! +tng)
-  :config
-  (define-key! company-active-map
-    "RET" #'company-complete-common
-    [return] #'company-complete-common))
+  (when (featurep! +tng)
+    :config
+    (define-key! company-active-map
+      "RET" #'company-complete-common
+      [return] #'company-complete-common)))
 
 (use-package! counsel
   :defer t
