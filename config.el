@@ -4,7 +4,9 @@
       user-mail-address "imccowan@gmail.com"
 
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
-      display-line-numbers-type nil)
+      display-line-numbers-type nil
+      gcmh-high-cons-threshold #x10000000 ;; 200MB or so
+      )
 
 (global-auto-revert-mode -1)
 
