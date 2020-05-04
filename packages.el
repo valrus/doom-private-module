@@ -10,9 +10,7 @@
 (package! typo)
 ;; (package! poet-theme)
 ;; (package! olivetti)
-(package! org-roam
-  :recipe (:host github :repo "jethrokuan/org-roam"))
-(package! lsp-ui :pin "134d9b725d21f8889f3dc72dddc418c6c6561f0e")
+(package! lsp-ui)
 ;; light
 (package! modus-operandi-theme)
 ;; dark
@@ -25,9 +23,6 @@
 
 ;; Local-specific packages
 (cond
- ((local-config-home-p)
-  (package! tablature-mode :recipe (:host github :repo "valrus/tablature-mode"))
-  (unpin! tablature-mode))
  ((local-config-work-p)
   (package! haml-mode)
   (package! web-mode)

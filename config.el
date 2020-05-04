@@ -54,14 +54,6 @@
 ;;   :config
 ;;   (setq x-underline-at-descent-line t))
 
-(use-package! tablature-mode
-  :defer t
-  :mode
-  "\\.tab$"
-  :config
-  (load! "+tablature-mode-setup")
-  t)
-
 (use-package! ivy
   :defer t
   :config
@@ -84,7 +76,10 @@
 (use-package! which-key-posframe
   :defer t
   :config
-  (which-key-posframe-enable))
+  (setq
+   which-key-posframe-border-width 10
+   which-key-posframe-poshandler #'posframe-poshandler-frame-top-center)
+  (which-key-posframe-mode 1))
 
 (use-package! company
   :defer t
@@ -186,9 +181,6 @@
 (after! counsel
   (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
-
-(after! lsp-mode
-  (setq lsp-log-io t))
 
 (after! flycheck
   (advice-add #'flycheck-may-check-automatically :override #'ignore)
@@ -298,8 +290,3 @@
       ;; :sasl-username "valrus"
       ;; :sasl-password "n/a"
       :channels ("#hammerspoon"))))
-
-(after! undo-tree
- (setq-default undo-tree-auto-save-history nil))
-
-;; (setq lsp-print-io t)
