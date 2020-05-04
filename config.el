@@ -30,7 +30,8 @@
 (when IS-MAC
   (setq ns-use-thin-smoothing t)
   ;; maximize first frame
-  (set-frame-parameter nil 'fullscreen 'maximized))
+  (set-frame-parameter nil 'fullscreen 'maximized)
+  (load! "+fadeouts"))
 
 ;;
 ;; Keybindings

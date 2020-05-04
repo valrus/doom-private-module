@@ -29,8 +29,8 @@
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  hydra
  indent-guides
- modeline         ; snazzy, Atom-inspired modeline, plus API
- ;; +light)
+ (modeline         ; snazzy, Atom-inspired modeline, plus API
+ +light)
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
