@@ -19,6 +19,8 @@
   +prescient
   +icons)
  ;; +fuzzy)          ; enable fuzzy search backend for ivy
+ ;; (selectrum
+ ;;  +prescient)
 
  :ui
  deft              ; notational velocity for Emacs
@@ -29,8 +31,9 @@
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  hydra
  indent-guides
+ mini-frame
  (modeline         ; snazzy, Atom-inspired modeline, plus API
- +light)
+  +light)
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
@@ -99,7 +102,7 @@
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
- ;; lsp
+ lsp
  ;; macos             ; MacOS-specific commands
  magit
  ;; make              ; run make tasks from Emacs
@@ -160,13 +163,14 @@
  ;; qt                ; the 'cutest' gui framework ever
  ;; racket            ; a DSL for DSLs
  ;; rest              ; Emacs as a REST client
- (:if (local-config-work-p) (ruby +rvm +rails))
+ (:if (local-config-work-p) (ruby +lsp +rvm +rails))
  ;; (ruby +rvm +lsp)
  ;; rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
  ;; scala             ; java, but good
  (sh +zsh)        ; she sells (ba|z)sh shells on the C xor
  ;; solidity          ; do you need a blockchain? No.
  ;; swift             ; who asked for emoji variables?
+ (:if (local-config-home-p) tablature)
  ;; terra             ; Earth and Moon in alignment for performance.
  web               ; the tubes
  ;; vala              ; GObjective-C

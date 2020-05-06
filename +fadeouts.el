@@ -7,7 +7,7 @@
 (defun mac-animation-toggle-lock ()
   (setq mac-animation-locked-p (not mac-animation-locked-p)))
 
-(setq mac-animation-duration 0.5)
+(setq mac-animation-duration 0.75)
 
 (defun animate-frame-fade-out (&rest args)
   (unless mac-animation-locked-p
