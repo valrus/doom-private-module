@@ -162,10 +162,10 @@
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
 
-;; Borrowed from:
+;; Adapted from:
 ;; https://www.manueluberti.eu/emacs/2018/02/17/magit-bury-buffer/
 (defun valrus-magit-kill-buffers (param)
-  "Restore window configuration and kill all Magit buffers."
+  "Kill all Magit buffers without restoring window configuration."
   (let ((buffers (magit-mode-get-buffers)))
     (mapc #'kill-buffer buffers)))
 
