@@ -8,7 +8,7 @@
 (doom!
  :completion
  (company          ; the ultimate code completion backend
- ;; +tng) ; complete using only TAB
+  +tng ; complete using only TAB
   +childframe)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
@@ -30,10 +30,10 @@
  ;; fill-column    ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  hydra
- indent-guides
+ ;; indent-guides
  mini-frame
  (modeline         ; snazzy, Atom-inspired modeline, plus API
-  +light)
+ +light)
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
@@ -68,12 +68,6 @@
  snippets          ; my elves. They type so I don't have to
  ;; word-wrap
 
- :checkers
- ;; grammar
- ;; spell
- (syntax
-  +childframe)
-
  :emacs
  (dired             ; making dired pretty [functional]
   ;; +ranger
@@ -85,9 +79,13 @@
 
  :term
  ;; eshell            ; a consistent, cross-platform shell (WIP)
+ ;; shell
  term              ; terminals in Emacs
+ ;; vterm
 
  :checkers
+ ;; grammar
+ ;; spell
  (syntax
   +childframe)
 
@@ -197,7 +195,10 @@
  ;; a Spacemacs-inspired keybinding scheme, a custom yasnippet library,
  ;; and additional ex commands for evil-mode. Use it as a reference for
  ;; your own modules.
- (default +bindings +smartparens))
+ (default
+ +bindings
+ ;; +smartparens
+ ))
 
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.

@@ -5,7 +5,6 @@
 
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
       display-line-numbers-type nil
-      gcmh-high-cons-threshold #x10000000 ;; 200MB or so
       )
 
 (global-auto-revert-mode -1)
@@ -76,11 +75,12 @@
 
 (use-package! which-key-posframe
   :defer t
+  :custom
+  (which-key-posframe-mode t)
   :config
   (setq
    which-key-posframe-border-width 10
-   which-key-posframe-poshandler #'posframe-poshandler-frame-top-center)
-  (which-key-posframe-mode 1))
+   which-key-posframe-poshandler #'posframe-poshandler-frame-top-center))
 
 (use-package! company
   :defer t
@@ -130,6 +130,9 @@
 ;; Modules
 ;;
 
+(after! gcmh-mode
+  (setq gcmh-high-cons-threshold #x10000000)) ;; 200MB or so
+
 ;; tools/lsp
 
 (after! lsp-ui
@@ -159,6 +162,13 @@
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
 
+;; Borrowed from:
+;; https://www.manueluberti.eu/emacs/2018/02/17/magit-bury-buffer/
+(defun valrus-magit-kill-buffers (param)
+  "Restore window configuration and kill all Magit buffers."
+  (let ((buffers (magit-mode-get-buffers)))
+    (mapc #'kill-buffer buffers)))
+
 ;; tools/magit
 (after! magit
   (setq
@@ -166,6 +176,7 @@
    ;; magit-commit-arguments '("--gpg-sign=5F6C0EA160557395")
    ;; magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395")
    ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
+   magit-bury-buffer-function #'valrus-magit-kill-buffers
    +magit-hub-features t
    git-commit-summary-max-length 80
    vc-handled-backends (delq 'Git vc-handled-backends)))
@@ -274,7 +285,7 @@
    org-use-fast-todo-selection nil
    org-ellipsis " ▼ "
    ;; org-bullets-bullet-list '("①" "②" "③" "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩")))
-   org-bullets-bullet-list '("◴" "◵" "◶" "◷" "⊚" "⊛" "⊗" "⊕" "⊘" "⊙")))
+   org-bullets-bullet-list '("◷" "◶" "◵" "◴" "⊚" "⊛" "⊗" "⊕" "⊘" "⊙")))
 
 ;; ui/popup
 
