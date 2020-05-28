@@ -10,6 +10,10 @@
  ;; theme
  doom-theme 'modus-operandi)
 
+(add-hook! doom-load-theme
+  (set-face-attribute 'mode-line nil :box nil)
+  (set-face-attribute 'mode-line-inactive nil :box nil))
+
 (use-package! ruby-mode
   :defer t
   :init
