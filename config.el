@@ -86,12 +86,7 @@
   :defer t
   :config
   (setq
-   company-idle-delay nil)
-  (when (featurep! +tng)
-    :config
-    (define-key! company-active-map
-      "RET" #'company-complete-common
-      [return] #'company-complete-common)))
+   company-idle-delay nil))
 
 (use-package! counsel
   :defer t
@@ -105,8 +100,9 @@
   (setq-default deadgrep-project-root-function #'doom-project-root)
   (load! "bindings/+deadgrep"))
 
-(use-package! refine
-  :defer t)
+(use-package! evil-goggles
+  :config
+  (setq evil-goggles-pulse t))
 
 (use-package! org-roam
   :after org
@@ -121,8 +117,11 @@
   :after org
   :defer t
   :custom
-  (org-journal-dir (concat org-directory "journal"))
-  (org-journal-file-format "%Y-%m-%d")
+  ;; Enable journal entries to work with org-roam
+  (org-journal-dir (concat org-directory "roam"))
+  (org-journal-file-format "%Y-%m-%d.org")
+  (org-journal-date-prefix "#+TITLE: ")
+  (org-journal-date-format "%Y-%m-%d")
   :config
   (load! "bindings/+org-journal"))
 
@@ -162,21 +161,14 @@
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
 
-;; Adapted from:
-;; https://www.manueluberti.eu/emacs/2018/02/17/magit-bury-buffer/
-(defun valrus-magit-kill-buffers (param)
-  "Kill all Magit buffers without restoring window configuration."
-  (let ((buffers (magit-mode-get-buffers)))
-    (mapc #'kill-buffer buffers)))
-
 ;; tools/magit
 (after! magit
+  (load! "bindings/+magit")
   (setq
    ;; magit-repository-directories '(("~/work" . 2))
    ;; magit-commit-arguments '("--gpg-sign=5F6C0EA160557395")
    ;; magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395")
    ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
-   magit-bury-buffer-function #'valrus-magit-kill-buffers
    +magit-hub-features t
    git-commit-summary-max-length 80
    vc-handled-backends (delq 'Git vc-handled-backends)))

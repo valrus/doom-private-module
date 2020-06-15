@@ -8,7 +8,7 @@
 (doom!
  :completion
  (company          ; the ultimate code completion backend
-  +tng ; complete using only TAB
+ ;; +tng ; complete using only TAB
   +childframe)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
