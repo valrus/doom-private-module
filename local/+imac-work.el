@@ -14,9 +14,6 @@
  ;; minibuffer-font-spec '((default :family "IBM Plex Mono" :height 1.4))
  minibuffer-font-spec '((default :family "Iosevka" :height 1.0))
 
- ;; theme
- doom-theme 'doom-solarized-light
-
  ;; ui
  mac-use-title-bar t
  frame-title-format nil

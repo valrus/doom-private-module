@@ -5,7 +5,14 @@
 
 (setq
  so-long-threshold 500
- doom-gc-cons-threshold 4194304)
+ doom-gc-cons-threshold 4194304
+
+ ;; theme
+ doom-theme 'modus-operandi)
+
+(add-hook! doom-load-theme
+  (set-face-attribute 'mode-line nil :box nil)
+  (set-face-attribute 'mode-line-inactive nil :box nil))
 
 (use-package! ruby-mode
   :defer t
@@ -42,3 +49,12 @@
    flycheck-error-list-highlight-overlays t
    flycheck-highlighting-mode nil
    flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
+
+(after! flycheck
+  (add-hook! '(ruby-mode-hook enh-ruby-mode)
+    (setq flycheck-command-wrapper-function
+          (lambda (command)
+            (append '("bundle" "exec") command)))))
+
+;; emacs-mac-port only
+;; (mac-auto-operator-composition-mode t)

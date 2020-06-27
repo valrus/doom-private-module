@@ -5,7 +5,11 @@
 (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
 
 (map!
- :desc "Redo" :n "U" #'undo-tree-redo
+ :desc "Redo" :n "U" #'undo-fu-only-redo
+ :desc "Page up" :nvi "C-k" #'evil-scroll-page-up
+ :desc "Page down" :nvi "C-j" #'evil-scroll-page-down
+ ;; Unmap this undo
+ "C-x u" nil
 
  (:leader
    (:prefix "h"
@@ -38,6 +42,12 @@
          (:prefix ("f" . "find")
            :desc "Find view" :n "v" #'projectile-rails-find-view)))))
 
+ (:after org
+   (:map org-mode-map
+     (:localleader
+       (:prefix ("c" . "controls")
+         :desc "Org C-c C-c" :n "c" #'org-ctrl-c-ctrl-c))))
+
  (:after refine
    (:leader
      (:prefix "h"
@@ -59,7 +69,8 @@
    (:prefix "b"
      :desc "Rename buffer" :n "R" #'rename-buffer
      :desc "Kill buffer" :n "d" #'kill-this-buffer ; consistency with `SPC w d'
-     :desc "Revert buffer" :n "v" (lambda! (revert-buffer t t)))
+     :desc "Revert buffer" :n "v" (cmd! (revert-buffer t t))
+     :desc "Flycheck buffer" :n "c" #'flycheck-buffer)
 
    (:prefix "o"
      (:prefix ("o" . "open org file")

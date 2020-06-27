@@ -9,12 +9,7 @@
  :n "C-a" (λ! (push (cons t ?w) unread-command-events)
               (push (cons t 32) unread-command-events))
 
- (:after magit
-   (:map with-editor-mode-map
-     :desc "Previous comment" "C-k" #'log-edit-previous-comment
-     (:localleader
-       :desc "Commit" :n "c" #'with-editor-finish
-       :desc "Abort commit" :n "a" #'with-editor-cancel)))
+ :leader "/" doom-leader-search-map
 
  ;; Keep old search prefix until I'm used to "s"
  :leader "/" doom-leader-search-map

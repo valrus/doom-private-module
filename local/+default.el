@@ -11,7 +11,7 @@
  doom-variable-pitch-font (font-spec :family "Iosevka")
 
  ;; theme
- doom-theme 'doom-solarized-light)
+ doom-theme 'modus-operandi)
 
 ;; line numbers must be monospaced
 (custom-set-faces!
@@ -36,6 +36,11 @@
     (with-current-buffer ivy-posframe-buffer
       (setq-local word-wrap nil)
       (setq-local truncate-lines t)))
+
+  ;; enable posframe for counsel-rg
+  ;; fixed width 100 should help with resize issues
+  (dolist (fn '(swiper counsel-rg counsel-grep counsel-git-grep))
+    (delq! fn ivy-posframe-display-functions-alist #'assq))
 
   (setf (alist-get t ivy-posframe-display-functions-alist)
         #'display-truncated-posframe)

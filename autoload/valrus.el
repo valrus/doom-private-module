@@ -9,7 +9,7 @@
 
 ;;;###autoload
 (defun popup-file (filepath)
-  (select-window (display-buffer-in-side-window (find-file-noselect filepath) '((side . left)))))
+  (select-window (display-buffer-in-side-window (find-file-noselect filepath) '((side . top)))))
 
 ;;;###autoload
 (defun popup-todo-file ()

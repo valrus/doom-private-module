@@ -1,33 +1,39 @@
 ;;; init.el -*- lexical-binding: t; -*-
+;; workaround for gnu find on mac
+(setq exec-path (append '("/usr/local/opt/findutils/libexec/gnubin") exec-path))
 
 (load! "autoload/configs")
 
 ;;; Actual init starts here
 (doom!
  :completion
- (company)          ; the ultimate code completion backend
- ;; +tng) ; complete using only TAB
- ;; +childframe)
+ (company          ; the ultimate code completion backend
+ ;; +tng ; complete using only TAB
+  +childframe)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
  ;;  +fuzzy)          ; enable fuzzy search backend for helm
  ;; ido               ; the other *other* search engine...
  (ivy               ; a search engine for love and life
- ;; +childframe
+  +childframe
   +prescient
   +icons)
  ;; +fuzzy)          ; enable fuzzy search backend for ivy
+ ;; (selectrum
+ ;;  +prescient)
 
  :ui
- ;; deft              ; notational velocity for Emacs
+ deft              ; notational velocity for Emacs
  doom              ; what makes DOOM look the way it does
  doom-dashboard    ; a nifty splash screen for Emacs
  ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
  ;; fill-column    ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  hydra
- indent-guides
- modeline          ; snazzy, Atom-inspired modeline, plus API
+ ;; indent-guides
+ mini-frame
+ (modeline         ; snazzy, Atom-inspired modeline, plus API
+ +light)
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
@@ -36,7 +42,7 @@
   +defaults        ; default popup rules
   )
  (pretty-code       ; replace bits of code with pretty symbols
-  ;; +iosevka
+  ;; +iosevka ; needs a patched font
   )
  ;; tabs              ; FIXME an (incomplete) tab bar for Emacs
  ;; treemacs          ; a project drawer, like neotree but cooler
@@ -46,17 +52,21 @@
  (window-select    ; visually switch windows
   +numbers)
  workspaces        ; tab emulation, persistence & separate workspaces
+ zen
 
  :editor
  (evil +everywhere)
  file-templates    ; auto-snippets for empty files
  fold
  ;; (format +onsave)  ; automated prettiness
+ ;; god
  ;; lispy             ; vim for lisp, for people who dont like vim
  multiple-cursors  ; editing in many places at once
+ ;; objed
  ;; parinfer          ; turn lisp into python, sort of
  rotate-text       ; cycle region at point between text candidates
  snippets          ; my elves. They type so I don't have to
+ ;; word-wrap
 
  :emacs
  (dired             ; making dired pretty [functional]
@@ -64,27 +74,33 @@
   +icons)
  electric          ; smarter, keyword-based electric-indent
  (ibuffer +icons)
+ undo
  vc                ; version-control and Emacs, sitting in a tree
 
  :term
  ;; eshell            ; a consistent, cross-platform shell (WIP)
+ ;; shell
  term              ; terminals in Emacs
+ ;; vterm
+
+ :checkers
+ ;; grammar
+ ;; spell
+ (syntax
+  +childframe)
 
  :tools
  ;; ansible
  ;; debugger          ; FIXME stepping through code, to help you add bugs
- direnv
+ ;; direnv
  editorconfig      ; let someone else argue about tabs vs spaces
  ;; ein               ; tame Jupyter notebooks with emacs
  eval              ; run code, run (also, repls)
- (flycheck)
- ;; +childframe)
- ;; flyspell
  ;; gist              ; interacting with github gists
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
- ;; lsp
+ lsp
  ;; macos             ; MacOS-specific commands
  magit
  ;; make              ; run make tasks from Emacs
@@ -119,7 +135,7 @@
  ;; javascript        ; all(hope(abandon(ye(who(enter(here))))))
  ;; julia             ; a better, faster MATLAB
  ;; kotlin            ; a better, slicker Java(Script)
- ;; (:if (local-config-home-p) latex)
+ (:if (local-config-home-p) (latex +latexmk))
  ;; ledger            ; an accounting system in Emacs
  lua               ; one-based indices? one-based indices
  markdown          ; writing docs for people to ignore
@@ -127,11 +143,14 @@
  ;; nix               ; I hereby declare "nix geht mehr!"
  ;; ocaml             ; an objective camel
  (org              ; organize your plain life in plain text
+  ;; +brain
   ;; +dragndrop
-  ;; +ipython
+  ;; +jupyter
   ;; +pandoc
   ;; +gnuplot
   ;; +present
+  +journal
+  +roam
   )
  ;; perl              ; write code no one else can comprehend
  ;; php               ; perl's insecure younger brother
@@ -142,13 +161,14 @@
  ;; qt                ; the 'cutest' gui framework ever
  ;; racket            ; a DSL for DSLs
  ;; rest              ; Emacs as a REST client
- (:if (local-config-work-p) (ruby +rvm))
+ (:if (local-config-work-p) (ruby +lsp +rvm +rails))
  ;; (ruby +rvm +lsp)
  ;; rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
  ;; scala             ; java, but good
  (sh +zsh)        ; she sells (ba|z)sh shells on the C xor
  ;; solidity          ; do you need a blockchain? No.
  ;; swift             ; who asked for emoji variables?
+ (:if (local-config-home-p) tablature)
  ;; terra             ; Earth and Moon in alignment for performance.
  web               ; the tubes
  ;; vala              ; GObjective-C
@@ -175,7 +195,10 @@
  ;; a Spacemacs-inspired keybinding scheme, a custom yasnippet library,
  ;; and additional ex commands for evil-mode. Use it as a reference for
  ;; your own modules.
- (default +bindings +smartparens))
+ (default
+ +bindings
+ ;; +smartparens
+ ))
 
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.

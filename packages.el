@@ -9,7 +9,14 @@
 (package! refine)
 (package! typo)
 ;; (package! poet-theme)
-(package! olivetti)
+;; (package! olivetti)
+(package! lsp-ui)
+;; light
+(package! modus-operandi-theme)
+;; dark
+(package! modus-vivendi-theme)
+;; for Spacehammer
+(package! fennel-mode)
 
 ;; Disabled packages
 (package! magit-todos :disable t)
@@ -18,8 +25,6 @@
 
 ;; Local-specific packages
 (cond
- ((local-config-home-p)
-  (package! tablature-mode :recipe (:host github :repo "valrus/tablature-mode")))
  ((local-config-work-p)
   (package! haml-mode)
   (package! web-mode)
