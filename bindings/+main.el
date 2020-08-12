@@ -12,8 +12,9 @@
  "C-x u" nil
 
  (:leader
-   (:prefix "h"
-     :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
+  :desc "Enter command" :n "SPC" #'counsel-M-x
+  (:prefix "h"
+   :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
 
  (:after treemacs-evil
    (:map evil-treemacs-state-map
