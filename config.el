@@ -63,6 +63,7 @@
   (setq
    ivy-dynamic-exhibit-delay-ms 400
    ivy-use-selectable-prompt t
+   +ivy-buffer-preview t
    +ivy-buffer-icons t)
   (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
   (load! "bindings/+ivy"))
