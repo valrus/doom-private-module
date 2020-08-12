@@ -77,13 +77,15 @@
   (load! "bindings/+winum"))
 
 (use-package! which-key-posframe
+  :after which-key
   :defer t
   :custom
   (which-key-posframe-mode t)
   :config
+  (which-key-posframe-mode t)
   (setq
    which-key-posframe-border-width 10
-   which-key-posframe-poshandler #'posframe-poshandler-frame-top-center))
+   which-key-posframe-poshandler #'posframe-poshandler-frame-center))
 
 (use-package! company
   :defer t
