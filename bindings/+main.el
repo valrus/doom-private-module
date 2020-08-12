@@ -11,6 +11,10 @@
  ;; Unmap this undo
  "C-x u" nil
 
+ (:after evil
+  (:map evil-insert-state-map
+   "C-u" nil))
+
  (:leader
   :desc "Enter command" :n "SPC" #'counsel-M-x
   (:prefix "h"
