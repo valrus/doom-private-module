@@ -152,10 +152,11 @@
 ;;     '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
 
 (after! modeline
-  (def-modeline-format! 'main
-    '(bar window-number modals buffer-info remote-host buffer-position parrot selection-info)
-    '(misc-info persp-name irc mu4e github debug input-method lsp major-mode process vcs checker))
+  ;; (def-modeline-format! 'main
+  ;;   '(bar window-number modals buffer-info remote-host buffer-position parrot selection-info)
+  ;;   '(misc-info persp-name irc mu4e github debug input-method lsp major-mode process vcs checker))
   (setq
+   doom-modeline-height 29
    doom-modeline-icon t
    doom-modeline-major-mode-color-icon t))
 
