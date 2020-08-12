@@ -5,6 +5,8 @@
 
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
       display-line-numbers-type nil
+      comp-speed 3
+      comp-deferred-compilation t
       )
 
 (global-auto-revert-mode -1)
@@ -30,7 +32,8 @@
   (setq ns-use-thin-smoothing t)
   ;; maximize first frame
   (set-frame-parameter nil 'fullscreen 'maximized)
-  (load! "+fadeouts"))
+  ;; (load! "+fadeouts")
+  )
 
 ;;
 ;; Keybindings
