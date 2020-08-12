@@ -17,6 +17,15 @@
 (package! modus-vivendi-theme)
 ;; for Spacehammer
 (package! fennel-mode)
+(package! tree-sitter
+  :recipe (:host github
+           :repo "ubolonton/emacs-tree-sitter"
+           :files ("lisp/*.el")))
+
+(package! tree-sitter-langs
+  :recipe (:host github
+           :repo "ubolonton/emacs-tree-sitter"
+           :files ("langs/*.el" "langs/queries")))
 
 ;; Disabled packages
 (package! magit-todos :disable t)

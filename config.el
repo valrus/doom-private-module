@@ -130,6 +130,14 @@
   :config
   (load! "bindings/+org-journal"))
 
+(use-package! tree-sitter
+  :defer t
+  :hook
+  ;; tree-sitter doesn't get confused by quotes in string interpolations
+  (ruby-mode . tree-sitter-hl-mode)
+  :config
+  (require 'tree-sitter-langs)
+  (global-tree-sitter-mode))
 ;;
 ;; Modules
 ;;
