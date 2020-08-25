@@ -66,6 +66,7 @@
   (setq
    ivy-dynamic-exhibit-delay-ms 400
    ivy-use-selectable-prompt t
+   +ivy-buffer-preview t
    +ivy-buffer-icons t)
   (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
   (load! "bindings/+ivy"))
@@ -80,13 +81,15 @@
   (load! "bindings/+winum"))
 
 (use-package! which-key-posframe
+  :after which-key
   :defer t
   :custom
   (which-key-posframe-mode t)
   :config
+  (which-key-posframe-mode t)
   (setq
    which-key-posframe-border-width 10
-   which-key-posframe-poshandler #'posframe-poshandler-frame-top-center))
+   which-key-posframe-poshandler #'posframe-poshandler-frame-center))
 
 (use-package! company
   :defer t
@@ -131,6 +134,14 @@
   :config
   (load! "bindings/+org-journal"))
 
+(use-package! tree-sitter
+  :defer t
+  :hook
+  ;; tree-sitter doesn't get confused by quotes in string interpolations
+  (ruby-mode . tree-sitter-hl-mode)
+  :config
+  (require 'tree-sitter-langs)
+  (global-tree-sitter-mode))
 ;;
 ;; Modules
 ;;
@@ -153,10 +164,11 @@
 ;;     '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
 
 (after! modeline
-  (def-modeline-format! 'main
-    '(bar window-number modals buffer-info remote-host buffer-position parrot selection-info)
-    '(misc-info persp-name irc mu4e github debug input-method lsp major-mode process vcs checker))
+  ;; (def-modeline-format! 'main
+  ;;   '(bar window-number modals buffer-info remote-host buffer-position parrot selection-info)
+  ;;   '(misc-info persp-name irc mu4e github debug input-method lsp major-mode process vcs checker))
   (setq
+   doom-modeline-height 29
    doom-modeline-icon t
    doom-modeline-major-mode-color-icon t))
 

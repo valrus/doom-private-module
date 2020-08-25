@@ -11,9 +11,14 @@
  ;; Unmap this undo
  "C-x u" nil
 
+ (:after evil
+  (:map evil-insert-state-map
+   "C-u" nil))
+
  (:leader
-   (:prefix "h"
-     :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
+  :desc "Enter command" :n "SPC" #'counsel-M-x
+  (:prefix "h"
+   :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
 
  (:after treemacs-evil
    (:map evil-treemacs-state-map

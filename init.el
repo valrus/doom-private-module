@@ -16,8 +16,8 @@
  ;; ido               ; the other *other* search engine...
  (ivy               ; a search engine for love and life
   +childframe
-  +prescient
-  +icons)
+  +prescient)
+ ;; +icons           ; slowish
  ;; +fuzzy)          ; enable fuzzy search backend for ivy
  ;; (selectrum
  ;;  +prescient)
@@ -32,8 +32,8 @@
  hydra
  ;; indent-guides
  mini-frame
- (modeline         ; snazzy, Atom-inspired modeline, plus API
- +light)
+ modeline         ; snazzy, Atom-inspired modeline, plus API
+ ;; +light)
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
@@ -80,8 +80,8 @@
  :term
  ;; eshell            ; a consistent, cross-platform shell (WIP)
  ;; shell
- term              ; terminals in Emacs
- ;; vterm
+ ;; term              ; terminals in Emacs
+ vterm
 
  :checkers
  ;; grammar
@@ -170,8 +170,9 @@
  ;; swift             ; who asked for emoji variables?
  (:if (local-config-home-p) tablature)
  ;; terra             ; Earth and Moon in alignment for performance.
- web               ; the tubes
  ;; vala              ; GObjective-C
+ web               ; the tubes
+ (yaml +lsp)
 
  ;; Applications are complex and opinionated modules that transform Emacs
  ;; toward a specific purpose. They may have additional dependencies and
