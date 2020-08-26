@@ -98,7 +98,7 @@
   :defer t
   :config
   (setq
-   counsel-rg-base-command "rg -S --no-heading --line-number --max-columns 300 --max-columns-preview --color never %s ."))
+   counsel-rg-base-command "rg -S --with-filename --no-heading --line-number -M 300 --color never %s || true"))
 
 (use-package! deadgrep
   :defer t
@@ -154,16 +154,7 @@
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
 
-;; default modeline
-;; (after! doom-modeline
-;;   (def-modeline-format! 'main
-;;     '(bar window-number matches buffer-info remote-host buffer-position selection-info)
-;;     '(misc-info persp-name irc mu4e github debug input-method buffer-encoding lsp major-mode process vcs checker)))
-
 (after! modeline
-  ;; (def-modeline-format! 'main
-  ;;   '(bar window-number modals buffer-info remote-host buffer-position parrot selection-info)
-  ;;   '(misc-info persp-name irc mu4e github debug input-method lsp major-mode process vcs checker))
   (setq
    doom-modeline-height 29
    doom-modeline-icon t
@@ -179,6 +170,7 @@
 ;; tools/magit
 (after! magit
   (load! "bindings/+magit")
+  (add-hook! 'with-editor-mode-hook (progn (evil-append-line 1) (evil-insert-state)))
   (setq
    ;; magit-repository-directories '(("~/work" . 2))
    ;; magit-commit-arguments '("--gpg-sign=5F6C0EA160557395")
@@ -187,9 +179,6 @@
    +magit-hub-features t
    git-commit-summary-max-length 80
    vc-handled-backends (delq 'Git vc-handled-backends)))
-
-  ;; Temporary workaround for +magit/quit hang with lots of buffers
-  ;; (define-key magit-status-mode-map [remap magit-mode-bury-buffer] nil))
 
 (after! elisp-mode
   (load! "bindings/+elisp"))
@@ -206,30 +195,7 @@
   (setq-default
    +flycheck-on-escape nil
    flycheck-check-syntax-automatically nil
-   flycheck-display-errors-delay 1)
-  ;; fringe stuff - mess with later
-  ;; where does fringe-helper-define come from?
-  ;; (setq-default
-  ;;  left-fringe-width 16
-  ;;  right-fringe-width 16)
-
-  ;; (fringe-helper-define
-  ;;  'flycheck-fringe-bitmap-double-arrow 'center
-  ;;  "......XX"
-  ;;  ".....XXX"
-  ;;  "....XXXX"
-  ;;  "...XXXXX"
-  ;;  "..XXXXXX"
-  ;;  ".XXXXXXX"
-  ;;  "XXXXXXXX"
-  ;;  "XXXXXXXX"
-  ;;  ".XXXXXXX"
-  ;;  "..XXXXXX"
-  ;;  "...XXXXX"
-  ;;  "....XXXX"
-  ;;  ".....XXX"
-  ;;  "......XX")
-  )
+   flycheck-display-errors-delay 1))
 
 ;; Don't create new workspaces for new frames
 (after! persp-mode
@@ -257,11 +223,10 @@
 ;;     ?S "Sign using gpg" "--gpg-sign=" #'magit-read-gpg-secret-key))
 
 ;; lang/ruby
-;; (add-hook! 'ruby-mode-hook
-;;   (progn
-;;     (set-fill-column 120)
-;;     ))
-;;
+(add-hook! 'ruby-mode-hook
+  (progn
+    (set-fill-column 120)))
+
 
 (after! rvm
   (rvm-use-default))
