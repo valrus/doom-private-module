@@ -27,6 +27,9 @@
            :repo "ubolonton/emacs-tree-sitter"
            :files ("langs/*.el" "langs/queries")))
 
+(package! mugur
+  :recipe (:host github :repo "valrus/mugur"))
+
 ;; Disabled packages
 (package! magit-todos :disable t)
 (package! solaire-mode :disable t)
