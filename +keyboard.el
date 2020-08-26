@@ -1,5 +1,5 @@
 (mugur-keymap
-  :tapping-term 200
+  :tapping-term 150
   :rgblight-animations nil
 
   ;; :combos '((left right escape)
@@ -8,44 +8,38 @@
   :with-keys '((num (tg numeric))
                (cesc (C escape))
                (act (tg actions))
-               (symtab (lt symbols tab)))
+               (symtab (lt symbols tab))
+               (bright+ (brightness_up))
+               (bright- (brightness_down)))
 
   :layers
-  '(("base" vertical
-     ((f19)   (1)      (2)      (3)    (4)    (5)  (num)
-      (---)   (q)      (w)      (e)    (r)    (t)    (=)
-      (cesc) (C a)    (M s)    (G d)  (S f)   (g)
-      (---)   (z)      (x)      (c)    (v)    (b) (hypr)
-      (act) (grave) (lbracket) (num) (symtab)
-                                            (f19) (home)
-                                                   (end)
-                                 (G bspace) (cesc) (num))
+  '(("base"
+     ((f19)   (1)    (2)   (3)    (4)    (5)  (num)   (num)    (6)   (7)      (8)    (9)     (0)         (---)
+      (---)   (q)    (w)   (e)    (r)    (t)    (=)   (minus)  (y)   (u)      (i)    (o)     (p)         (---)
+      (cesc) (C a)  (M s) (G d)  (S f)   (g)                  ("'") (C h)    (M j)  (G k)    (l)         (---)
+      (---)   (z)    (x)   (c)    (v)    (b) (hypr)   (meh)   ("/")  (n)      (m)  (comma)  (dot)        (---)
+      (act) (grave) ("[") (num) (symtab)                            (symtab) (num)  ("]")  (equal) (tg gaming)
+                                       (f19) (home)   (pgup) (f18)
+                                              (end)   (pgdown)
+                            (G bspace) (cesc) (num)   (capslock) (G enter) (S space)))
 
-     (num)     (6)     (7)      (8)     (9)       (0)      (---)
-     (minus)   (y)     (u)      (i)     (o)       (p)      (---)
-             (quote)  (C h)    (M j)   (G k)      (l)      (---)
-     (meh)   (slash)   (n)      (m)   (comma)    (dot)     (---)
-                     (symtab)  (num) (rbracket) (equal) (tg gaming)
-     (pgup) (f18)
-     (pgdown)
-     (capslock) (G enter) (S space))
 
   ("symbols"
-    (( )  (f1)    (f2)      (f3)     (f4)     (f5)     ( )   ( )      (f6)    (f7)     (f8)     (f9)    (f10)  (delete)
-     ( ) (exlm)  (circ)    (hash)   (plus)  (perc)  (plus)   (pipe)  (pipe)  (ampr)   (astr)   (dlr)    (ques)      ( )
-     ( )  (at)  (scolon)   (coln)   (minus) (equal)                 (grave)  (left)   (down)    (up)   (right)      ( )
-     ( ) (labk)  (cbr)   (lbracket) (lprn)  (tild)     ( )   ( )    (bslash) (rprn) (rbracket) (rcbr)   (rabk)      ( )
-     ( )   ( )    ( )       ( )      ( )                                       ( )      ( )      ( )      ( )       ( )
-                                                   ( ) ( )   ( ) ( )
-                                                       ( )   ( )
-                                       (delete) (lprn) ( )   ( ) (rprn) (unds)))
+    (( ) (f1)  (f2)  (f3)  (f4)  (f5)    ( )   ( )    (f6)   (f7)   (f8)  (f9)   (f10) (delete)
+     ( ) ("!") ("^") ("#") ("+") ("%") ("+")   ("|") ("|")  ("&")  ("*")  ("$")  ("?")      ( )
+     ( ) ("@") (";") (":")  (-)  ("=")               ("`")  (left) (down) (up)  (right)     ( )
+     ( ) ("<") ("{") ("[") ("(") ("~")   ( )   ( )   ("\\") (")")  ("]")  ("}")  (">")      ( )
+     ( )  ( )   ( )   ( )   ( )                              ( )    ( )    ( )    ( )       ( )
+                                     ( ) ( )   ( ) ( )
+                                         ( )   ( )
+                          (delete) ("(") ( )   ( ) (")") ("_")))
 
   ("actions"
-    ((f14) (brightness_down) (brightness_up)    ( )     ( ) ( ) ( )     ( ) ( ) ( ) ( ) ( ) ( ) ( )
-     (f13)        ( )            (ms_up)        ( )     ( ) ( ) ( )     ( ) ( ) ( ) ( ) ( ) ( ) ( )
-     (f12)     (ms_left)        (ms_down)    (ms_right) ( ) ( )             ( ) ( ) ( ) ( ) ( ) ( )
-     (f11)        ( )              ( )          ( )     ( ) ( ) ( )     ( ) ( ) ( ) ( ) ( ) ( ) ( )
-     ( )          ( )              ( )          ( )     ( )                     ( ) ( ) ( ) ( ) ( )
-                                                            ( ) ( )     ( ) ( )
-                                                            (1 2 3)     ("one two three")
-                                                        ( ) ( ) ( )     ( ) ( ) ( )))))
+    ((f14) (bright-) (bright+)    ( )     ( ) ( ) ( )   ( ) ( )    ( )      ( )       ( )       ( )    (f18)
+     (f13)    ( )     (ms_up)     ( )     ( ) ( ) ( )   ( ) ( )    ( )      ( )       ( )       ( )    (f17)
+     (f12) (ms_left) (ms_down) (ms_right) ( ) ( )           ( ) (ms_left) (ms_down) (ms_up) (ms_right) (f16)
+     (f11)    ( )       ( )       ( )     ( ) ( ) ( )   ( ) ( )    ( )      ( )       ( )       ( )    (f15)
+     ( )      ( )       ( )       ( )     ( )                      ( )      ( )       ( )       ( )      ( )
+                                  (rgb_mod) (rgb_hui)   (rgb_vai) (rgb_tog)
+                                            (rgb_hud)   (rgb_vad)
+                      (ms_butn2) (ms_butn4) (rgb_sld)   (rgb_mod) (ms_btn5) (ms_btn2)))))
