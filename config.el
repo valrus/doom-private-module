@@ -9,7 +9,8 @@
       ;; native-comp settings per
       ;; https://github.com/shshkn/emacs.d/blob/master/docs/nativecomp.md
       comp-speed 3
-      comp-deferred-compilation t
+      ;; disable this; doom has native-comp integration to handle it
+      ;; comp-deferred-compilation t
       )
 
 (global-auto-revert-mode -1)
