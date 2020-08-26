@@ -5,8 +5,12 @@
 
       +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
       display-line-numbers-type nil
+
+      ;; native-comp settings per
+      ;; https://github.com/shshkn/emacs.d/blob/master/docs/nativecomp.md
       comp-speed 3
-      comp-deferred-compilation t
+      ;; disable this; doom has native-comp integration to handle it
+      ;; comp-deferred-compilation t
       )
 
 (global-auto-revert-mode -1)
