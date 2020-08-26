@@ -8,6 +8,9 @@
  :desc "Redo" :n "U" #'undo-fu-only-redo
  :desc "Page up" :nvi "C-k" #'evil-scroll-page-up
  :desc "Page down" :nvi "C-j" #'evil-scroll-page-down
+ :desc "Beginning of line" :n "H" #'evil-first-non-blank
+ :desc "End of line" :n "L" #'evil-end-of-line
+
  ;; Unmap this undo
  "C-x u" nil
 
@@ -26,15 +29,14 @@
      "C-l" #'evil-window-right))
 
  (:after ivy
-   (:leader
-     (:prefix "/"
-       :desc "Search project" :n "/" #'+default/search-project
-       :desc "Find with deadgrep" :n "p" #'deadgrep)))
+  (:leader
+   (:prefix "/"
+    :desc "Search project" :n "/" #'+ivy/project-search)))
 
  (:after helm
-   (:leader
-     (:prefix "/"
-     :desc "Find in project" :n "/" #'+helm/project-search)))
+  (:leader
+   (:prefix "/"
+    :desc "Search project" :n "/" #'+helm/project-search)))
 
  (:after helm-files
    (:map helm-find-files-map
