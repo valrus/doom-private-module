@@ -32,8 +32,8 @@
  hydra
  ;; indent-guides
  mini-frame
- modeline         ; snazzy, Atom-inspired modeline, plus API
- ;; +light)
+ (modeline         ; snazzy, Atom-inspired modeline, plus API
+  +light)
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
@@ -41,9 +41,8 @@
   +all             ; catch all popups that start with an asterix
   +defaults        ; default popup rules
   )
- (pretty-code       ; replace bits of code with pretty symbols
-  ;; +iosevka ; needs a patched font
-  )
+ ;; ligatures       ; replace bits of code with pretty symbols
+ ;; +iosevka ; needs a patched font
  ;; tabs              ; FIXME an (incomplete) tab bar for Emacs
  ;; treemacs          ; a project drawer, like neotree but cooler
  ;; unicode           ; extended unicode support for various languages
