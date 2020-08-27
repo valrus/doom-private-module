@@ -147,8 +147,8 @@
 ;; Modules
 ;;
 
-(after! gcmh-mode
-  (setq gcmh-high-cons-threshold #x10000000)) ;; 200MB or so
+;; (after! gcmh-mode
+;;   (setq gcmh-high-cons-threshold #x10000000)) ;; 200MB or so
 
 ;; tools/lsp
 
