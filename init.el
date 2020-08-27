@@ -209,37 +209,3 @@
 ;;   )
 
 ;; `def-package-hook' also has :post-init and :post-config hooks
-
-(defvar-local +modeline--buffer-project-root nil)
-
-(setq-hook! '(change-major-mode-after-body-hook
-              after-save-hook
-              focus-in-hook
-              projectile-after-switch-project-hook)
-  +modeline--buffer-project-root (if default-directory (doom-project-root)))
-
-(defmacro def-modeline-var! (name body &optional docstring &rest plist)
-  "Define a modeline segment variable."
-  (unless (stringp docstring)
-    (push docstring plist)
-    (setq docstring nil))
-  `(progn
-     (defconst ,name ,body ,docstring)
-     ,@(if (plist-get plist :local) `((make-variable-buffer-local ',name)))
-     (put ',name 'risky-local-variable t)))
-
-(def-modeline-var! +modeline-buffer-identification ; slightly more informative buffer id
-  '((:eval
-     (let ((file-name (buffer-file-name (buffer-base-buffer))))
-       (propertize
-        (or (when (and file-name (not (file-remote-p file-name)))
-              (when-let (project +modeline--buffer-project-root)
-                (file-relative-name (or buffer-file-truename (file-truename file-name))
-                                    (concat project ".."))))
-            "%b")
-        'face (cond ((buffer-modified-p)
-                     '(error bold mode-line-buffer-id))
-                    ((+modeline-active)
-                     'mode-line-buffer-id))
-        'help-echo file-name)))
-    (buffer-read-only (:propertize " RO" face warning))))
