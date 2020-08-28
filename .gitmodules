@@ -1,0 +1,3 @@
+[submodule "packages/mugur"]
+	path = packages/mugur
+	url = git@github.com:valrus/mugur.git
