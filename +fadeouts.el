@@ -3,7 +3,9 @@
 
 (defcustom mac-animation-duration 0.5
   "Duration of transition animations")
+
 (defvar mac-animation-locked-p nil)
+
 (defun mac-animation-toggle-lock ()
   (setq mac-animation-locked-p (not mac-animation-locked-p)))
 
