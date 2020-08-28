@@ -28,7 +28,8 @@
            :files ("langs/*.el" "langs/queries")))
 
 (package! mugur
-  :recipe (:host github :repo "valrus/mugur"))
+  :type 'local
+  :recipe (:local-repo "mugur" :host github :fork "valrus/mugur" :depth full :no-build t))
 
 ;; Disabled packages
 (package! magit-todos :disable t)
