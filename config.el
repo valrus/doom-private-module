@@ -11,6 +11,8 @@
       comp-speed 3
       ;; disable this; doom has native-comp integration to handle it
       ;; comp-deferred-compilation t
+      ;;
+      straight-vc-git-default-protocol 'ssh
       )
 
 (global-auto-revert-mode -1)

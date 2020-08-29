@@ -32,8 +32,7 @@
   :recipe (:local-repo "mugur"
            :host github
            :fork "valrus/mugur"
-           :depth full
-           :no-build t))
+           :depth full))
 
 ;; Disabled packages
 (package! magit-todos :disable t)
