@@ -38,7 +38,6 @@
       (setq-local truncate-lines t)))
 
   ;; enable posframe for counsel-rg
-  ;; fixed width 100 should help with resize issues
   (dolist (fn '(swiper counsel-rg counsel-grep counsel-git-grep))
     (delq! fn ivy-posframe-display-functions-alist #'assq))
 
@@ -46,5 +45,5 @@
         #'display-truncated-posframe)
   (setq-default
    ivy-height 12
-   ivy-posframe-width 100
+   ivy-posframe-width 200
    ivy-posframe-font (font-spec :family "Iosevka" :size 14)))
