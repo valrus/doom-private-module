@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: define function
+# key: fun
+# --
+
+`(doom-snippets-expand :name "comment line")`
+`(doom-snippets-expand :key "def")`

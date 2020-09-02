@@ -11,31 +11,19 @@
 ;;                            ( )     ( )
 ;;                    ( ) ( ) ( )     ( ) ( ) ( )))
 
-(mugur-keymap
-  :tapping-term 150
-  :rgblight-animations nil
-
-  ;; :combos '((left right escape)
-  ;;           (x y (C-x "pressed both x and y at once")))
-
-  :with-keys '((num (tg numeric))
-               (cesc (C escape))
-               (act (tg actions))
-               (symtab (lt symbols tab)))
-
-  :layers
+(defconst shared-layers
   '(("base"
-     ((f19)   (1)    (2)   (3)    (4)    (5)   (num)     (num)    (6)   (7)      (8)    (9)     (0)         (---)
-      (---)   (q)    (w)   (e)    (r)    (t)     (=)     (-)      (y)   (u)      (i)    (o)     (p)         (---)
-      (cesc) (C a)  (M s) (G d)  (S f)   (g)                     ("'") (C h)    (M j)  (G k)    (l)         (---)
-      (---)   (z)    (x)   (c)    (v)    (b) (C-M-G)     (C-M-S) ("/")  (n)      (m)  (comma)  (dot)        (---)
-      (act) (grave) ("[") (num) (symtab)                              (symtab)  (num)  ("]")  (equal) (tg gaming)
-                                       (f19) (home)     (prior) (f18)
-                                              (end)     (next)
-                            (G bspace) (cesc) (num)     (tg caps) (G enter) (S space)))
+     ((f19)   (1)        (2)       (3)    (4)    (5)   (num)     (num)    (6)   (7)      (8)        (9)         (0)         (---)
+      (---)   (q)        (w)       (e)    (r)    (t)     (=)     (-)      (y)   (u)      (i)        (o)         (p)         (---)
+      (cesc) (C a)      (M s)     (G d)  (S f)   (g)                     ("'") (S h)    (G j)      (M k)       (C l)        (---)
+      (---)   (z)        (x)       (c)    (v)    (b) (C-M-G)     (C-M-S) ("/")  (n)      (m)      (comma)      (dot)        (---)
+      (act) (grave) ("[" actions) (num) (symtab)                              (symtab)  (num)  ("]" actions)  (equal) (tg gaming)
+                                                (f19) (home)     (prior) (f18)
+                                                       (end)     (next)
+                                     (G bspace) (cesc) (num)     (tg caps) (G enter) (S space)))
 
 
-  ("symbols" (1 0 0)
+  ("symbols" (0 1 0)
     (( ) (f1)  (f2)  (f3)  (f4) (f5) ( )     ( )  (f6)   (f7)   (f8)  (f9)  (f10)  (delete)
      ( ) (!)   (^)  ("#")  (+)  (%)  (+)     (|)  (|)    (&)    (*)   ($)   ("?")       ( )
      ( ) (@)  (";")  (:)   (-)  (=)              ("`")  (left) (down) (up) (right)      ( )
@@ -45,17 +33,17 @@
                                      ( )     ( )
                       (delete) ("(") ( )     ( ) (")") (_)))
 
-  ("actions" (0 1 0)
-    ((f14) (bright-) (bright+)    ( )     ( ) ( ) ( )     ( ) ( )    ( )      ( )       ( )       ( )    (f18)
-     (f13)    ( )     (ms_up)     ( )     ( ) ( ) ( )     ( ) ( )    ( )      ( )       ( )       ( )    (f17)
-     (f12) (ms_left) (ms_down) (ms_right) ( ) ( )             ( ) (ms_left) (ms_down) (ms_up) (ms_right) (f16)
-     (f11)    ( )       ( )       ( )     ( ) ( ) ( )     ( ) ( )    ( )      ( )       ( )       ( )    (f15)
-     ( )      ( )       ( )       ( )     ( )                     (ms_btn1) (ms_btn2)   ( )       ( )      ( )
-                                  (rgb_mod) (rgb_hui)     (rgb_vai) (rgb_tog)
-                                            (rgb_hud)     (rgb_vad)
-                              (ms_btn2) (ms_btn4) ( )     (rgb_mod) (ms_btn5) (ms_btn2)))
+  ("actions" (1 0 1)
+    ((f14) (bright-) (bright+)    ( )       ( )        ( ) ( )     (reset) ( )    ( )      ( )       ( )       ( )    (f18)
+     (f13)    ( )     (ms_up)     ( )       ( )        ( ) ( )     ( )     ( )    ( )      ( )       ( )       ( )    (f17)
+     (f12) (ms_left) (ms_down) (ms_right)   ( )        ( )                 ( ) (ms_left) (ms_down) (ms_up) (ms_right) (f16)
+     (f11)    ( )       ( )       ( )       ( )    (reset) ( )     ( )     ( )    ( )      ( )       ( )       ( )    (f15)
+     ( )      ( )       ( )    (ms_btn2) (ms_btn1)                             (ms_btn1) (ms_btn2)   ( )       ( )      ( )
+                                           (rgb_mod) (rgb_hui)     (rgb_vai) (rgb_tog)
+                                                     (rgb_hud)     (rgb_vad)
+                                       (ms_btn3) (ms_btn4) ( )     (rgb_mod) (ms_btn4) (ms_btn3)))
 
-  ("numeric" (0 0 1)
+  ("numeric" (1 0 0)
     (( ) ( ) ( ) ( ) ( ) ( ) ( )     ( ) ( ) ( ) ( )  ( )  ( ) ( )
      ( ) (1) (2) (3) (4) (5) ( )     ( ) (6) (7) (8)  (9)  (0) ( )
      ( ) ( ) ( ) ( ) ( ) ( )             ( ) (4) (5)  (6)  ( ) ( )
@@ -75,7 +63,7 @@
                                  ( )     ( )
                 (space) (escape) ( )     ( ) (enter) (space)))
 
-  ("caps"
+  ("caps" (0 0 1)
     (( )  ( )   ( )   ( )   ( )   ( )  ( )     ( )  ( )   ( )   ( )   ( )   ( )  ( )
      ( ) (S-q) (S-w) (S-e) (S-r) (S-t) ( )     ( ) (S-y) (S-u) (S-i) (S-o) (S-p) ( )
      ( ) (S-a) (S-s) (S-d) (S-f) (S-g)              ( )  (S-h) (S-j) (S-k) (S-l) ( )
@@ -84,3 +72,46 @@
                                    ( ) ( )     ( ) ( )
                                        ( )     ( )
                                ( ) ( ) ( )     ( ) ( ) ( )))))
+
+(defconst mugur-keymap-ergodox (mugur-keymap "ergodox_ez" "valrus"
+  :tapping-term 150
+  :rgblight-enable nil
+  :rgb-matrix-enable t
+
+  :with-keys '((num (tg numeric))
+               (cesc (C escape))
+               (act (tg actions))
+               (symtab (lt symbols tab)))
+
+  :layers shared-layers))
+
+(defun mugur-generate-ergodox () (interactive) (mugur-generate mugur-keymap-ergodox))
+(defun mugur-make-ergodox () (interactive) (mugur-make mugur-keymap-ergodox))
+(defun mugur-flash-ergodox () (interactive) (mugur-flash mugur-keymap-ergodox))
+
+
+(defconst mugur-atreus-layout
+  '((vertical . "
+$9,  $10, $11, $12, $13,           $47, $48, $49, $50, $51,
+$16, $17, $18, $19, $20,           $53, $54, $55, $56, $57,
+$22, $23, $24, $25, $26,           $60, $61, $62, $63, $64,
+$29, $30, $31, $32, $36, $37, $75, $76, $67, $68, $69, $70")
+  (horizontal . "
+$16, $17, $18, $19, $20,           $23, $24, $25, $26, $27,
+$30, $31, $32, $33, $34,           $35, $36, $37, $38, $39,
+$42, $43, $44, $45, $46,           $49, $50, $51, $52, $53,
+$56, $57, $58, $59, $71, $72, $75, $76, $60, $61, $62, $63")))
+
+(defconst mugur-keymap-atreus (mugur-keymap "atreus" "valrus"
+  :tapping-term 150
+  :layout 'mugur-atreus-layout
+
+  :with-keys '((num (tg numeric))
+               (cesc (C escape))
+               (act (tg actions))
+               (symtab (lt symbols tab)))
+
+  :layers (mapcar (lambda (layer) (remove-if 'mugur--leds-p layer)) shared-layers)))
+
+(defun mugur-generate-atreus () (interactive) (mugur-generate mugur-keymap-atreus))
+(defun mugur-make-atreus () (interactive) (mugur-make mugur-keymap-atreus))
