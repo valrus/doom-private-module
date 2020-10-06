@@ -13,7 +13,7 @@
       ;; comp-deferred-compilation t
       ;;
       straight-vc-git-default-protocol 'ssh
-      )
+      fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png"))
 
 (global-auto-revert-mode -1)
 
