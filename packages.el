@@ -17,6 +17,12 @@
 (package! modus-vivendi-theme)
 ;; for Spacehammer
 (package! fennel-mode)
+
+(package! tsc
+  :recipe (:host github
+           :repo "ubolonton/emacs-tree-sitter"
+           :files ("core/*.el")))
+
 (package! tree-sitter
   :recipe (:host github
            :repo "ubolonton/emacs-tree-sitter"
@@ -27,6 +33,8 @@
            :repo "ubolonton/emacs-tree-sitter"
            :files ("langs/*.el" "langs/queries")))
 
+(straight-pull-package-and-deps "tree-sitter")
+
 (package! mugur
   :type 'local
   :recipe (:local-repo "mugur"
@@ -34,10 +42,12 @@
            :fork "valrus/mugur"
            :depth full))
 
+;; Unpinned packages
+(unpin! doom-themes)
+
 ;; Disabled packages
 (package! magit-todos :disable t)
 (package! solaire-mode :disable t)
-;; (package! smartparens :disable t)
 
 ;; Local-specific packages
 (cond
