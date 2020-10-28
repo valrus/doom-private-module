@@ -29,10 +29,8 @@
 
 (package! mugur
   :type 'local
-  :recipe (:local-repo "mugur"
-           :host github
-           :fork "valrus/mugur"
-           :depth full))
+  :recipe (:local-repo "packages/mugur"
+           :no-byte-compile t))
 
 ;; Disabled packages
 (package! magit-todos :disable t)

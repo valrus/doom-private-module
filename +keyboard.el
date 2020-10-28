@@ -57,7 +57,7 @@
     (( ) ( ) ( ) ( )   ( )   ( ) ( )     ( ) ( )   ( )   ( ) ( ) ( ) ( )
      ( ) ( ) (w) ( )   ( )   ( ) ( )     ( ) ( )   ( )   ( ) ( ) ( ) ( )
      ( ) (a) (s) (d)   ( )   ( )             ( )   (h)   (j) (k) (l) ( )
-     ( ) ( ) ( ) ( )   ( )   ( ) ( )     ( ) ( )   ( )   ( ) ( ) ( ) ( )
+     (S) ( ) ( ) ( )   ( )   ( ) ( )     ( ) ( )   ( )   ( ) ( ) ( ) (S)
      ( ) ( ) ( ) ( ) (C)                     (C) ( ) ( ) ( ) ( )
                              ( ) ( )     ( ) ( )
                                  ( )     ( )
@@ -73,45 +73,58 @@
                                        ( )     ( )
                                ( ) ( ) ( )     ( ) ( ) ( )))))
 
-(defconst mugur-keymap-ergodox (mugur-keymap "ergodox_ez" "valrus"
-  :tapping-term 150
-  :rgblight-enable nil
-  :rgb-matrix-enable t
+(defconst mugur-keymap-ergodox
+  (mugur-keymap
+   :keyboard "ergodox_ez"
+   :name "valrus"
+   :config '((tapping-term 150)
+             (combo-term 100)
+             (rgblight-animations nil)
+             (force-nkro t)
+             (permissive-hold t))
+   :rules '((force-nkro t)
+            (rgblight-enable nil)
+            (rgb-matrix-enable t))
 
-  :with-keys '((num (tg numeric))
-               (cesc (C escape))
-               (act (tg actions))
-               (symtab (lt symbols tab)))
+   :with-keys '((num (tg numeric))
+                (cesc (C escape))
+                (act (tg actions))
+                (symtab (lt symbols tab)))
 
-  :layers shared-layers))
+   :layers shared-layers))
 
 (defun mugur-generate-ergodox () (interactive) (mugur-generate mugur-keymap-ergodox))
 (defun mugur-make-ergodox () (interactive) (mugur-make mugur-keymap-ergodox))
 (defun mugur-flash-ergodox () (interactive) (mugur-flash mugur-keymap-ergodox))
 
-
 (defconst mugur-atreus-layout
-  '((vertical . "
-$9,  $10, $11, $12, $13,           $47, $48, $49, $50, $51,
-$16, $17, $18, $19, $20,           $53, $54, $55, $56, $57,
-$22, $23, $24, $25, $26,           $60, $61, $62, $63, $64,
-$29, $30, $31, $32, $36, $37, $75, $76, $67, $68, $69, $70")
-  (horizontal . "
+  '((horizontal . "
 $16, $17, $18, $19, $20,           $23, $24, $25, $26, $27,
 $30, $31, $32, $33, $34,           $35, $36, $37, $38, $39,
 $42, $43, $44, $45, $46,           $49, $50, $51, $52, $53,
-$56, $57, $58, $59, $71, $72, $75, $76, $60, $61, $62, $63")))
+$56, $57, $58, $59, $71, $72, $75, $76, $60, $61, $62, $63")
+    (vertical . "
+$9,  $10, $11, $12, $13,           $47, $48, $49, $50, $51,
+$16, $17, $18, $19, $20,           $53, $54, $55, $56, $57,
+$22, $23, $24, $25, $26,           $60, $61, $62, $63, $64,
+$29, $30, $31, $32, $36, $37, $75, $76, $67, $68, $69, $70")))
 
-(defconst mugur-keymap-atreus (mugur-keymap "atreus" "valrus"
-  :tapping-term 150
-  :layout 'mugur-atreus-layout
+(defconst mugur-keymap-atreus
+  (mugur-keymap
+   :keyboard "atreus"
+   :name "valrus"
+   :layout 'mugur-atreus-layout
+   :config '((tapping-term 180)
+             (combo-term 100)
+             (force-nkro t))
+   :rules '((force-nkro t))
 
-  :with-keys '((num (tg numeric))
-               (cesc (C escape))
-               (act (tg actions))
-               (symtab (lt symbols tab)))
+   :with-keys '((num (tg numeric))
+                (cesc (C escape))
+                (act (tg actions))
+                (symtab (lt symbols tab)))
 
-  :layers (mapcar (lambda (layer) (remove-if 'mugur--leds-p layer)) shared-layers)))
+   :layers (mapcar (lambda (layer) (remove-if 'mugur--leds-p layer)) shared-layers)))
 
 (defun mugur-generate-atreus () (interactive) (mugur-generate mugur-keymap-atreus))
 (defun mugur-make-atreus () (interactive) (mugur-make mugur-keymap-atreus))

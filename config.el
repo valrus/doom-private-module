@@ -41,6 +41,10 @@
   ;; (load! "+fadeouts")
   )
 
+;; Keyboard
+
+(load! "+keyboard")
+
 ;;
 ;; Keybindings
 ;;
