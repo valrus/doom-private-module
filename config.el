@@ -90,13 +90,13 @@
 (use-package! which-key-posframe
   :after which-key
   :defer t
-  :custom
-  (which-key-posframe-mode t)
   :config
-  (which-key-posframe-mode t)
   (setq
-   which-key-posframe-border-width 10
+   which-key-posframe-border-width 1
    which-key-posframe-poshandler #'posframe-poshandler-frame-center))
+
+(after! which-key
+  (which-key-posframe-mode t))
 
 (use-package! company
   :defer t
@@ -107,8 +107,9 @@
 (use-package! counsel
   :defer t
   :config
-  (setq
-   counsel-rg-base-command "rg -S --with-filename --no-heading --line-number -M 300 --color never %s || true"))
+  ;; (setq
+  ;;  counsel-rg-base-command "rg -S --with-filename --no-heading --line-number -M 300 --color never %s || true")
+  )
 
 (use-package! deadgrep
   :defer t
@@ -142,13 +143,15 @@
   (load! "bindings/+org-journal"))
 
 (use-package! tree-sitter
-  :defer t
+  :demand t
   :hook
   ;; tree-sitter doesn't get confused by quotes in string interpolations
   (ruby-mode . tree-sitter-hl-mode)
   :config
-  (require 'tree-sitter-langs)
   (global-tree-sitter-mode))
+
+(use-package! tree-sitter-langs
+  :after tree-sitter)
 ;;
 ;; Modules
 ;;

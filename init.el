@@ -8,7 +8,7 @@
 (doom!
  :completion
  (company          ; the ultimate code completion backend
- ;; +tng ; complete using only TAB
+  -tng ; complete using only TAB
   +childframe)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
@@ -16,9 +16,9 @@
  ;; ido               ; the other *other* search engine...
  (ivy               ; a search engine for love and life
   +childframe
-  +prescient)
- ;; +icons           ; slowish
- ;; +fuzzy)          ; enable fuzzy search backend for ivy
+  -prescient
+  -icons           ; slowish
+  +fuzzy)          ; enable fuzzy search backend for ivy
  ;; (selectrum
  ;;  +prescient)
 
@@ -39,8 +39,7 @@
  ophints           ; display visual hints when editing in evil
  (popup            ; tame sudden yet inevitable temporary windows
   +all             ; catch all popups that start with an asterix
-  +defaults        ; default popup rules
-  )
+  +defaults)
  ;; ligatures       ; replace bits of code with pretty symbols
  ;; +iosevka ; needs a patched font
  ;; tabs              ; FIXME an (incomplete) tab bar for Emacs
@@ -69,7 +68,7 @@
 
  :emacs
  (dired             ; making dired pretty [functional]
-  ;; +ranger
+  -ranger
   +icons)
  electric          ; smarter, keyword-based electric-indent
  (ibuffer +icons)
@@ -142,15 +141,15 @@
  ;; nix               ; I hereby declare "nix geht mehr!"
  ;; ocaml             ; an objective camel
  (org              ; organize your plain life in plain text
-  ;; +brain
-  ;; +dragndrop
-  ;; +jupyter
-  ;; +pandoc
-  ;; +gnuplot
-  ;; +present
   +journal
+  +pretty
   +roam
-  )
+  -brain
+  -dragndrop
+  -jupyter
+  -pandoc
+  -gnuplot
+  -present)
  ;; perl              ; write code no one else can comprehend
  ;; php               ; perl's insecure younger brother
  ;; plantuml          ; diagrams for confusing people more
@@ -197,8 +196,7 @@
  ;; your own modules.
  (default
  +bindings
- ;; +smartparens
- ))
+ -smartparens))
 
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.
