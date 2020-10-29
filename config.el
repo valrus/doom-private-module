@@ -74,7 +74,9 @@
    ivy-dynamic-exhibit-delay-ms 400
    ivy-use-selectable-prompt t
    +ivy-buffer-preview t
-   +ivy-buffer-icons t)
+   +ivy-buffer-icons t
+   ;; treat space as .* rather than a literal space
+   ivy-re-builders-alist '((t . ivy--regex-plus)))
   (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
   (load! "bindings/+ivy"))
 
