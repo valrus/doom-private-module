@@ -99,7 +99,7 @@
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
  (lsp
-  +eglot)
+  -eglot)
  ;; macos             ; MacOS-specific commands
  magit
  ;; make              ; run make tasks from Emacs

@@ -31,7 +31,7 @@
 
 ;; posframes
 (after! ivy-posframe
-  (defun display-truncated-posframe (str)
+  (defun ivy-truncated-posframe-display (str)
     (ivy-posframe-display-at-frame-top-center str)
     (with-current-buffer ivy-posframe-buffer
       (setq-local word-wrap nil)
@@ -41,8 +41,15 @@
   (dolist (fn '(swiper counsel-rg counsel-grep counsel-git-grep))
     (delq! fn ivy-posframe-display-functions-alist #'assq))
 
-  (setf (alist-get t ivy-posframe-display-functions-alist)
-        #'display-truncated-posframe)
+  ;; ivy display function setup
+  (setq ivy-posframe-display-functions-alist
+        ;; use a regular window for swiper so posframe doesn't obscure buffer previews
+        '((swiper . ivy-display-function-fallback)
+          (swiper-all . ivy-display-function-fallback)
+          (complete-symbol . ivy-posframe-display-at-point)
+          (counsel-M-x . ivy-truncated-posframe-display)
+          (t . ivy-truncated-posframe-display)))
+
   (setq-default
    ivy-height 12
    ivy-posframe-width 200

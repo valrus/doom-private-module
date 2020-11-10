@@ -31,6 +31,7 @@
  (:after ivy
   (:leader
    (:prefix "/"
+    :desc "Search all buffers" :n "a" #'swiper-all
     :desc "Search project" :n "/" #'+ivy/project-search)))
 
  (:after helm

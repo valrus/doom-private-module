@@ -4,7 +4,9 @@
  :map ivy-minibuffer-map
  "C-k" #'ivy-previous-line
  "C-j" #'ivy-next-line
- "C-d" #'ivy-kill-line)
+ "C-d" #'ivy-kill-line
+ "C-f" #'ivy-scroll-up-command
+ "C-b" #'ivy-scroll-down-command)
 
 (defun ivy-refine (x)
   (refine x))
