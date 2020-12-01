@@ -80,6 +80,34 @@
   (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
   (load! "bindings/+ivy"))
 
+;; tools/magit
+(use-package! magit
+  :config
+  ;; https://jakemccrary.com/blog/2020/11/14/speeding-up-magit/
+  (remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
+  ;; (remove-hook 'magit-status-sections-hook 'magit-insert-status-headers)
+  (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
+  (remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-pushremote)
+  (remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
+  (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent)
+  (load! "bindings/+magit")
+  :custom
+  ;; (magit-repository-directories '(("~/work" . 2)))
+  ;; (magit-commit-arguments '("--gpg-sign=5F6C0EA160557395"))
+  ;; (magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395"))
+  ;; (magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395"))
+  ;; Add gpg-sign to rebasing by default
+  ;;   (magit-define-popup-option 'magit-rebase-popup
+  ;;     ?S "Sign using gpg" "--gpg-sign=" #'magit-read-gpg-secret-key)
+  (git-commit-summary-max-length 80)
+  (magit-git-executable "/usr/bin/git"))
+
+(after! magit
+  (add-hook! 'with-editor-mode (progn (evil-append-line 1) (evil-insert-state)))
+  (setq
+   +magit-hub-features nil
+   vc-handled-backends (delq 'Git vc-handled-backends)))
+
 (use-package! winum
   :defer t
   :init
@@ -182,19 +210,6 @@
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
 
-;; tools/magit
-(after! magit
-  (load! "bindings/+magit")
-  (add-hook! 'with-editor-mode-hook (progn (evil-append-line 1) (evil-insert-state)))
-  (setq
-   ;; magit-repository-directories '(("~/work" . 2))
-   ;; magit-commit-arguments '("--gpg-sign=5F6C0EA160557395")
-   ;; magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395")
-   ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
-   +magit-hub-features t
-   git-commit-summary-max-length 80
-   vc-handled-backends (delq 'Git vc-handled-backends)))
-
 (after! elisp-mode
   (load! "bindings/+elisp"))
 
@@ -232,16 +247,10 @@
   (define-key typo-mode-map (kbd "'") nil)
   (define-key typo-mode-map (kbd "\"") nil))
 
-;;(after! magit
-  ;; Add gpg-sign to rebasing by default
-;;   (magit-define-popup-option 'magit-rebase-popup
-;;     ?S "Sign using gpg" "--gpg-sign=" #'magit-read-gpg-secret-key))
-
 ;; lang/ruby
 (add-hook! 'ruby-mode-hook
   (progn
     (set-fill-column 120)))
-
 
 (after! rvm
   (rvm-use-default))

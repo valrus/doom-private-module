@@ -98,8 +98,7 @@
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
- (lsp
-  -eglot)
+ lsp
  ;; macos             ; MacOS-specific commands
  magit
  ;; make              ; run make tasks from Emacs
