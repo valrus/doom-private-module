@@ -13,14 +13,14 @@
 
 (defconst shared-layers
   '(("base"
-     ((f19)   (1)        (2)       (3)   (4)   (5)   (num)     (num)    (6)   (7)      (8)        (9)         (0)         (---)
-      (---)   (q)        (w)       (e)   (r)   (t)     (=)     (-)      (y)   (u)      (i)        (o)         (p)         (---)
-      (cesc) (C a)      (M s)     (G d) (S f)  (g)                     ("'") (S h)    (G j)      (M k)       (C l)        (---)
-      (---)   (z)        (x)       (c)   (v)   (b) (C-M-G)     (C-M-S) ("/")  (n)      (m)      (comma)      (dot)        (---)
-      (act) (grave) ("[" actions) (num) (sym)                          (sym) (num)  ("]" actions)  (equal) (tg gaming)
-                                               (f19) (home)    (prior) (f18)
-                                                      (end)    (next)
-                                    (G bspace) (cesc) (num)    (tg caps) (G enter) (S space)))
+     ((f19)   (1)        (2)       (3)    (4)    (5)   (num)     (num)    (6)   (7)      (8)        (9)         (0)         (---)
+      (---)   (q)        (w)       (e)    (r)    (t)     (=)     (-)      (y)   (u)      (i)        (o)         (p)         (---)
+      (cesc) (C a)      (M s)     (G d)  (S f)   (g)                     ("'") (S h)    (G j)      (M k)       (C l)        (---)
+      (---)   (z)        (x)       (c)    (v)    (b) (C-M-G)     (C-M-S) ("/")  (n)      (m)      (comma)      (dot)        (---)
+      (act) (grave) ("[" actions) (num) (symtab)                              (symtab)  (num)  ("]" actions)  (equal) (tg gaming)
+                                                (f19) (home)     (prior) (f18)
+                                                       (end)     (next)
+                                     (G bspace) (cesc) (num)     (tg caps) (G enter) (S space)))
 
 
   ("symbols" (0 1 0)
@@ -28,7 +28,7 @@
      ( ) (!)   (^)  ("#")  (+)  (%)  (+)     (|)  (|)    (&)    (*)   ($)   ("?")       ( )
      ( ) (@)  (";")  (:)   (-)  (=)              ("`")  (left) (down) (up) (right)      ( )
      ( ) (<)   ({)  ("[") ("(") (~)  ( )     ( ) ("\\") (")")  ("]")  (})   (>)         ( )
-     ( ) ( )   ( )   ( )  (tab)                         (tab)    ( )   ( )   ( )         ( )
+     ( ) ( )   ( )   ( )   ( )                           ( )    ( )   ( )   ( )         ( )
                                  ( ) ( )     ( ) ( )
                                      ( )     ( )
                       (delete) ("(") ( )     ( ) (")") (_)))
@@ -89,7 +89,7 @@
    :with-keys '((num (tg numeric))
                 (cesc (C escape))
                 (act (tg actions))
-                (sym (osl symbols)))
+                (symtab (lt symbols tab)))
 
    :layers shared-layers))
 
@@ -122,7 +122,7 @@ $29, $30, $31, $32, $36, $37, $75, $76, $67, $68, $69, $70")))
    :with-keys '((num (tg numeric))
                 (cesc (C escape))
                 (act (tg actions))
-                (sym (osl symbols)))
+                (symtab (lt symbols tab)))
 
    :layers (mapcar (lambda (layer) (remove-if 'mugur--leds-p layer)) shared-layers)))
 
