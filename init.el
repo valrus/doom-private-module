@@ -162,7 +162,7 @@
  ;; rest              ; Emacs as a REST client
  (:if (local-config-work-p) (ruby +lsp +rvm +rails))
  ;; (ruby +rvm +lsp)
- (:if (local-config-home-p) rust)
+ (:if (local-config-home-p) (rust +lsp))
  ;; scala             ; java, but good
  (sh +zsh)        ; she sells (ba|z)sh shells on the C xor
  ;; solidity          ; do you need a blockchain? No.
