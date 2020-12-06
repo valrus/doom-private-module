@@ -257,7 +257,7 @@
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook
   (progn
-    (typo-mode 1)
+    (variable-pitch-mode t)
     (toggle-word-wrap nil)
     (auto-fill-mode -1)))
 
