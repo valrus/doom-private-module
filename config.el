@@ -184,8 +184,16 @@
 
 ;; tools/lsp
 
+(after! lsp
+  (setq-default
+   lsp-modeline-diagnostics-enable t))
+
 (after! lsp-ui
-  (setq-default lsp-ui-sideline nil))
+  (setq-default
+   lsp-ui-sideline nil))
+
+(after! lsp-rust
+  (setq lsp-rust-server 'rust-analyzer))
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
@@ -259,7 +267,7 @@
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook
   (progn
-    (typo-mode 1)
+    (variable-pitch-mode t)
     (toggle-word-wrap nil)
     (auto-fill-mode -1)))
 
