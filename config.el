@@ -134,13 +134,6 @@
   (setq
    company-idle-delay nil))
 
-(use-package! counsel
-  :defer t
-  :config
-  ;; (setq
-  ;;  counsel-rg-base-command "rg -S --with-filename --no-heading --line-number -M 300 --color never %s || true")
-  )
-
 (use-package! deadgrep
   :defer t
   :config
