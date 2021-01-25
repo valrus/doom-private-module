@@ -17,23 +17,10 @@
 (package! modus-vivendi-theme)
 ;; for Spacehammer
 (package! fennel-mode)
-
-(package! tsc
-  :recipe (:host github
-           :repo "ubolonton/emacs-tree-sitter"
-           :files ("core/*.el")))
-
 (package! tree-sitter
-  :recipe (:host github
-           :repo "ubolonton/emacs-tree-sitter"
-           :files ("lisp/*.el")))
-
+  :ignore (null (bound-and-true-p module-file-suffix)))
 (package! tree-sitter-langs
-  :recipe (:host github
-           :repo "ubolonton/emacs-tree-sitter"
-           :files ("langs/*.el" "langs/queries")))
-
-(straight-pull-package-and-deps "tree-sitter")
+  :ignore (null (bound-and-true-p module-file-suffix)))
 
 (package! mugur
   :type 'local
