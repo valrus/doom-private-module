@@ -22,18 +22,17 @@
                                                     (end)     (next)
                                   (G bspace) (cesc) (num)     (tg caps) (G enter) (S space)))
 
+  ("symbols" (nil t nil) (32 255 32)
+    (( ) (f1)  (f2)  (f3)      (f4)    (f5) ( )     ( )  (f6)      (f7)      (f8)  (f9)  (f10)  (delete)
+     ( ) (!)   (^)  ("#")      (+)     (%)  (+)     (|)  (|)       (&)       (*)   ($)   ("?")       ( )
+     ( ) (@)  (";")  (:)       (-)     (=)              ("`")     (left)    (down) (up) (right)      ( )
+     ( ) (<)   ({)  ("[")     ("(")    (~)  ( )     ( ) ("\\")    (")")     ("]")  (})   (>)         ( )
+     ( ) ( )   ( )   ( )  (tg symbols)                         (tg symbols)  ( )   ( )   ( )         ( )
+                                       ( )  ( )     ( ) ( )
+                                            ( )     ( )
+                             (delete) (tab) ( )     ( ) (tab) (_)))
 
-  ("symbols" (0 1 0)
-    (( ) (f1)  (f2)  (f3)  (f4) (f5) ( )     ( )  (f6)   (f7)   (f8)  (f9)  (f10)  (delete)
-     ( ) (!)   (^)  ("#")  (+)  (%)  (+)     (|)  (|)    (&)    (*)   ($)   ("?")       ( )
-     ( ) (@)  (";")  (:)   (-)  (=)              ("`")  (left) (down) (up) (right)      ( )
-     ( ) (<)   ({)  ("[") ("(") (~)  ( )     ( ) ("\\") (")")  ("]")  (})   (>)         ( )
-     ( ) ( )   ( )   ( )   ( )                           ( )    ( )   ( )   ( )         ( )
-                                 ( ) ( )     ( ) ( )
-                                     ( )     ( )
-                      (delete) (tab) ( )     ( ) (tab) (_)))
-
-  ("actions" (1 0 1)
+  ("actions" (t nil t) (255 32 255)
     ((f14) (bright-) (bright+)    ( )       ( )        ( ) ( )     (reset) ( )    ( )      ( )       ( )       ( )    (f18)
      (f13)    ( )     (ms_up)     ( )       ( )        ( ) ( )     ( )     ( )    ( )      ( )       ( )       ( )    (f17)
      (f12) (ms_left) (ms_down) (ms_right)   ( )        ( )                 ( ) (ms_left) (ms_down) (ms_up) (ms_right) (f16)
@@ -43,7 +42,7 @@
                                                      (rgb_hud)     (rgb_vad)
                                        (ms_btn3) (ms_btn4) ( )     (rgb_mod) (ms_btn4) (ms_btn3)))
 
-  ("numeric" (1 0 0)
+  ("numeric" (t nil nil) (255 32 32)
     (( ) ( ) ( ) ( ) ( ) ( ) ( )     ( ) ( ) ( ) ( )  ( )  ( ) ( )
      ( ) (1) (2) (3) (4) (5) ( )     ( ) (6) (7) (8)  (9)  (0) ( )
      ( ) ( ) ( ) ( ) ( ) ( )             ( ) (4) (5)  (6)  ( ) ( )
@@ -53,7 +52,7 @@
                              ( )     ( )
                      ( ) ( ) ( )     ( ) ( ) ( )))
 
-  ("gaming" (1 1 1)
+  ("gaming" (t t t) (255 255 255)
     (( ) ( ) ( ) ( )   ( )   ( ) ( )     ( ) ( )   ( )   ( ) ( ) ( ) ( )
      ( ) ( ) (w) ( )   ( )   ( ) ( )     ( ) ( )   ( )   ( ) ( ) ( ) ( )
      ( ) (a) (s) (d)   ( )   ( )             ( )   (h)   (j) (k) (l) ( )
@@ -63,7 +62,7 @@
                                  ( )     ( )
                 (space) (escape) ( )     ( ) (enter) (space)))
 
-  ("caps" (0 0 1)
+  ("caps" (nil nil t) (32 32 255)
     (( )  ( )   ( )   ( )   ( )   ( )  ( )     ( )  ( )   ( )   ( )   ( )   ( )  ( )
      ( ) (S-q) (S-w) (S-e) (S-r) (S-t) ( )     ( ) (S-y) (S-u) (S-i) (S-o) (S-p) ( )
      ( ) (S-a) (S-s) (S-d) (S-f) (S-g)              ( )  (S-h) (S-j) (S-k) (S-l) ( )
@@ -80,11 +79,16 @@
    :config '((tapping-term 150)
              (combo-term 100)
              (rgblight-animations nil)
+             (rgb-matrix-keypresses t)
              (force-nkro t)
-             (permissive-hold t))
+             (permissive-hold t)
+             (no-action-macro t)
+             (no-action-function t))
    :rules '((force-nkro t)
             (rgblight-enable nil)
-            (rgb-matrix-enable t))
+            (rgb-matrix-enable t)
+            (extraflags "-flto")
+            (command-enable nil))
 
    :with-keys '((num (tg numeric))
                 (cesc (C escape))
@@ -109,6 +113,9 @@ $16, $17, $18, $19, $20,           $53, $54, $55, $56, $57,
 $22, $23, $24, $25, $26,           $60, $61, $62, $63, $64,
 $29, $30, $31, $32, $36, $37, $75, $76, $67, $68, $69, $70")))
 
+(defun mugur-light-related (layer-part)
+  (or (mugur--leds-p layer-part) (mugur--layer-rgb-p layer-part)))
+
 (defconst mugur-keymap-atreus
   (mugur-keymap
    :keyboard "atreus"
@@ -122,9 +129,9 @@ $29, $30, $31, $32, $36, $37, $75, $76, $67, $68, $69, $70")))
    :with-keys '((num (tg numeric))
                 (cesc (C escape))
                 (act (tg actions))
-                (symtab (lt symbols tab)))
+                (sym (osl symbols)))
 
-   :layers (mapcar (lambda (layer) (remove-if 'mugur--leds-p layer)) shared-layers)))
+   :layers (mapcar (lambda (layer) (remove-if 'mugur-light-related layer)) shared-layers)))
 
 (defun mugur-generate-atreus () (interactive) (mugur-generate mugur-keymap-atreus))
 (defun mugur-make-atreus () (interactive) (mugur-make mugur-keymap-atreus))
