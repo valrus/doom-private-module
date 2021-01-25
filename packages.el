@@ -40,6 +40,11 @@
   :recipe (:local-repo "packages/mugur"
            :no-byte-compile t))
 
+(package! twee-mode
+  :type 'local
+  :recipe (:local-repo "packages/twee-mode"
+           :no-byte-compile t))
+
 ;; Unpinned packages
 (unpin! doom-themes)
 
