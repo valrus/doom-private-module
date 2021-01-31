@@ -1,5 +1,7 @@
 ;;; ~/.doom.d/+imac-settings.el -*- lexical-binding: t; -*-
 
+(load! "+work")
+
 (setq
  show-trailing-whitespace t
 
@@ -20,5 +22,3 @@
 
 ;; (set-face-attribute 'minibuffer-prompt nil :family "IBM Plex Mono" :weight 'bold)
 (set-face-attribute 'minibuffer-prompt nil :family "Iosevka" :weight 'bold :height 1.0)
-
-(load! "+work")
