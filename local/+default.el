@@ -42,8 +42,8 @@
           (t . ivy-truncated-posframe-display)))
 
   (setq-default
-   ivy-height 12
-   ivy-posframe-width 200
+   ivy-height 15
+   ivy-posframe-width 160
    ;; use a larger font for ivy-posframe
    ivy-posframe-font doom-big-font))
    ;; ivy-posframe-font (apply #'font-spec

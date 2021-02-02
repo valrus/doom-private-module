@@ -77,7 +77,7 @@
    +ivy-buffer-icons t
    ;; treat space as .* rather than a literal space
    ivy-re-builders-alist '((t . ivy--regex-plus)))
-  (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
+  ;; (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
   (load! "bindings/+ivy"))
 
 (use-package! winum
