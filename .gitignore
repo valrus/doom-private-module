@@ -4,3 +4,5 @@
 tmp/
 *.elc
 packages/mugur
+packages/twee-mode
+/custom.el

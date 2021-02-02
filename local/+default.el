@@ -17,15 +17,6 @@
 (custom-set-faces!
  '((line-number line-number-current-line) :family "Iosevka"))
 
-;; minibuffer
-(setq minibuffer-font-spec '((default :family "Iosevka")))
-(set-face-attribute 'minibuffer-prompt nil :family "Iosevka" :weight 'bold)
-
-(defun truncate-lines-in-child-frame (frame)
-  (when (frame-parameter frame 'parent-frame)
-    (setq-local word-wrap nil)
-    (toggle-truncate-lines 1)))
-
 (after! org
   (setq org-directory "~/Dropbox/Work Share/org/"))
 
@@ -51,6 +42,11 @@
           (t . ivy-truncated-posframe-display)))
 
   (setq-default
-   ivy-height 12
-   ivy-posframe-width 200
-   ivy-posframe-font (font-spec :family "Iosevka" :size 14)))
+   ivy-height 15
+   ivy-posframe-width 160
+   ;; use a larger font for ivy-posframe
+   ivy-posframe-font doom-big-font))
+   ;; ivy-posframe-font (apply #'font-spec
+   ;;                          (plist-put
+   ;;                           (plist-put (font-face-attributes doom-font) :size 18)
+   ;;                           :weight 'medium))))

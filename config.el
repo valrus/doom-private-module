@@ -77,7 +77,7 @@
    +ivy-buffer-icons t
    ;; treat space as .* rather than a literal space
    ivy-re-builders-alist '((t . ivy--regex-plus)))
-  (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
+  ;; (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
   (load! "bindings/+ivy"))
 
 ;; tools/magit
@@ -221,6 +221,20 @@
 
 ;; app/rss
 ;; (add-hook! 'elfeed-show-mode-hook (text-scale-set 2))
+
+;; tools/magit
+(after! magit
+  (add-hook! 'with-editor-mode-hook (progn (evil-append-line 1) (evil-insert-state)))
+  (setq
+   ;; magit-repository-directories '(("~/work" . 2))
+   ;; magit-commit-arguments '("--gpg-sign=5F6C0EA160557395")
+   ;; magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395")
+   ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
+   ;; +magit-hub-features t
+   git-commit-summary-max-length 80
+   vc-handled-backends (delq 'Git vc-handled-backends)))
+
+(load! "bindings/+magit")
 
 (after! elisp-mode
   (load! "bindings/+elisp"))
