@@ -1,7 +1,8 @@
 ;;; ~/.doom.d/local/+work.el -*- lexical-binding: t; -*-
 
 ;; enh-ruby-mode is intolerably slow on some buffers
-(advice-add #'+ruby-init-h :override #'ruby-mode)
+;; but let's try it with tree-sitter
+;; (advice-add #'+ruby-init-h :override #'ruby-mode)
 
 (setq
  so-long-threshold 500
@@ -21,6 +22,7 @@
    ruby-align-to-stmt-keywords t
    ruby-deep-arglist nil
    ruby-deep-indent-paren nil
+   ruby-use-smie nil
    ruby-insert-encoding-magic-comment nil))
 
 (use-package! enh-ruby-mode

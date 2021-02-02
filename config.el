@@ -43,7 +43,7 @@
 
 ;; Keyboard
 
-(load! "+keyboard")
+;; (load! "+keyboard")
 
 ;;
 ;; Keybindings
@@ -150,6 +150,8 @@
   :hook (org-mode . org-roam-mode)
   :custom
   (org-roam-directory (concat org-directory "roam"))
+  (org-roam-buffer-position 'top)
+  (org-roam-buffer-height 0.15)
   :config
   (load! "bindings/+org-roam"))
 
@@ -170,6 +172,7 @@
   :hook
   ;; tree-sitter doesn't get confused by quotes in string interpolations
   (ruby-mode . tree-sitter-hl-mode)
+  (enh-ruby-mode . tree-sitter-hl-mode)
   :config
   (global-tree-sitter-mode))
 
@@ -184,9 +187,12 @@
 
 ;; tools/lsp
 
-(after! lsp
+(use-package! lsp-mode
+  :custom
+  (lsp-modeline-diagnostics-enable t)
+  :config
   (setq-default
-   lsp-modeline-diagnostics-enable t))
+    lsp-client-packages (delete 'lsp-steep lsp-client-packages)))
 
 (after! lsp-ui
   (setq-default
@@ -194,6 +200,11 @@
 
 (after! lsp-rust
   (setq lsp-rust-server 'rust-analyzer))
+
+;; broken for now
+(after! lsp-ruby
+  (setenv "BUNDLE_GEMFILE" "Gemfile.local")
+  (setq lsp-solargraph-use-bundler t))
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))

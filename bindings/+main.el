@@ -86,6 +86,7 @@
        :desc "Open todo file" :n "t" #'popup-todo-file))
 
    (:prefix "TAB"
+     :desc "Switch workspace" :n "SPC" #'+workspace/switch-to
      :desc "Create workspace" :n "c" #'+workspace/new)
 
    (:prefix "w"
