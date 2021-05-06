@@ -8,8 +8,10 @@
  :desc "Redo" :n "U" #'undo-fu-only-redo
  :desc "Page up" :nvi "C-k" #'evil-scroll-page-up
  :desc "Page down" :nvi "C-j" #'evil-scroll-page-down
- :desc "Beginning of line" :n "H" #'evil-first-non-blank
+ :desc "Beginning of line" :n "H" #'evil-beginning-of-line
  :desc "End of line" :n "L" #'evil-end-of-line
+ :desc "Beginning of line" :n "gh" #'evil-first-non-blank
+ :desc "End of line" :n "gl" #'evil-end-of-line
 
  ;; Unmap this undo
  "C-x u" nil
