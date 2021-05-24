@@ -173,6 +173,7 @@
   ;; tree-sitter doesn't get confused by quotes in string interpolations
   (ruby-mode . tree-sitter-hl-mode)
   (enh-ruby-mode . tree-sitter-hl-mode)
+  (python-mode . tree-sitter-hl-mode)
   :config
   (global-tree-sitter-mode))
 
