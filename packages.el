@@ -22,15 +22,15 @@
 (package! tree-sitter-langs
   :ignore (null (bound-and-true-p module-file-suffix)))
 
-(package! mugur
-  :type 'local
-  :recipe (:local-repo "packages/mugur"
-           :no-byte-compile t))
-
-(package! twee-mode
-  :type 'local
-  :recipe (:local-repo "packages/twee-mode"
-           :no-byte-compile t))
+;; (package! mugur
+;;   :type 'local
+;;   :recipe (:local-repo "packages/mugur"
+;;            :no-byte-compile t))
+;; 
+;; (package! twee-mode
+;;   :type 'local
+;;   :recipe (:local-repo "packages/twee-mode"
+;;            :no-byte-compile t))
 
 ;; Unpinned packages
 (unpin! doom-themes)
@@ -42,7 +42,6 @@
 ;; Local-specific packages
 (cond
  ((local-config-work-p)
-  (package! haml-mode)
-  (package! web-mode)
-  (package! projectile-rails)
-  (package! rvm)))
+  (package! thrift-mode
+    :recipe (:host github
+             :repo "davidmiller/thrift-mode"))))

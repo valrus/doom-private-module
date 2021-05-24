@@ -1,9 +1,5 @@
 ;;; ~/.doom.d/local/+work.el -*- lexical-binding: t; -*-
 
-;; enh-ruby-mode is intolerably slow on some buffers
-;; but let's try it with tree-sitter
-;; (advice-add #'+ruby-init-h :override #'ruby-mode)
-
 (setq
  so-long-threshold 500
  doom-gc-cons-threshold 4194304
@@ -15,33 +11,9 @@
   (set-face-attribute 'mode-line nil :box nil)
   (set-face-attribute 'mode-line-inactive nil :box nil))
 
-(use-package! ruby-mode
-  :defer t
-  :init
-  (setq-default
-   ruby-align-to-stmt-keywords t
-   ruby-deep-arglist nil
-   ruby-deep-indent-paren nil
-   ruby-use-smie nil
-   ruby-insert-encoding-magic-comment nil))
-
-(use-package! enh-ruby-mode
-  :defer t
-  :init
-  (setq-default
-   enh-ruby-add-encoding-comment-on-save nil
-   enh-ruby-deep-indent-paren nil
-   enh-ruby-deep-indent-construct nil)
-  t)
-
-(use-package! projectile-rails
-  :defer t
-  :requires
-  inflections
-  :config
-  (projectile-rails-global-mode)
-  ;; (load! "+projectile-rails-bindings")
-  t)
+(add-hook 'python-mode-hook #'format-all-mode)
+(add-hook 'rjsx-mode-hook #'format-all-mode)
+(add-hook 'js2-mode-hook #'format-all-mode)
 
 ;; Some files have a LOT of errors; use a less resource-intensive highlight mode
 (use-package! flycheck
@@ -49,14 +21,8 @@
   :config
   (setq-default
    flycheck-error-list-highlight-overlays t
-   flycheck-highlighting-mode nil
+   flycheck-highlighting-mode 'symbols
    flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
-
-(after! flycheck
-  (add-hook! '(ruby-mode-hook enh-ruby-mode)
-    (setq flycheck-command-wrapper-function
-          (lambda (command)
-            (append '("bundle" "exec") command)))))
 
 ;; emacs-mac-port only
 ;; (mac-auto-operator-composition-mode t)
