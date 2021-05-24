@@ -2,6 +2,7 @@
 
 (setq
  show-trailing-whitespace t
+ org-directory "~/Dropbox/Work Share/org/"
 
  ;; fonts
  doom-font (font-spec :family "Iosevka" :size 12 :weight 'light)
@@ -17,8 +18,6 @@
 (custom-set-faces!
  '((line-number line-number-current-line) :family "Iosevka"))
 
-(after! org
-  (setq org-directory "~/Dropbox/Work Share/org/"))
 
 ;; posframes
 (after! ivy-posframe
