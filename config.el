@@ -248,10 +248,10 @@
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
 
 (after! flycheck
-  (advice-add #'flycheck-may-check-automatically :override #'ignore)
+  ;; (advice-add #'flycheck-may-check-automatically :override #'ignore)
   (setq-default
    +flycheck-on-escape nil
-   flycheck-check-syntax-automatically nil
+   flycheck-check-syntax-automatically '(save idle-change mode-enabled)
    flycheck-display-errors-delay 1))
 
 ;; Don't create new workspaces for new frames
