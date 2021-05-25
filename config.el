@@ -43,7 +43,7 @@
 
 ;; Keyboard
 
-(load! "+keyboard")
+;; (load! "+keyboard")
 
 ;;
 ;; Keybindings
@@ -80,6 +80,34 @@
   ;; (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
   (load! "bindings/+ivy"))
 
+;; tools/magit
+(use-package! magit
+  :config
+  ;; https://jakemccrary.com/blog/2020/11/14/speeding-up-magit/
+  (remove-hook 'magit-status-sections-hook 'magit-insert-tags-header)
+  ;; (remove-hook 'magit-status-sections-hook 'magit-insert-status-headers)
+  (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-pushremote)
+  (remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-pushremote)
+  (remove-hook 'magit-status-sections-hook 'magit-insert-unpulled-from-upstream)
+  (remove-hook 'magit-status-sections-hook 'magit-insert-unpushed-to-upstream-or-recent)
+  (load! "bindings/+magit")
+  :custom
+  ;; (magit-repository-directories '(("~/work" . 2)))
+  ;; (magit-commit-arguments '("--gpg-sign=5F6C0EA160557395"))
+  ;; (magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395"))
+  ;; (magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395"))
+  ;; Add gpg-sign to rebasing by default
+  ;;   (magit-define-popup-option 'magit-rebase-popup
+  ;;     ?S "Sign using gpg" "--gpg-sign=" #'magit-read-gpg-secret-key)
+  (git-commit-summary-max-length 80)
+  (magit-git-executable "/usr/bin/git"))
+
+(after! magit
+  (add-hook! 'with-editor-mode (progn (evil-append-line 1) (evil-insert-state)))
+  (setq
+   +magit-hub-features nil
+   vc-handled-backends (delq 'Git vc-handled-backends)))
+
 (use-package! winum
   :defer t
   :init
@@ -106,13 +134,6 @@
   (setq
    company-idle-delay nil))
 
-(use-package! counsel
-  :defer t
-  :config
-  ;; (setq
-  ;;  counsel-rg-base-command "rg -S --with-filename --no-heading --line-number -M 300 --color never %s || true")
-  )
-
 (use-package! deadgrep
   :defer t
   :config
@@ -129,6 +150,8 @@
   :hook (org-mode . org-roam-mode)
   :custom
   (org-roam-directory (concat org-directory "roam"))
+  (org-roam-buffer-position 'top)
+  (org-roam-buffer-height 0.15)
   :config
   (load! "bindings/+org-roam"))
 
@@ -149,6 +172,8 @@
   :hook
   ;; tree-sitter doesn't get confused by quotes in string interpolations
   (ruby-mode . tree-sitter-hl-mode)
+  (enh-ruby-mode . tree-sitter-hl-mode)
+  (python-mode . tree-sitter-hl-mode)
   :config
   (global-tree-sitter-mode))
 
@@ -163,9 +188,12 @@
 
 ;; tools/lsp
 
-(after! lsp
+(use-package! lsp-mode
+  :custom
+  (lsp-modeline-diagnostics-enable t)
+  :config
   (setq-default
-   lsp-modeline-diagnostics-enable t))
+    lsp-client-packages (delete 'lsp-steep lsp-client-packages)))
 
 (after! lsp-ui
   (setq-default
@@ -173,6 +201,11 @@
 
 (after! lsp-rust
   (setq lsp-rust-server 'rust-analyzer))
+
+;; broken for now
+(after! lsp-ruby
+  (setenv "BUNDLE_GEMFILE" "Gemfile.local")
+  (setq lsp-solargraph-use-bundler t))
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
@@ -215,10 +248,10 @@
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
 
 (after! flycheck
-  (advice-add #'flycheck-may-check-automatically :override #'ignore)
+  ;; (advice-add #'flycheck-may-check-automatically :override #'ignore)
   (setq-default
    +flycheck-on-escape nil
-   flycheck-check-syntax-automatically nil
+   flycheck-check-syntax-automatically '(save idle-change mode-enabled)
    flycheck-display-errors-delay 1))
 
 ;; Don't create new workspaces for new frames
@@ -241,16 +274,10 @@
   (define-key typo-mode-map (kbd "'") nil)
   (define-key typo-mode-map (kbd "\"") nil))
 
-;;(after! magit
-  ;; Add gpg-sign to rebasing by default
-;;   (magit-define-popup-option 'magit-rebase-popup
-;;     ?S "Sign using gpg" "--gpg-sign=" #'magit-read-gpg-secret-key))
-
 ;; lang/ruby
 (add-hook! 'ruby-mode-hook
   (progn
     (set-fill-column 120)))
-
 
 (after! rvm
   (rvm-use-default))

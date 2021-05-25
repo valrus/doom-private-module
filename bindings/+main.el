@@ -8,6 +8,8 @@
  :desc "Redo" :n "U" #'undo-fu-only-redo
  :desc "Page up" :nvi "C-k" #'evil-scroll-page-up
  :desc "Page down" :nvi "C-j" #'evil-scroll-page-down
+ :desc "Beginning of line" :n "gh" #'evil-beginning-of-line
+ :desc "End of line" :n "gl" #'evil-end-of-line
  :desc "Beginning of line" :n "H" #'evil-first-non-blank
  :desc "End of line" :n "L" #'evil-end-of-line
 
@@ -86,6 +88,7 @@
        :desc "Open todo file" :n "t" #'popup-todo-file))
 
    (:prefix "TAB"
+     :desc "Switch workspace" :n "SPC" #'+workspace/switch-to
      :desc "Create workspace" :n "c" #'+workspace/new)
 
    (:prefix "w"

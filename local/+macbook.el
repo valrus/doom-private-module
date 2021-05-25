@@ -1,12 +1,15 @@
 ;;; ~/.doom.d/+mbp-settings.el -*- lexical-binding: t; -*-
 
 (setq
+ org-directory "~/Dropbox/Work Share/org/"
+
  ;; Fonts
- doom-font (font-spec :family "Iosevka" :size 10 :weight 'light)
- doom-serif-font (font-spec :family "Iosevka Slab" :size 10 :weight 'light)
- doom-unicode-font (font-spec :family "Iosevka")
- doom-big-font (font-spec :family "Iosevka" :size 18)
- doom-variable-pitch-font (font-spec :family "Iosevka Aile")
+ doom-font (font-spec :family "Inconsolata" :size 13 :width 'semi-condensed)
+ doom-serif-font (font-spec :family "Inconsolata" :size 13 :width 'semi-condensed)
+ doom-unicode-font (font-spec :family "Apple Color Emoji" :size 8)
+ doom-big-font (font-spec :family "Inconsolata" :size 18)
+ doom-variable-pitch-font (font-spec :family "Iosevka Etoile" :weight 'light)
+ minibuffer-font-spec (font-spec :family "Inconsolata")
 
  ;; theme
  doom-theme 'doom-solarized-light
@@ -22,14 +25,6 @@
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 ;; for dark themes
 ;; (add-to-list 'default-frame-alist '(ns-appearance . dark))
-
-(after! org
-  (setq org-directory "~/Dropbox (Personal)/Work Share/org/"))
-
-(use-package! rvm
-  :config
-  (progn
-    (rvm-use-default)))
 
 (after! flycheck
   (setq flycheck-scss-lint-executable "emacs-scss-lint"))

@@ -10,9 +10,9 @@
 
  ;; fonts
  doom-font (font-spec :family "Iosevka" :size 12 :weight 'light)
- doom-unicode-font (font-spec :family "Iosevka" :weight 'medium)
+ doom-unicode-font (font-spec :family "Iosevka" :weight 'light)
  doom-big-font (font-spec :family "Iosevka" :size 20 :weight 'medium)
- doom-variable-pitch-font (font-spec :family "Iosevka Aile" :weight 'light)
+ doom-variable-pitch-font (font-spec :family "Iosevka Sparkle" :weight 'light)
  ;; minibuffer-font-spec '((default :family "IBM Plex Mono" :height 1.4))
  minibuffer-font-spec '((default :family "Iosevka" :height 1.0))
 

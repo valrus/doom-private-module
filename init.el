@@ -49,6 +49,7 @@
  ;; vi-tilde-fringe   ; fringe tildes to mark beyond EOB
  (window-select    ; visually switch windows
   +numbers)
+ unicode
  workspaces        ; tab emulation, persistence & separate workspaces
  zen
 
@@ -56,7 +57,8 @@
  (evil +everywhere)
  file-templates    ; auto-snippets for empty files
  fold
- ;; (format +onsave)  ; automated prettiness
+ format
+ ;; (:if (local-config-work-p) (format +onsave))
  ;; god
  ;; lispy             ; vim for lisp, for people who dont like vim
  multiple-cursors  ; editing in many places at once
@@ -98,8 +100,7 @@
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
- (lsp
-  -eglot)
+ lsp
  ;; macos             ; MacOS-specific commands
  magit
  ;; make              ; run make tasks from Emacs
@@ -131,7 +132,7 @@
  ;; (haskell +intero) ; a language that's lazier than I am
  ;; hy                ; readability of scheme w/ speed of python
  ;; (java +meghanada) ; the poster child for carpal tunnel syndrome
- ;; javascript        ; all(hope(abandon(ye(who(enter(here))))))
+ javascript        ; all(hope(abandon(ye(who(enter(here))))))
  ;; julia             ; a better, faster MATLAB
  ;; kotlin            ; a better, slicker Java(Script)
  (:if (local-config-home-p) (latex +latexmk))

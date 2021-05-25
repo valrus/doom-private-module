@@ -2,6 +2,7 @@
 
 (setq
  show-trailing-whitespace t
+ org-directory "~/Dropbox/Work Share/org/"
 
  ;; fonts
  doom-font (font-spec :family "Iosevka" :size 12 :weight 'light)
@@ -17,8 +18,15 @@
 (custom-set-faces!
  '((line-number line-number-current-line) :family "Iosevka"))
 
-(after! org
-  (setq org-directory "~/Dropbox/Work Share/org/"))
+;; this is like courier or something... yuck
+(set-face-attribute 'fixed-pitch nil :family "Iosevka" :weight 'regular :height 120)
+(set-face-attribute 'variable-pitch nil :family "PT Sans")
+
+(ivy-rich-modify-columns
+ 'ivy-switch-buffer
+ '((ivy-switch-buffer-transformer (:width 24))
+   (ivy-rich-switch-buffer-major-mode (:width 20))
+   (ivy-rich-switch-buffer-project (:width 20))))
 
 ;; posframes
 (after! ivy-posframe
@@ -44,8 +52,12 @@
   (setq-default
    ivy-height 15
    ivy-posframe-width 160
+   ivy-posframe-border-width 1
    ;; use a larger font for ivy-posframe
-   ivy-posframe-font doom-big-font))
+   ivy-posframe-font doom-big-font
+   ivy-posframe-parameters '((left-fringe . 0)
+                             (right-fringe . 0)
+                             (internal-border-width . 10))))
    ;; ivy-posframe-font (apply #'font-spec
    ;;                          (plist-put
    ;;                           (plist-put (font-face-attributes doom-font) :size 18)
