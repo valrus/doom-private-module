@@ -16,10 +16,11 @@
 
  ;; fonts: inconsolata
  doom-font (font-spec :family "Inconsolata" :size 14 :width 'semi-condensed)
+ doom-serif-font (font-spec :family "monofur" :size 14)
  doom-unicode-font (font-spec :family "Inconsolata" :width 'semi-condensed)
- doom-big-font (font-spec :family "Inconsolata" :size 20 :weight 'medium)
+ doom-big-font (font-spec :family "Inconsolata" :size 20)
  doom-variable-pitch-font (font-spec :family "Neris" :weight 'light :size 14)
- minibuffer-font-spec '((default :family "Inconsolata" :height 20 :weight 'medium))
+ minibuffer-font-spec '((default :family "Inconsolata"))
 
  ;; theme
  doom-theme 'doom-nord)

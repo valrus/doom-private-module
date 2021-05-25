@@ -11,26 +11,31 @@
 ;; (package! poet-theme)
 ;; (package! olivetti)
 (package! lsp-ui)
+(package! indium)
+
 ;; light
 (package! modus-operandi-theme)
 ;; dark
 (package! modus-vivendi-theme)
+
 ;; for Spacehammer
 (package! fennel-mode)
+
 (package! tree-sitter
   :ignore (null (bound-and-true-p module-file-suffix)))
 (package! tree-sitter-langs
   :ignore (null (bound-and-true-p module-file-suffix)))
 
+;; Local packages
 (package! mugur
   :type 'local
   :recipe (:local-repo "packages/mugur"
-           :no-byte-compile t))
+           :build (:not compile)))
 
 (package! twee-mode
   :type 'local
   :recipe (:local-repo "packages/twee-mode"
-           :no-byte-compile t))
+           :build (:not compile)))
 
 ;; Unpinned packages
 (unpin! doom-themes)
