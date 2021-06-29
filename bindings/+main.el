@@ -16,6 +16,9 @@
  ;; Unmap this undo
  "C-x u" nil
 
+ ;; Unmap this un-leaderish workspace creator
+ "s-t" nil
+
  (:after evil
   (:map evil-insert-state-map
    "C-u" nil))
