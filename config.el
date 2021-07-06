@@ -177,6 +177,10 @@
   :config
   (global-tree-sitter-mode))
 
+(use-package! ace-window
+  :custom
+  (aw-keys '(?a ?s ?d ?f ?g ?m ?h ?e ?k ?l)))
+
 (use-package! tree-sitter-langs
   :after tree-sitter)
 ;;

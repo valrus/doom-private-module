@@ -95,4 +95,5 @@
      :desc "Create workspace" :n "c" #'+workspace/new)
 
    (:prefix "w"
-     :desc "Maximize frame" :n "M" #'toggle-frame-maximized)))
+    :desc "Ace-window" :n "SPC" #'ace-window
+    :desc "Maximize frame" :n "M" #'toggle-frame-maximized)))
