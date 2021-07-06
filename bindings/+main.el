@@ -94,6 +94,7 @@
      :desc "Switch workspace" :n "SPC" #'+workspace/switch-to
      :desc "Create workspace" :n "c" #'+workspace/new)
 
+   ;; window navigation
    (:prefix "w"
     :desc "Ace-window" :n "SPC" #'ace-window
     :desc "Maximize frame" :n "M" #'toggle-frame-maximized

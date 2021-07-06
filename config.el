@@ -214,6 +214,9 @@
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
 
+(after! evil-easymotion
+  (load! "bindings/+easymotion"))
+
 (after! modeline
   (setq
    doom-modeline-height 29
