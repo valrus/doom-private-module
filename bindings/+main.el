@@ -96,4 +96,8 @@
 
    (:prefix "w"
     :desc "Ace-window" :n "SPC" #'ace-window
-    :desc "Maximize frame" :n "M" #'toggle-frame-maximized)))
+    :desc "Maximize frame" :n "M" #'toggle-frame-maximized
+    :desc "Window left" :n [left] #'evil-window-left
+    :desc "Window down" :n [down] #'evil-window-down
+    :desc "Window up" :n [up] #'evil-window-up
+    :desc "Window up" :n [right] #'evil-window-right)))
