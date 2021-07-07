@@ -9,7 +9,7 @@
  doom-serif-font (font-spec :family "Iosevka Slab" :size 12 :weight 'light)
  doom-unicode-font (font-spec :family "Iosevka" :weight 'light)
  doom-big-font (font-spec :family "Iosevka" :size 20)
- doom-variable-pitch-font (font-spec :family "Iosevka")
+ doom-variable-pitch-font (font-spec :family "PT Sans")
 
  ;; theme
  doom-theme 'modus-operandi)

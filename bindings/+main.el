@@ -16,6 +16,9 @@
  ;; Unmap this undo
  "C-x u" nil
 
+ ;; Unmap this un-leaderish workspace creator
+ "s-t" nil
+
  (:after evil
   (:map evil-insert-state-map
    "C-u" nil))
@@ -92,4 +95,9 @@
      :desc "Create workspace" :n "c" #'+workspace/new)
 
    (:prefix "w"
-     :desc "Maximize frame" :n "M" #'toggle-frame-maximized)))
+    :desc "Ace-window" :n "SPC" #'ace-window
+    :desc "Maximize frame" :n "M" #'toggle-frame-maximized
+    :desc "Window left" :n [left] #'evil-window-left
+    :desc "Window down" :n [down] #'evil-window-down
+    :desc "Window up" :n [up] #'evil-window-up
+    :desc "Window up" :n [right] #'evil-window-right)))

@@ -177,6 +177,10 @@
   :config
   (global-tree-sitter-mode))
 
+(use-package! ace-window
+  :custom
+  (aw-keys '(?a ?s ?d ?f ?g ?m ?h ?e ?k ?l)))
+
 (use-package! tree-sitter-langs
   :after tree-sitter)
 ;;
@@ -308,7 +312,8 @@
    org-use-fast-todo-selection nil
    org-ellipsis " ▼ "
    ;; org-bullets-bullet-list '("①" "②" "③" "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩")))
-   org-bullets-bullet-list '("◷" "◶" "◵" "◴" "⊚" "⊛" "⊗" "⊕" "⊘" "⊙")))
+   org-superstar-headline-bullets-list '("◷" "◶" "◵" "◴" "⊚" "⊛" "⊗" "⊕" "⊘" "⊙")
+   org-superstar-item-bullet-alist '(("*" . "•") ("+" . "‣") ("-" . "⁃"))))
 
 ;; ui/popup
 
