@@ -22,11 +22,12 @@
 (set-face-attribute 'fixed-pitch nil :family "Iosevka" :weight 'regular :height 120)
 (set-face-attribute 'variable-pitch nil :family "PT Sans")
 
-(ivy-rich-modify-columns
- 'ivy-switch-buffer
- '((ivy-switch-buffer-transformer (:width 24))
-   (ivy-rich-switch-buffer-major-mode (:width 20))
-   (ivy-rich-switch-buffer-project (:width 20))))
+(after! ivy-rich
+  (ivy-rich-modify-columns
+   'ivy-switch-buffer
+   '((ivy-switch-buffer-transformer (:width 24))
+     (ivy-rich-switch-buffer-major-mode (:width 20))
+     (ivy-rich-switch-buffer-project (:width 20)))))
 
 ;; posframes
 (after! ivy-posframe

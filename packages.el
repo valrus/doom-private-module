@@ -12,6 +12,7 @@
 ;; (package! olivetti)
 (package! lsp-ui)
 (package! indium)
+(package! snakemake-mode)
 
 ;; light
 (package! modus-operandi-theme)

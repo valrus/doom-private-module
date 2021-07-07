@@ -12,7 +12,7 @@
 ;;                    ( ) ( ) ( )     ( ) ( ) ( )))
 
 (defconst shared-layers
-  '(("base" (255 255 255)
+  '(("base"
      ((f19)            (1)         (2)   (3)   (4)  (5)   (num)     (num)    (6)   (7)   (8)    (9)        (0)   (---)
       (C-M-G)          (q)         (w)   (e)   (r)  (t)     (=)     (-)      (y)   (u)   (i)    (o)        (p)   (C-M-S)
       (cesc)          (C a)       (M s) (G d) (S f) (g)                     ("'") (S h) (G j)  (M k)      (C l)  (---)
@@ -22,7 +22,7 @@
                                                           (end)     (next)
                                         (G bspace) (cesc) (num)     (tg caps) (G enter) (S space)))
 
-  ("symbols" (nil t nil) (32 255 32)
+  ("symbols"
     (( ) (f1)  (f2)  (f3)      (f4)    (f5) ( )     ( )  (f6)      (f7)      (f8)  (f9)  (f10)  (delete)
      ( ) (!)   (^)  ("#")      (+)     (%)  (+)     (|)  (|)       (&)       (*)   ($)   ("?")       ( )
      ( ) (@)  (";")  (:)       (-)     (=)              ("`")     (left)    (down) (up) (right)      ( )
@@ -32,7 +32,7 @@
                                             ( )     ( )
                              (delete) (tab) ( )     ( ) (tab) (_)))
 
-  ("actions" (t nil t) (255 32 255)
+  ("actions"
     ((f14) (bright-) (bright+)    ( )       ( )        ( ) ( )     (reset) ( )    ( )      ( )       ( )       ( )    (f18)
      (f13)    ( )     (ms_up)     ( )       ( )        ( ) ( )     ( )     ( )    ( )      ( )       ( )       ( )    (f17)
      (f12) (ms_left) (ms_down) (ms_right)   ( )        ( )                 ( ) (ms_left) (ms_down) (ms_up) (ms_right) (f16)
@@ -42,7 +42,7 @@
                                                      (rgb_hud)     (rgb_vad)
                                        (ms_btn3) (ms_btn4) ( )     (rgb_mod) (ms_btn4) (ms_btn3)))
 
-  ("numeric" (t nil nil) (255 32 32)
+  ("numeric"
     (( ) ( ) ( ) ( ) ( ) ( ) ( )     ( ) ( ) ( ) ( )  ( )  ( ) ( )
      ( ) (1) (2) (3) (4) (5) ( )     ( ) (6) (7) (8)  (9)  (0) ( )
      ( ) ( ) ( ) ( ) ( ) ( )             ( ) (4) (5)  (6)  ( ) ( )
@@ -52,7 +52,7 @@
                              ( )     ( )
                      ( ) ( ) ( )     ( ) ( ) ( )))
 
-  ("gaming" (t t t) (255 255 255)
+  ("gaming"
     ((escape)  ( ) ( )   ( )      ( )    ( ) ( )     ( ) ( )   ( )   ( ) ( ) ( ) ( )
       (tab)    ( ) (w)   ( )      ( )    ( ) ( )     ( ) ( )   ( )   ( ) ( ) ( ) ( )
        (C)     (a) (s)   (d)      ( )    ( )             ( )   (h)   (j) (k) (l) ( )
@@ -62,7 +62,7 @@
                                              ( )     ( )
                              (space) (enter) ( )     ( ) (enter) (space)))
 
-  ("caps" (nil nil t) (32 32 255)
+  ("caps"
     (( )  ( )   ( )   ( )   ( )   ( )  ( )     ( )  ( )   ( )   ( )   ( )   ( )  ( )
      ( ) (S-q) (S-w) (S-e) (S-r) (S-t) ( )     ( ) (S-y) (S-u) (S-i) (S-o) (S-p) ( )
      ( ) (S-a) (S-s) (S-d) (S-f) (S-g)              ( )  (S-h) (S-j) (S-k) (S-l) ( )

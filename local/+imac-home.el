@@ -15,12 +15,15 @@
  ;; doom-variable-pitch-font (font-spec :family "Iosevka Etoile" :weight 'light)
 
  ;; fonts: inconsolata
- doom-font (font-spec :family "Inconsolata" :size 14 :width 'semi-condensed)
- doom-serif-font (font-spec :family "monofur" :size 14)
- doom-unicode-font (font-spec :family "Inconsolata" :width 'semi-condensed)
- doom-big-font (font-spec :family "Inconsolata" :size 20)
- doom-variable-pitch-font (font-spec :family "Neris" :weight 'light :size 14)
- minibuffer-font-spec '((default :family "Inconsolata"))
+ ;; doom-font (font-spec :family "Inconsolata" :size 14 :width 'semi-condensed)
+ ;; doom-font (font-spec :family "Operator Mono Light" :weight 'light :size 14)
+ ;; doom-font (font-spec :family "Iosevka" :size 14 :weight 'semi-light)
+ doom-font (font-spec :family "Rec Mono Semicasual" :size 14 :weight 'semi-light)
+ doom-serif-font (font-spec :family "Iosevka Slab" :size 14 :weight 'semi-light)
+ doom-unicode-font (font-spec :family "Iosevka" :size 14 :weight 'semi-light)
+ doom-big-font (font-spec :family "Iosevka" :size 20 :weight 'normal)
+ doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 14)
+ minibuffer-font-spec '((default :family "Iosevka"))
 
  ;; theme
  doom-theme 'doom-nord)
