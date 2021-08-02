@@ -17,6 +17,9 @@
 
 (global-auto-revert-mode -1)
 
+(defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?h ?e ?l ?k)
+  "Characters in the keyboard home row, for alternate layouts.")
+
 ;;
 ;; Host-specific config
 ;;
@@ -144,6 +147,12 @@
   :config
   (setq evil-goggles-pulse t))
 
+(use-package! evil-easymotion
+  :custom
+  (evilem-keys home-row-keys)
+  :config
+  (load! "bindings/+easymotion"))
+
 (use-package! org-roam
   :after org
   :defer t
@@ -179,8 +188,7 @@
 
 (use-package! ace-window
   :custom
-  (aw-keys '(?a ?r ?s ?t ?g ?m ?h ?e ?l ?k)))
-  ;; (custom-set-variables '(aw-keys '(?a ?r ?s ?t ?g ?m ?h ?e ?l ?k)))
+  (aw-keys home-row-keys))
 
 (use-package! tree-sitter-langs
   :after tree-sitter)
@@ -214,9 +222,6 @@
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
-
-(after! evil-easymotion
-  (load! "bindings/+easymotion"))
 
 (after! modeline
   (setq
