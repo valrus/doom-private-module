@@ -6,13 +6,13 @@
  ;; Fonts
  doom-font (font-spec :family "Inconsolata" :size 13 :width 'semi-condensed)
  doom-serif-font (font-spec :family "Inconsolata" :size 13 :width 'semi-condensed)
- doom-unicode-font (font-spec :family "Apple Color Emoji" :size 8)
+ doom-unicode-font (font-spec :family "Noto Sans" :size 8)
  doom-big-font (font-spec :family "Inconsolata" :size 18)
  doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light)
  minibuffer-font-spec (font-spec :family "Inconsolata")
 
  ;; theme
- doom-theme 'doom-solarized-light
+ ;; doom-theme 'doom-solarized-light
 
  ;; ui
  ;; frame-title-format nil

@@ -179,7 +179,8 @@
 
 (use-package! ace-window
   :custom
-  (aw-keys '(?a ?s ?d ?f ?g ?m ?h ?e ?k ?l)))
+  (aw-keys '(?a ?r ?s ?t ?g ?m ?h ?e ?l ?k)))
+  ;; (custom-set-variables '(aw-keys '(?a ?r ?s ?t ?g ?m ?h ?e ?l ?k)))
 
 (use-package! tree-sitter-langs
   :after tree-sitter)
@@ -314,7 +315,6 @@
    org-agenda-files (list org-directory)
    org-use-fast-todo-selection nil
    org-ellipsis " ▼ "
-   ;; org-bullets-bullet-list '("①" "②" "③" "④" "⑤" "⑥" "⑦" "⑧" "⑨" "⑩")))
    org-superstar-headline-bullets-list '("◷" "◶" "◵" "◴" "⊚" "⊛" "⊗" "⊕" "⊘" "⊙")
    org-superstar-item-bullet-alist '(("*" . "•") ("+" . "‣") ("-" . "⁃"))))
 

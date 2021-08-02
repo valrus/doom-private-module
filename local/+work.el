@@ -2,10 +2,10 @@
 
 (setq
  so-long-threshold 500
- doom-gc-cons-threshold 4194304
 
  ;; theme
- doom-theme 'modus-operandi)
+ doom-theme 'modus-operandi
+ require-final-newline nil)
 
 (add-hook! doom-load-theme
   (set-face-attribute 'mode-line nil :box nil)
