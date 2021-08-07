@@ -18,7 +18,7 @@
  ;; doom-font (font-spec :family "Inconsolata" :size 14 :width 'semi-condensed)
  ;; doom-font (font-spec :family "Operator Mono Light" :weight 'light :size 14)
  ;; doom-font (font-spec :family "Iosevka" :size 14 :weight 'semi-light)
- doom-font (font-spec :family "Rec Mono Semicasual" :size 14 :weight 'semi-light)
+ doom-font (font-spec :family "Iosevka" :size 14 :weight 'semi-light)
  doom-serif-font (font-spec :family "Iosevka Slab" :size 14 :weight 'semi-light)
  doom-unicode-font (font-spec :family "Iosevka" :size 14 :weight 'semi-light)
  doom-big-font (font-spec :family "Iosevka" :size 20 :weight 'normal)
