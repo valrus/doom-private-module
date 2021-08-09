@@ -17,7 +17,7 @@
 
 (global-auto-revert-mode -1)
 
-(defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?h ?e ?l ?k)
+(defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
   "Characters in the keyboard home row, for alternate layouts.")
 
 ;;
