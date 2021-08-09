@@ -14,11 +14,6 @@
 (package! indium)
 (package! snakemake-mode)
 
-;; light
-(package! modus-operandi-theme)
-;; dark
-(package! modus-vivendi-theme)
-
 ;; for Spacehammer
 (package! fennel-mode)
 
