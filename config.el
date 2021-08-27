@@ -16,6 +16,11 @@
       fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png"))
 
 (global-auto-revert-mode -1)
+(custom-set-variables '(tool-bar-mode nil))
+(tool-bar-mode -1)
+(setq-default tool-bar-mode nil)
+(setq-default enable-local-variables t)
+(add-to-list 'safe-local-variable-values '(lsp-python-ms-extra-paths . "/Users/ianmccowan/Code/external-api/thrift/out/gen-py"))
 
 (defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
   "Characters in the keyboard home row, for alternate layouts.")
@@ -204,9 +209,26 @@
 (use-package! lsp-mode
   :custom
   (lsp-modeline-diagnostics-enable t)
+  (lsp-idle-delay 2.0)
   :config
+  ;; the lsp formatter doesn't seem to respect .prettierrc.json
+  (setq-hook! 'rjsx-mode-hook +format-with-lsp nil)
   (setq-default
-    lsp-client-packages (delete 'lsp-steep lsp-client-packages)))
+   lsp-client-packages (delete 'lsp-steep lsp-client-packages)
+   lsp-eslint-format nil
+   lsp-eslint-auto-fix-on-save nil))
+
+;; this re-analyzes and uses way too much cpu
+;; (use-package! lsp-python-ms
+;;   :init (setq lsp-python-ms-auto-install-server t)
+;;   :hook (python-mode . (lambda ()
+;;                           (require 'lsp-python-ms)
+;;                           (lsp))))  ; or lsp-deferred
+
+;; (use-package! lsp-jedi
+;;   :config
+;;   (with-eval-after-load "lsp-mode"
+;;     (add-to-list 'lsp-disabled-clients 'pyls)))
 
 (after! lsp-ui
   (setq-default
@@ -299,6 +321,9 @@
   (setq-default
    elm-format-on-save-mode t
    elm-format-on-save t))
+
+(after! vimish-fold
+  (setq-default vimish-fold-include-last-empty-line t))
 
 ;; (defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
 ;;   (rvm-activate-corresponding-ruby))

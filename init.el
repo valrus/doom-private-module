@@ -8,7 +8,7 @@
 (doom!
  :completion
  (company          ; the ultimate code completion backend
-  -tng ; complete using only TAB
+  +tng ; complete using only TAB
   +childframe)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
@@ -92,7 +92,7 @@
  :tools
  ;; ansible
  ;; debugger          ; FIXME stepping through code, to help you add bugs
- ;; direnv
+ direnv
  editorconfig      ; let someone else argue about tabs vs spaces
  ;; ein               ; tame Jupyter notebooks with emacs
  eval              ; run code, run (also, repls)
@@ -132,7 +132,7 @@
  ;; (haskell +intero) ; a language that's lazier than I am
  ;; hy                ; readability of scheme w/ speed of python
  ;; (java +meghanada) ; the poster child for carpal tunnel syndrome
- javascript        ; all(hope(abandon(ye(who(enter(here))))))
+ (javascript +lsp)    ; all(hope(abandon(ye(who(enter(here))))))
  ;; julia             ; a better, faster MATLAB
  ;; kotlin            ; a better, slicker Java(Script)
  (:if (local-config-home-p) (latex +latexmk))
@@ -157,11 +157,12 @@
  ;; plantuml          ; diagrams for confusing people more
  ;; purescript        ; javascript, but functional
  (python           ; beautiful is better than ugly
-  +pyenv)
+  +pyenv
+  +lsp)
  ;; qt                ; the 'cutest' gui framework ever
  ;; racket            ; a DSL for DSLs
  ;; rest              ; Emacs as a REST client
- (:if (local-config-work-p) (ruby +lsp +rvm +rails))
+ ;; (:if (local-config-work-p) (ruby +lsp +rvm +rails))
  ;; (ruby +rvm +lsp)
  (:if (local-config-home-p) (rust +lsp))
  ;; scala             ; java, but good
