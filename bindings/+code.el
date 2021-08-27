@@ -17,3 +17,13 @@
  "r" nil
  (:prefix "r"
   :nv "h" #'replace-hash-format))
+
+(map!
+ (:prefix "z"
+  :desc "Fold top level" :n [return] #'hs-hide-all
+  :desc "Toggle hiding" :n "SPC" #'hs-toggle-hiding))
+
+(map!
+ :map python-mode-map
+ (:prefix "z"
+  :desc "Fold class" :n "C" #'hs-hide-level))
