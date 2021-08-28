@@ -25,7 +25,7 @@
    "C-u" nil))
 
  (:leader
-  :desc "Enter command" :n "SPC" #'counsel-M-x
+  :desc "Enter command" :n "SPC" #'execute-extended-command
   (:prefix "h"
    :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
 
@@ -40,14 +40,10 @@
     :desc "Search all buffers" :n "a" #'swiper-all
     :desc "Search project" :n "/" #'+ivy/project-search)))
 
- (:after helm
+ (:after vertico
   (:leader
    (:prefix "/"
-    :desc "Search project" :n "/" #'+helm/project-search)))
-
- (:after helm-files
-   (:map helm-find-files-map
-     :desc "Up one directory" "C-h" #'helm-find-files-up-one-level))
+    :desc "Search project" :n "/" #'+default/search-project)))
 
  (:after projectile-rails
    (:map enh-ruby-mode-map

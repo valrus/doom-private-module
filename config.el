@@ -133,8 +133,8 @@
    which-key-posframe-border-width 1
    which-key-posframe-poshandler #'posframe-poshandler-frame-center))
 
-(after! which-key
-  (which-key-posframe-mode t))
+;; (after! which-key
+;;   (which-key-posframe-mode t))
 
 (use-package! company
   :defer t
@@ -180,6 +180,10 @@
   (org-journal-date-format "%Y-%m-%d")
   :config
   (load! "bindings/+org-journal"))
+
+(use-package! evil-text-object-python
+  :defer t
+  :hook (python-mode . evil-text-object-python-add-bindings))
 
 (use-package! tree-sitter
   :demand t

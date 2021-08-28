@@ -6,6 +6,11 @@
 
 ;;; Actual init starts here
 (doom!
+ :input
+ ;; chinese
+ ;; japanese
+ ;; layout            ; auie,ctsrnm is the superior home row
+
  :completion
  (company          ; the ultimate code completion backend
   +tng ; complete using only TAB
@@ -14,24 +19,28 @@
  ;;  +childframe
  ;;  +fuzzy)          ; enable fuzzy search backend for helm
  ;; ido               ; the other *other* search engine...
- (ivy               ; a search engine for love and life
-  +childframe
-  -prescient
-  -icons           ; slowish
-  +fuzzy)          ; enable fuzzy search backend for ivy
+ ;; (ivy               ; a search engine for love and life
+ ;;  +childframe
+ ;;  -prescient
+ ;;  -icons           ; slowish
+ ;;  +fuzzy)          ; enable fuzzy search backend for ivy
  ;; (selectrum
  ;;  +prescient)
+ (vertico
+  +icons)
 
  :ui
  deft              ; notational velocity for Emacs
  doom              ; what makes DOOM look the way it does
  doom-dashboard    ; a nifty splash screen for Emacs
  ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
+ ;; (emoji +unicode)
  ;; fill-column    ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  hydra
  ;; indent-guides
- mini-frame
+ ;; ligatures      ; ligatures and symbols to make your code pretty again
+ ;; minimap        ; show a map of the code on the side
  (modeline         ; snazzy, Atom-inspired modeline, plus API
   +light)
  nav-flash         ; blink the current line after jumping
@@ -40,25 +49,21 @@
  (popup            ; tame sudden yet inevitable temporary windows
   +all             ; catch all popups that start with an asterix
   +defaults)
- ;; ligatures       ; replace bits of code with pretty symbols
- ;; +iosevka ; needs a patched font
  ;; tabs              ; FIXME an (incomplete) tab bar for Emacs
  ;; treemacs          ; a project drawer, like neotree but cooler
- ;; unicode           ; extended unicode support for various languages
  ;; vc-gutter         ; vcs diff in the fringe
  ;; vi-tilde-fringe   ; fringe tildes to mark beyond EOB
  (window-select    ; visually switch windows
   +numbers)
  unicode
  workspaces        ; tab emulation, persistence & separate workspaces
- zen
+ (:if (local-config-home-p) zen)
 
  :editor
  (evil +everywhere)
  file-templates    ; auto-snippets for empty files
  fold
  format
- ;; (:if (local-config-work-p) (format +onsave))
  ;; god
  ;; lispy             ; vim for lisp, for people who dont like vim
  multiple-cursors  ; editing in many places at once
@@ -101,17 +106,19 @@
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
  lsp
- ;; macos             ; MacOS-specific commands
  magit
  ;; make              ; run make tasks from Emacs
  ;; pass              ; password manager for nerds
  ;; pdf               ; pdf enhancements
  ;; prodigy           ; FIXME managing external services & code builders
  ;; rgb               ; creating color strings
+ ;; taskrunner        ; taskrunner for all your projects
  ;; terraform
  ;; tmux              ; an API for interacting with tmux
  ;; upload            ; map local to remote projects via ssh/ftp
- ;; wakatime
+
+ :os
+ ;; macos             ; MacOS-specific commands
 
  :lang
  ;;agda              ; types of types of types of types...
@@ -175,18 +182,21 @@
  web               ; the tubes
  (yaml +lsp)
 
+ :email
+ ;; (mu4e +org +gmail)
+ ;; notmuch
+ ;; (wanderlust +gmail)
+
  ;; Applications are complex and opinionated modules that transform Emacs
  ;; toward a specific purpose. They may have additional dependencies and
  ;; should be loaded late.
  :app
  ;; calendar
- ;; (email +gmail)    ; emacs as an email client
+ ;; emms
+ ;; everywhere        ; *leave* Emacs!? You must be joking
  irc               ; how neckbeards socialize
  ;; (rss +org)        ; emacs as an RSS reader
  ;; twitter           ; twitter client https://twitter.com/vnought
- ;; (write            ; emacs as a word processor (latex + org + markdown)
- ;; +wordnut         ; wordnet (wn) search
- ;; +langtool)       ; a proofreader (grammar/style check) for Emacs
 
  :config
  ;; For literate config users. This will tangle+compile a config.org

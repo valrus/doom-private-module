@@ -5,7 +5,7 @@
 ;; Doesn't do anything without some kinda messing around
 ;; (not compatible with doom's modeline?)
 ;; (package! moody)
-(package! which-key-posframe)
+;; (package! which-key-posframe)
 (package! refine)
 (package! typo)
 ;; (package! poet-theme)
@@ -32,6 +32,8 @@
     :type 'local
     :recipe (:local-repo "packages/twee-mode"
              :build (:not compile))))
+
+(package! evil-text-object-python)
 
 ;; Unpinned packages
 (unpin! doom-themes)
