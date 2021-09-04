@@ -199,6 +199,10 @@
   :custom
   (aw-keys home-row-keys))
 
+(use-package! avy
+  :config
+  (avy-keys home-row-keys))
+
 (use-package! tree-sitter-langs
   :after tree-sitter)
 ;;
