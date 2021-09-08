@@ -58,6 +58,7 @@
 ;;
 
 (load! "bindings/+main")
+(load! "bindings/+code")
 (load! "bindings/+spacemacs")
 
 ;;
@@ -140,7 +141,11 @@
   :defer t
   :config
   (setq
-   company-idle-delay nil))
+   company-idle-delay nil)
+  (when (featurep! :completion company +tng)
+    (add-to-list 'company-frontends 'company-tng-frontend))
+  (when (featurep! :completion company +childframe)
+    (add-to-list 'company-frontends 'company-box-frontend)))
 
 (use-package! deadgrep
   :defer t
