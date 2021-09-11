@@ -205,7 +205,7 @@
   (aw-keys home-row-keys))
 
 (use-package! avy
-  :config
+  :custom
   (avy-keys home-row-keys))
 
 (use-package! tree-sitter-langs
