@@ -47,4 +47,5 @@
  ((local-config-work-p)
   (package! thrift-mode
     :recipe (:host github
-             :repo "davidmiller/thrift-mode"))))
+             :repo "davidmiller/thrift-mode"))
+  (package! git-link)))

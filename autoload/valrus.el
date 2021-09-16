@@ -21,3 +21,22 @@
   (interactive)
   (popup-file (concat org-directory "work.org")))
 
+;;;###autoload
+(defun quote-uuids-in-buffer ()
+  "Wrap all UUIDs in the current buffer in single quotes"
+  (interactive)
+  (save-excursion
+    (progn
+      (goto-char (point-min))
+      (while (re-search-forward
+              (rx
+               (repeat 8 hex-digit)
+               "-"
+               (repeat 4 hex-digit)
+               "-"
+               (repeat 4 hex-digit)
+               "-"
+               (repeat 4 hex-digit)
+               "-"
+               (repeat 12 hex-digit)) nil t)
+        (replace-match "'\\&'")))))
