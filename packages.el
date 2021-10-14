@@ -37,15 +37,16 @@
 
 ;; Unpinned packages
 (unpin! doom-themes)
+(unpin! lsp-mode)
+(unpin! lsp-python-ms)
 
 ;; Disabled packages
 (package! magit-todos :disable t)
 (package! solaire-mode :disable t)
 
 ;; Local-specific packages
-(cond
- ((local-config-work-p)
+(when (local-config-work-p)
   (package! thrift-mode
     :recipe (:host github
              :repo "davidmiller/thrift-mode"))
-  (package! git-link)))
+  (package! git-link))

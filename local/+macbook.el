@@ -4,12 +4,26 @@
  org-directory "~/Dropbox/Work Share/org/"
 
  ;; Fonts
- doom-font (font-spec :family "Inconsolata" :size 13 :width 'semi-condensed)
- doom-serif-font (font-spec :family "Inconsolata" :size 13 :width 'semi-condensed)
- doom-unicode-font (font-spec :family "Noto Sans" :size 8)
- doom-big-font (font-spec :family "Inconsolata" :size 18)
- doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light)
- minibuffer-font-spec (font-spec :family "Inconsolata")
+ ;; doom-font (font-spec :family "Inconsolata" :size 13 :width 'semi-condensed)
+ ;; doom-serif-font (font-spec :family "Inconsolata" :size 13 :width 'semi-condensed)
+ ;; doom-unicode-font (font-spec :family "Noto Sans" :size 8)
+ ;; doom-big-font (font-spec :family "Inconsolata" :size 18)
+ ;; doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light)
+ ;; minibuffer-font-spec (font-spec :family "Inconsolata")
+
+ doom-font (font-spec :family "Iosevka" :size 12 :weight 'normal)
+ doom-serif-font (font-spec :family "Iosevka Slab" :size 12 :weight 'normal)
+ doom-unicode-font (font-spec :family "Iosevka" :size 12 :weight 'normal)
+ doom-big-font (font-spec :family "Iosevka" :size 20 :weight 'normal)
+ doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 12)
+ minibuffer-font-spec '((default :family "Iosevka"))
+
+ ;; doom-font (font-spec :family "Victor Mono" :size 11 :weight 'semi-light)
+ ;; doom-serif-font (font-spec :family "Victor Mono" :size 11 :weight 'semi-light)
+ ;; doom-unicode-font (font-spec :family "Victor Mono" :size 11 :weight 'semi-light)
+ ;; doom-big-font (font-spec :family "Victor Mono" :size 20 :weight 'normal)
+ ;; doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 11)
+ ;; minibuffer-font-spec '((default :family "Victor Mono"))
 
  ;; theme
  ;; doom-theme 'doom-solarized-light

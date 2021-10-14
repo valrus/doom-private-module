@@ -13,14 +13,15 @@
       ;; comp-deferred-compilation t
       ;;
       straight-vc-git-default-protocol 'ssh
-      fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png"))
+      fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png")
+      +workspaces-switch-project-function #'ignore
+      pipenv-with-projectile t)
 
 (global-auto-revert-mode -1)
 (custom-set-variables '(tool-bar-mode nil))
 (tool-bar-mode -1)
 (setq-default tool-bar-mode nil)
 (setq-default enable-local-variables t)
-(add-to-list 'safe-local-variable-values '(lsp-python-ms-extra-paths . "/Users/ianmccowan/Code/external-api/thrift/out/gen-py"))
 
 (defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
   "Characters in the keyboard home row, for alternate layouts.")
@@ -84,6 +85,11 @@
   ;; (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
   (load! "bindings/+ivy"))
 
+(use-package! consult
+  :defer t
+  :config
+  (load! "bindings/+consult.el"))
+
 ;; tools/magit
 (use-package! magit
   :config
@@ -117,9 +123,7 @@
   :init
   (setq-default
    winum-scope 'frame-local
-   winum-auto-assign-0-to-minibuffer t)
-  :config
-  (load! "bindings/+winum"))
+   winum-auto-assign-0-to-minibuffer t))
 
 (use-package! which-key-posframe
   :after which-key
@@ -193,8 +197,7 @@
   (map!
    (:leader
     (:prefix "h"
-     (:prefix "C-v"
-      :desc "Set variable with refine" :n #'refine)))))
+     :desc "Set variable with refine" :n "C-v" #'refine))))
 
 (use-package! evil-text-object-python
   :defer t
@@ -231,11 +234,10 @@
   (lsp-modeline-diagnostics-enable t)
   (lsp-idle-delay 2.0)
   :config
-  ;; the lsp formatter doesn't seem to respect .prettierrc.json
-  (setq-hook! 'rjsx-mode-hook +format-with-lsp nil)
+  (setq-hook! 'rjsx-mode-hook +format-with-lsp t)
   (setq-default
    lsp-client-packages (delete 'lsp-steep lsp-client-packages)
-   lsp-eslint-format nil
+   lsp-eslint-format t
    lsp-eslint-auto-fix-on-save nil))
 
 (after! lsp-ui
