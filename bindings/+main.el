@@ -29,11 +29,6 @@
   (:prefix "h"
    :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
 
- (:after treemacs-evil
-   (:map evil-treemacs-state-map
-     "C-h" #'evil-window-left
-     "C-l" #'evil-window-right))
-
  (:after ivy
   (:leader
    (:prefix "/"
@@ -58,44 +53,32 @@
        (:prefix ("c" . "controls")
          :desc "Org C-c C-c" :n "c" #'org-ctrl-c-ctrl-c))))
 
- (:after refine
-   (:leader
-     (:prefix "h"
-       (:prefix "C-v"
-         :desc "Set variable with refine" :n #'refine))))
-
-  (:after olivetti
-    (:leader
-      (:prefix "w"
-        (:prefix "m"
-          :desc "Olivetti mode" :n "o" #'olivetti-mode))))
-
  (:map smerge-mode-map
-   (:leader
-     :desc "Smerge hydra" :n "=" #'+vc/smerge-hydra/body))
+  (:leader
+   :desc "Smerge hydra" :n "=" #'+vc/smerge-hydra/body))
 
  ;; global bindings
  (:leader
-   (:prefix "b"
-     :desc "Rename buffer" :n "R" #'rename-buffer
-     :desc "Kill buffer" :n "d" #'kill-this-buffer ; consistency with `SPC w d'
-     :desc "Revert buffer" :n "v" (cmd! (revert-buffer t t))
-     :desc "Flycheck buffer" :n "c" #'flycheck-buffer)
+  (:prefix "b"
+   :desc "Rename buffer" :n "R" #'rename-buffer
+   :desc "Kill buffer" :n "d" #'kill-this-buffer ; consistency with `SPC w d'
+   :desc "Revert buffer" :n "v" (cmd! (revert-buffer t t))
+   :desc "Flycheck buffer" :n "c" #'flycheck-buffer)
 
-   (:prefix "o"
-     (:prefix ("o" . "open org file")
-       :desc "Open work notes" :n "w" #'popup-work-notes
-       :desc "Open todo file" :n "t" #'popup-todo-file))
+  (:prefix "o"
+   (:prefix ("o" . "open org file")
+    :desc "Open work notes" :n "w" #'popup-work-notes
+    :desc "Open todo file" :n "t" #'popup-todo-file))
 
-   (:prefix "TAB"
-     :desc "Switch workspace" :n "SPC" #'+workspace/switch-to
-     :desc "Create workspace" :n "c" #'+workspace/new)
+  (:prefix "TAB"
+   :desc "Switch workspace" :n "SPC" #'+workspace/switch-to
+   :desc "Create workspace" :n "c" #'+workspace/new)
 
-   ;; window navigation
-   (:prefix "w"
-    :desc "Ace-window" :n "SPC" #'ace-window
-    :desc "Maximize frame" :n "M" #'toggle-frame-maximized
-    :desc "Window left" :n [left] #'evil-window-left
-    :desc "Window down" :n [down] #'evil-window-down
-    :desc "Window up" :n [up] #'evil-window-up
-    :desc "Window up" :n [right] #'evil-window-right)))
+  ;; window navigation
+  (:prefix "w"
+   :desc "Ace-window" :n "SPC" #'ace-window
+   :desc "Maximize frame" :n "M" #'toggle-frame-maximized
+   :desc "Window left" :n [left] #'evil-window-left
+   :desc "Window down" :n [down] #'evil-window-down
+   :desc "Window up" :n [up] #'evil-window-up
+   :desc "Window up" :n [right] #'evil-window-right)))

@@ -1,6 +1,8 @@
 ;;; ~/.doom.d/bindings/+ivy.el -*- lexical-binding: t; -*-
 
 (map!
+ :desc "Search project" :n "/" #'+default/search-project
+
  :map ivy-minibuffer-map
  "C-k" #'ivy-previous-line
  "C-j" #'ivy-next-line

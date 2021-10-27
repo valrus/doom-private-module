@@ -13,14 +13,15 @@
       ;; comp-deferred-compilation t
       ;;
       straight-vc-git-default-protocol 'ssh
-      fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png"))
+      fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png")
+      +workspaces-switch-project-function #'ignore
+      pipenv-with-projectile t)
 
 (global-auto-revert-mode -1)
 (custom-set-variables '(tool-bar-mode nil))
 (tool-bar-mode -1)
 (setq-default tool-bar-mode nil)
 (setq-default enable-local-variables t)
-(add-to-list 'safe-local-variable-values '(lsp-python-ms-extra-paths . "/Users/ianmccowan/Code/external-api/thrift/out/gen-py"))
 
 (defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
   "Characters in the keyboard home row, for alternate layouts.")
@@ -71,11 +72,6 @@
                 evil-split-window-below t
                 evil-vsplit-window-right t))
 
-;; (use-package! moody
-;;   :defer t
-;;   :config
-;;   (setq x-underline-at-descent-line t))
-
 (use-package! ivy
   :defer t
   :config
@@ -88,6 +84,11 @@
    ivy-re-builders-alist '((t . ivy--regex-plus)))
   ;; (remove-hook 'ivy-mode-hook #'ivy-rich-mode)
   (load! "bindings/+ivy"))
+
+(use-package! consult
+  :defer t
+  :config
+  (load! "bindings/+consult.el"))
 
 ;; tools/magit
 (use-package! magit
@@ -122,9 +123,7 @@
   :init
   (setq-default
    winum-scope 'frame-local
-   winum-auto-assign-0-to-minibuffer t)
-  :config
-  (load! "bindings/+winum"))
+   winum-auto-assign-0-to-minibuffer t))
 
 (use-package! which-key-posframe
   :after which-key
@@ -163,6 +162,13 @@
   :config
   (load! "bindings/+easymotion"))
 
+(use-package! git-link
+  :config
+  (map!
+   (:leader
+    (:prefix "f"
+     :desc "Yank git link" :n "g" #'git-link))))
+
 (use-package! org-roam
   :after org
   :defer t
@@ -185,6 +191,13 @@
   (org-journal-date-format "%Y-%m-%d")
   :config
   (load! "bindings/+org-journal"))
+
+(use-package! refine
+  :config
+  (map!
+   (:leader
+    (:prefix "h"
+     :desc "Set variable with refine" :n "C-v" #'refine))))
 
 (use-package! evil-text-object-python
   :defer t
@@ -210,6 +223,7 @@
 
 (use-package! tree-sitter-langs
   :after tree-sitter)
+
 ;;
 ;; Modules
 ;;
@@ -224,24 +238,11 @@
   (lsp-modeline-diagnostics-enable t)
   (lsp-idle-delay 2.0)
   :config
-  ;; the lsp formatter doesn't seem to respect .prettierrc.json
-  (setq-hook! 'rjsx-mode-hook +format-with-lsp nil)
+  (setq-hook! 'rjsx-mode-hook +format-with-lsp t)
   (setq-default
    lsp-client-packages (delete 'lsp-steep lsp-client-packages)
-   lsp-eslint-format nil
+   lsp-eslint-format t
    lsp-eslint-auto-fix-on-save nil))
-
-;; this re-analyzes and uses way too much cpu
-;; (use-package! lsp-python-ms
-;;   :init (setq lsp-python-ms-auto-install-server t)
-;;   :hook (python-mode . (lambda ()
-;;                           (require 'lsp-python-ms)
-;;                           (lsp))))  ; or lsp-deferred
-
-;; (use-package! lsp-jedi
-;;   :config
-;;   (with-eval-after-load "lsp-mode"
-;;     (add-to-list 'lsp-disabled-clients 'pyls)))
 
 (after! lsp-ui
   (setq-default
@@ -249,11 +250,6 @@
 
 (after! lsp-rust
   (setq lsp-rust-server 'rust-analyzer))
-
-;; broken for now
-(after! lsp-ruby
-  (setenv "BUNDLE_GEMFILE" "Gemfile.local")
-  (setq lsp-solargraph-use-bundler t))
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
@@ -338,18 +334,12 @@
 (after! vimish-fold
   (setq-default vimish-fold-include-last-empty-line t))
 
-;; (defadvice inf-ruby-console-auto (before activate-rvm-for-robe activate)
-;;   (rvm-activate-corresponding-ruby))
-
 ;; lang/markdown
 (add-hook! 'markdown-mode-hook
   (progn
     (variable-pitch-mode t)
     (toggle-word-wrap nil)
     (auto-fill-mode -1)))
-
-;; (after! poet
-;;  (add-hook! (markdown-mode-hook org-mode-hook) (load-theme-buffer-local 'poet (current-buffer))))
 
 ;; lang/org
 (after! org

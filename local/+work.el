@@ -15,6 +15,9 @@
 (add-hook 'rjsx-mode-hook #'format-all-mode)
 (add-hook 'js2-mode-hook #'format-all-mode)
 
+(add-to-list 'safe-local-variable-values
+ '(lsp-python-ms-extra-paths . "/Users/ianmccowan/Code/external-api/thrift/out/gen-py"))
+
 ;; Some files have a LOT of errors; use a less resource-intensive highlight mode
 (use-package! flycheck
   :defer t
