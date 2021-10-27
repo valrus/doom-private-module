@@ -2,5 +2,5 @@
 
 (map!
  (:prefix "g"
-  :desc "Easymotion up" :n [up] #'evilem-motion-previous-line
-  :desc "Easymotion down" :n [down] #'evilem-motion-next-line))
+  :desc "Easymotion up" :nv [up] #'evilem-motion-previous-line
+  :desc "Easymotion down" :nv [down] #'evilem-motion-next-line))
