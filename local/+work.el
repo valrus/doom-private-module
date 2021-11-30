@@ -27,5 +27,18 @@
    flycheck-highlighting-mode 'symbols
    flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
 
+(use-package! thrift-mode
+ :demand t
+ :config
+ (add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode)))
+
+(use-package! git-link
+  :defer t
+  :config
+  (map!
+   (:leader
+    (:prefix "f"
+     :desc "Yank git link" :n "g" #'git-link))))
+
 ;; emacs-mac-port only
 ;; (mac-auto-operator-composition-mode t)

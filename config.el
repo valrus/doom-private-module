@@ -162,13 +162,6 @@
   :config
   (load! "bindings/+easymotion"))
 
-(use-package! git-link
-  :config
-  (map!
-   (:leader
-    (:prefix "f"
-     :desc "Yank git link" :n "g" #'git-link))))
-
 (use-package! org-roam
   :after org
   :defer t
