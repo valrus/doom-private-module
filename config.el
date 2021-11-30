@@ -14,7 +14,7 @@
       ;;
       straight-vc-git-default-protocol 'ssh
       fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png")
-      +workspaces-switch-project-function #'ignore
+      ;; +workspaces-switch-project-function #'ignore
       pipenv-with-projectile t)
 
 (global-auto-revert-mode -1)
