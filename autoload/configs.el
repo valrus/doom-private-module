@@ -4,11 +4,9 @@
 ;;;###autoload
 (defun local-config-name ()
   (pcase (system-name)
-    ("iMac.local"
-     (pcase (user-login-name)
-       ("ianbonanza" "imac-work")
-       (_ "imac-home")))
+    ("iMac.local" "imac-home")
     ("Ians-MBP" "macbook")
+    ("Ians-MBP.lan" "macbook")
     ("Ians-MacBook-Pro.local" "macbook")
     ("galliumos" "gallium")
     (_ "default")))
