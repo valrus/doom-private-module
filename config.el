@@ -233,9 +233,12 @@
    lsp-eslint-format t
    lsp-eslint-auto-fix-on-save nil))
 
-(after! lsp-ui
+(use-package! lsp-ui
+  ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+  :init
   (setq-default
-   lsp-ui-sideline nil))
+   lsp-ui-sideline-show-code-actions nil
+   lsp-ui-doc-enable nil))
 
 (after! lsp-rust
   (setq lsp-rust-server 'rust-analyzer))
