@@ -10,6 +10,7 @@
  doom-unicode-font (font-spec :family "Iosevka" :size 10 :weight 'light)
  doom-big-font (font-spec :family "Iosevka" :size 20)
  doom-variable-pitch-font (font-spec :family "PT Sans")
+ minibuffer-font-spec '((default :family "Iosevka"))
 
  ;; theme
  doom-theme 'modus-operandi)
