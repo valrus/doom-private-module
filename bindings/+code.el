@@ -1,6 +1,6 @@
 ;;; +code.el --- Bindings for code modifications.    -*- lexical-binding: t; -*-
 
-(defun replace-hash-format ()
+(defun valrus/rb-replace-hash-format ()
   (interactive)
   (evil-ex "%s/:\(\w+\) =>/\1:/g"))
 
@@ -16,7 +16,7 @@
        web-mode-map)
  "r" nil
  (:prefix "r"
-  :nv "h" #'replace-hash-format))
+  :nv "h" #'valrus/rb-replace-hash-format))
 
 (map!
  (:prefix "z"
