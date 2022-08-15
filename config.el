@@ -13,16 +13,14 @@
       ;; comp-deferred-compilation t
       ;;
       straight-vc-git-default-protocol 'ssh
-      fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png")
-      ;; +workspaces-switch-project-function #'ignore
-      pipenv-with-projectile t)
+      fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png"))
 
 (global-auto-revert-mode -1)
 (custom-set-variables '(tool-bar-mode nil))
 (tool-bar-mode -1)
+(global-eldoc-mode -1)
 (setq-default tool-bar-mode nil)
 (setq-default enable-local-variables t)
-
 (defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
   "Characters in the keyboard home row, for alternate layouts.")
 
@@ -115,8 +113,14 @@
 (after! magit
   (add-hook! 'with-editor-mode (progn (evil-append-line 1) (evil-insert-state)))
   (setq
-   +magit-hub-features nil
-   vc-handled-backends (delq 'Git vc-handled-backends)))
+   +magit-hub-features nil))
+
+(use-package! eldoc
+  :config
+  (global-eldoc-mode -1))
+
+(after! eldoc
+  (eldoc-mode -1))
 
 (use-package! winum
   :defer t
