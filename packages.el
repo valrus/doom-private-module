@@ -10,17 +10,15 @@
 (package! typo)
 ;; (package! poet-theme)
 ;; (package! olivetti)
-(package! lsp-ui)
+;; (package! lsp-ui)
 (package! indium)
 (package! snakemake-mode)
+(package! vimrc-mode)
+
+(unpin! org-roam)
 
 ;; for Spacehammer
 (package! fennel-mode)
-
-(package! tree-sitter
-  :ignore (null (bound-and-true-p module-file-suffix)))
-(package! tree-sitter-langs
-  :ignore (null (bound-and-true-p module-file-suffix)))
 
 (when (local-config-home-p)
   (package! mugur
@@ -35,10 +33,12 @@
 
 (package! evil-text-object-python)
 
+(package! string-inflection)
+
 ;; Unpinned packages
 (unpin! doom-themes)
-(unpin! lsp-mode)
-(unpin! lsp-python-ms)
+;; (unpin! lsp-mode)
+;; (unpin! lsp-python-ms)
 
 ;; Disabled packages
 (package! magit-todos :disable t)
@@ -46,6 +46,7 @@
 
 ;; Local-specific packages
 (when (local-config-work-p)
+  (package! eslint-fix)
   (package! thrift-mode
     :recipe (:host github
              :repo "davidmiller/thrift-mode"))
