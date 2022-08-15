@@ -311,8 +311,7 @@
    ;; magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395")
    ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
    ;; +magit-hub-features t
-   git-commit-summary-max-length 80
-   vc-handled-backends (delq 'Git vc-handled-backends)))
+   git-commit-summary-max-length 80))
 
 (load! "bindings/+magit")
 
