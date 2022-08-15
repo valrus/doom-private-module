@@ -55,7 +55,7 @@
  ;; vi-tilde-fringe   ; fringe tildes to mark beyond EOB
  (window-select    ; visually switch windows
   +numbers)
- unicode
+ ;; unicode
  workspaces        ; tab emulation, persistence & separate workspaces
  (:if (local-config-home-p) zen)
 
@@ -63,7 +63,7 @@
  (evil +everywhere)
  file-templates    ; auto-snippets for empty files
  fold
- format
+ (format +onsave)
  ;; god
  ;; lispy             ; vim for lisp, for people who dont like vim
  multiple-cursors  ; editing in many places at once
@@ -91,8 +91,8 @@
  :checkers
  ;; grammar
  ;; spell
- (syntax
-  +childframe)
+ ;; (syntax
+ ;;  +childframe)
 
  :tools
  ;; ansible
@@ -105,8 +105,9 @@
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
- lsp
+ (lsp +eglot)
  magit
+ tree-sitter
  ;; make              ; run make tasks from Emacs
  ;; pass              ; password manager for nerds
  ;; pdf               ; pdf enhancements
@@ -152,7 +153,7 @@
  (org              ; organize your plain life in plain text
   +journal
   +pretty
-  +roam
+  +roam2
   -brain
   -dragndrop
   -jupyter
@@ -164,7 +165,7 @@
  ;; plantuml          ; diagrams for confusing people more
  ;; purescript        ; javascript, but functional
  (python           ; beautiful is better than ugly
-  +pyenv
+  ;; +pyenv
   +lsp)
  ;; qt                ; the 'cutest' gui framework ever
  ;; racket            ; a DSL for DSLs
