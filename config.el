@@ -188,6 +188,12 @@
   :config
   (load! "bindings/+org-journal"))
 
+(use-package! pipenv
+  :config
+  ;; +workspaces-switch-project-function #'ignore
+  ;; condition-case: Error in a Doom startup hook: projectile-after-switch-project-hook, #[0 "^H \207" [pipenv-projectile-after-switch-function] 1], (wrong-type-argument stringp nil)
+  (setq pipenv-with-projectile t))
+
 (use-package! refine
   :config
   (map!
