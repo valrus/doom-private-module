@@ -169,7 +169,6 @@
 (use-package! org-roam
   :after org
   :defer t
-  :hook (org-mode . org-roam-mode)
   :custom
   (org-roam-directory (concat org-directory "roam"))
   (org-roam-buffer-position 'top)
