@@ -68,6 +68,7 @@
   (:prefix "o"
    (:prefix ("o" . "open org file")
     :desc "Open work notes" :n "w" #'popup-work-notes
+    :desc "Open journal for today" :n "j" #'org-journal-new-entry
     :desc "Open todo file" :n "t" #'popup-todo-file))
 
   (:prefix "TAB"
