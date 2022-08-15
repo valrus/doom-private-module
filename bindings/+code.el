@@ -43,7 +43,7 @@
    (:prefix "c"
     (:prefix ("~" . "Change string inflection")
      :desc "snake_case" :nv "s" #'string-inflection-underscore
-     :desc "PascalCase" :nv "p" #'string-inflection-pascal-case
+     :desc "lowerCamelCase" :nv "l" #'string-inflection-lower-camelcase
      :desc "kebab-case" :nv "k" #'string-inflection-kebab-case
      :desc "SCREAMING_SNAKE_CASE" :nv "S" #'string-inflection-upcase
-     :desc "camelCase" :nv "c" #'string-inflection-camelcase))))
+     :desc "CamelCase" :nv "c" #'string-inflection-camelcase))))
