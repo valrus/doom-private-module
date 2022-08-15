@@ -233,26 +233,58 @@
 
 ;; tools/lsp
 
-(use-package! lsp-mode
-  :custom
-  (lsp-modeline-diagnostics-enable t)
-  (lsp-idle-delay 2.0)
-  :config
-  (setq-hook! 'rjsx-mode-hook +format-with-lsp t)
-  (setq-default
-   lsp-client-packages (delete 'lsp-steep lsp-client-packages)
-   lsp-eslint-format t
-   lsp-eslint-auto-fix-on-save nil))
+;; (use-package! lsp-mode
+;;   :custom
+;;   (lsp-modeline-diagnostics-enable t)
+;;   (lsp-idle-delay 2.0)
+;;   :config
+;;   (setq-hook! 'rjsx-mode-hook +format-with-lsp t)
+;;   (setq-default
+;;    lsp-client-packages (remove 'lsp-steep lsp-client-packages)
+;;    lsp-eslint-format t
+;;    lsp-eslint-auto-fix-on-save nil))
 
-(use-package! lsp-ui
-  ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+;; workaround for unpinned lsp change, Doom issues #5904
+;; (after! lsp-mode
+;;   (advice-remove #'lsp #'+lsp-dont-prompt-to-install-servers-maybe-a))
+
+;; (use-package! lsp-ui
+;;   ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+;;   :init
+;;   (setq-default
+;;    lsp-ui-sideline-show-code-actions nil
+;;    lsp-ui-doc-enable nil))
+
+;; Toggle:
+
+(use-package! eglot
   :init
-  (setq-default
-   lsp-ui-sideline-show-code-actions nil
-   lsp-ui-doc-enable nil))
+  ;; https://github.com/joaotavora/eglot/discussions/776
+  (defvar eglot-log-event-p nil)
 
-(after! lsp-rust
-  (setq lsp-rust-server 'rust-analyzer))
+  (defun jsonrpc--log-event$toggle-event-log (f &rest args)
+    (when (and eglot-log-event-p
+               (ignore-errors
+                 (eq (type-of (car args)) 'eglot-lsp-server)))
+      (apply f args)))
+
+  (defun valrus/toggle-eglot-event-log ()
+    (interactive)
+    (setq eglot-log-event-p (not eglot-log-event-p))
+    (message "EGLOT event log is currently: %s"
+             (if eglot-log-event-p "ON" "OFF")))
+  :config
+  (setq-hook! '(typescript-tsx-mode-hook typescript-mode-hook) +format-with-lsp nil)
+  (add-to-list 'eglot-server-programs '(typescript-tsx-mode . ("typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(tsx-mode . ("typescript-language-server" "--stdio")))
+  (advice-add #'jsonrpc--log-event :around #'jsonrpc--log-event$toggle-event-log)
+
+  (setq-default
+   eglot-workspace-configuration
+   '((pylsp
+      (plugins
+       (jedi_completion (fuzzy . t))
+       (pycodestyle (enabled . nil)))))))
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
