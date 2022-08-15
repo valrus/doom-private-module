@@ -199,22 +199,30 @@
   :defer t
   :hook (python-mode . evil-text-object-python-add-bindings))
 
-(use-package! tree-sitter
-  :demand t
-  :hook
-  ;; tree-sitter doesn't get confused by quotes in string interpolations
-  (ruby-mode . tree-sitter-hl-mode)
-  (enh-ruby-mode . tree-sitter-hl-mode)
-  (python-mode . tree-sitter-hl-mode)
-  :config
-  (global-tree-sitter-mode))
+;; (use-package! tree-sitter
+;;   :demand t
+;;   :hook
+;;   ;; tree-sitter doesn't get confused by quotes in string interpolations
+;;   (ruby-mode . tree-sitter-hl-mode)
+;;   (enh-ruby-mode . tree-sitter-hl-mode)
+;;   (python-mode . tree-sitter-hl-mode)
+;;   :config
+;;   (global-tree-sitter-mode))
 
 (use-package! ace-window
   :custom
-  (aw-keys home-row-keys))
+  (aw-keys (remove ?m home-row-keys)))
 
-(use-package! tree-sitter-langs
-  :after tree-sitter)
+;; (use-package! tree-sitter-langs
+;;   :after tree-sitter)
+
+(use-package! format-all
+  :config
+  (set-formatter!
+    'js-prettier
+    "yarn prettier"
+    :modes
+    '(typescript-tsx-mode typescript-mode)))
 
 ;;
 ;; Modules
