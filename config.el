@@ -14,7 +14,6 @@
       ;;
       straight-vc-git-default-protocol 'ssh
       fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png")
-      +workspaces-switch-project-function #'ignore
       pipenv-with-projectile t)
 
 (global-auto-revert-mode -1)
@@ -162,8 +161,7 @@
   :config
   (load! "bindings/+easymotion"))
 
-(use-package! git-link
-  :config
+(after! git-link
   (map!
    (:leader
     (:prefix "f"
@@ -172,7 +170,6 @@
 (use-package! org-roam
   :after org
   :defer t
-  :hook (org-mode . org-roam-mode)
   :custom
   (org-roam-directory (concat org-directory "roam"))
   (org-roam-buffer-position 'top)
