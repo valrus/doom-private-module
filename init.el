@@ -43,6 +43,7 @@
  ;; minimap        ; show a map of the code on the side
  (modeline         ; snazzy, Atom-inspired modeline, plus API
   +light)
+ ;; nano
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
@@ -63,7 +64,7 @@
  (evil +everywhere)
  file-templates    ; auto-snippets for empty files
  fold
- format
+ (format +onsave)
  ;; god
  ;; lispy             ; vim for lisp, for people who dont like vim
  multiple-cursors  ; editing in many places at once
