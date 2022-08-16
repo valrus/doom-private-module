@@ -11,23 +11,34 @@
 ;;                            ( )     ( )
 ;;                    ( ) ( ) ( )     ( ) ( ) ( )))
 
+
+(defconst
+  key-shortcuts
+  '((num (tg numeric))
+    (gam (tg gaming))
+    (gbsp (G bspace))
+    (cesc (C escape))
+    (act (tg actions))
+    (sym (osl symbols))
+    (unsym (tg symbols))))
+
 (defconst shared-layers
   '(("base"
-     ((f19)            (1)         (2)   (3)   (4)  (5)   (num)     (num)    (6)   (7)   (8)    (9)        (0)   (---)
-      (C-M-G)          (q)         (w)   (e)   (r)  (t)     (=)     (-)      (y)   (u)   (i)    (o)        (p)   (C-M-S)
-      (cesc)          (C a)       (M s) (G d) (S f) (g)                     ("'") (S h) (G j)  (M k)      (C l)  (---)
-      (---)            (z)         (x)   (c)   (v)  (b) (C-M-G)     (C-M-S) ("/")  (n)   (m)  (comma)     (dot)  (---)
-      (tg gaming) (grave actions) ("[") (num) (sym)                               (sym) (num)  ("]")  (= actions) (act)
-                                                   (f19) (home)     (prior) (f18)
-                                                          (end)     (next)
-                                        (G bspace) (cesc) (num)     (tg caps) (G enter) (S space)))
+     ((---)     (1)   (2)   (3)    (4)    (5)   (---)     (---)   (6)   (7)   (8)     (9)     (0)   (---)
+      (f15)     (q)   (w)   (f)    (p)    (b)   (---)     (---)   (j)   (l)   (u)     (y)     ("'") (f16)
+      (cesc)    (C a) (M r) (G s)  (S t)  (g)                     (m)   (S n) (G e)   (M i)   (C o) (---)
+      (tg caps) (z)   (x)   (c)    (d)    (v)   (---)     (---)   ("/") (k)   (h)     (comma) (dot) (---)
+      (gam)     (num) (sym) (gbsp) (cesc)                               (gret) (sspc) (sym)   (num) (act)
+                                        (prior) (hypr)    (meh) (next)
+                                                (---)     (---)
+                                    (---) (---) (---)     (---) (---) (---)))
 
   ("symbols"
-    (( ) (f1)  (f2)  (f3)      (f4)    (f5) ( )     ( )  (f6)      (f7)      (f8)  (f9)  (f10)  (delete)
-     ( ) (!)   (^)  ("#")      (+)     (%)  (+)     (|)  (|)       (&)       (*)   ($)   ("?")       ( )
-     ( ) (@)  (";")  (:)       (-)     (=)              ("`")     (left)    (down) (up) (right)      ( )
-     ( ) (<)   ({)  ("[")     ("(")    (~)  ( )     ( ) ("\\")    (")")     ("]")  (})   (>)         ( )
-     ( ) ( )   ( )   ( )  (tg symbols)                         (tg symbols)  ( )   ( )   ( )         ( )
+    (( ) (f1)  (f2)  (f3) (f4)    (f5) ( )     ( )  (f6)      (f7)      (f8)  (f9)  (f10)  (delete)
+     ( ) (!)   (^)  ("#") (+)     (%)  ( )     (|)  (|)       (&)       (*)   ($)   ("?")       ( )
+     ( ) (@)  (";")  (:)  (-)     (=)              ("`")     (left)    (down) (up) (right)      ( )
+     ( ) (<)   ({)  ("[") ("(")    (~)  ( )     ( ) ("\\")    (")")     ("]")  (})   (>)         ( )
+     ( ) ( )   ( )   ( )  (unsym)                         (unsym)  ( )   ( )   ( )         ( )
                                        ( )  ( )     ( ) ( )
                                             ( )     ( )
                              (delete) (tab) ( )     ( ) (tab) (_)))
@@ -43,11 +54,11 @@
                                        (ms_btn3) (ms_btn4) ( )     (rgb_mod) (ms_btn4) (ms_btn3)))
 
   ("numeric"
-    (( ) ( ) ( ) ( ) ( ) ( ) ( )     ( ) ( ) ( ) ( )  ( )  ( ) ( )
-     ( ) (1) (2) (3) (4) (5) ( )     ( ) (6) (7) (8)  (9)  (0) ( )
-     ( ) ( ) ( ) ( ) ( ) ( )             ( ) (4) (5)  (6)  ( ) ( )
-     ( ) ( ) ( ) ( ) ( ) ( ) ( )     ( ) ( ) (1) (2)  (3)  ( ) ( )
-     ( ) ( ) ( ) ( ) ( )                     (0) ( ) (dot) ( ) ( )
+    (( )     ( ) ( ) ( ) ( ) ( ) ( )     ( ) ( ) ( ) ( )  ( )  ( ) ( )
+     ( )     (1) (2) (3) (4) (5) ( )     ( ) (6) (7) (8)  (9)  (0) ( )
+     (prior) ( ) ( ) ( ) ( ) ( )             ( ) (4) (5)  (6)  ( ) (prior)
+     (next)  ( ) ( ) ( ) ( ) ( ) ( )     ( ) ( ) (1) (2)  (3)  ( ) (next)
+     ( )     ( ) ( ) ( ) ( )                     (0) ( ) (dot) ( ) ( )
                          ( ) ( )     ( ) ( )
                              ( )     ( )
                      ( ) ( ) ( )     ( ) ( ) ( )))
@@ -91,6 +102,8 @@
             (command-enable nil))
 
    :with-keys '((num (tg numeric))
+                (gam (tg gaming))
+                (gbsp (G bspace))
                 (cesc (C escape))
                 (act (tg actions))
                 (sym (osl symbols)))
@@ -132,7 +145,7 @@ $29, $30, $31, $32, $36, $37, $75, $76, $67, $68, $69, $70")))
                 (act (tg actions))
                 (sym (osl symbols)))
 
-   :layers (mapcar (lambda (layer) (remove-if 'mugur-light-related layer)) shared-layers)))
+   :layers shared-layers))
 
 (defun mugur-generate-atreus () (interactive) (mugur-generate mugur-keymap-atreus))
 (defun mugur-make-atreus () (interactive) (mugur-make mugur-keymap-atreus))
@@ -148,9 +161,6 @@ $41, $42, $43, $44, $45, $46, $65, $66,   $67, $68, $49, $50, $51, $52, $53, $54
 $15, $16, $17, $18, $19, $20,                       $53, $54, $55, $56, $57, $58,
 $21, $22, $23, $24, $25, $26, $33, $34,   $71, $72, $60, $61, $62, $63, $64, $65,
                $28, $31, $32, $36, $37,   $75, $76, $66, $67, $70")))
-
-(defun mugur-light-related (layer-part)
-  (or (mugur--leds-p layer-part) (mugur--layer-rgb-p layer-part)))
 
 (defconst mugur-keymap-kyria
   (mugur-keymap
@@ -177,7 +187,7 @@ $21, $22, $23, $24, $25, $26, $33, $34,   $71, $72, $60, $61, $62, $63, $64, $65
                 (act (tg actions))
                 (sym (osl symbols)))
 
-   :layers (mapcar (lambda (layer) (remove-if 'mugur--leds-p layer)) shared-layers)))
+   :layers shared-layers))
 
 (defun mugur-generate-kyria () (interactive) (mugur-generate mugur-keymap-kyria))
 (defun mugur-make-kyria () (interactive) (mugur-make mugur-keymap-kyria))
