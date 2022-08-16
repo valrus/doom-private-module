@@ -1,5 +1,6 @@
 # -*- mode: snippet -*-
 # name: bytebox image
+# uuid: md-bytebox
 # --
 
 <a href="{{ get_asset('images/posts/${1:Post Slug}/${2:Image File}') }}" rel="bytebox">
