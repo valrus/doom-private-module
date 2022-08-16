@@ -1,0 +1,10 @@
+# key: trigger-key
+# name: Footnote
+# condition: t
+# --
+<li class="foot" id="foot-${1:ref}">
+<p>
+$0
+<a href="#ref-$1">↩</a>
+</p>
+</li>

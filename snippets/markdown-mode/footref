@@ -1,0 +1,4 @@
+# key: nil
+# name: Footnote Reference
+# --
+<sup id="ref${1:Number}"><a href="#foot$1" class="ref"></a></sup>
