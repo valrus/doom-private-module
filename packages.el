@@ -21,6 +21,8 @@
   :ignore (null (bound-and-true-p module-file-suffix)))
 (package! tree-sitter-langs
   :ignore (null (bound-and-true-p module-file-suffix)))
+(unpin! tree-sitter)
+(unpin! tree-sitter-langs)
 
 (when (local-config-home-p)
   (package! mugur
