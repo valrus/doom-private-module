@@ -6,6 +6,7 @@
   (pcase (system-name)
     ((or "iMac.local" "iMac.lan") "imac-home")
     ("Ians-MBP" "macbook")
+    ("Ians-MBP.lan" "macbook")
     ("Ians-MacBook-Pro.local" "macbook")
     ("galliumos" "gallium")
     (_ "default")))

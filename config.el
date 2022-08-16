@@ -13,15 +13,14 @@
       ;; comp-deferred-compilation t
       ;;
       straight-vc-git-default-protocol 'ssh
-      fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png")
-      pipenv-with-projectile t)
+      fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png"))
 
 (global-auto-revert-mode -1)
 (custom-set-variables '(tool-bar-mode nil))
 (tool-bar-mode -1)
+(global-eldoc-mode -1)
 (setq-default tool-bar-mode nil)
 (setq-default enable-local-variables t)
-
 (defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
   "Characters in the keyboard home row, for alternate layouts.")
 
@@ -114,8 +113,14 @@
 (after! magit
   (add-hook! 'with-editor-mode (progn (evil-append-line 1) (evil-insert-state)))
   (setq
-   +magit-hub-features nil
-   vc-handled-backends (delq 'Git vc-handled-backends)))
+   +magit-hub-features nil))
+
+(use-package! eldoc
+  :config
+  (global-eldoc-mode -1))
+
+(after! eldoc
+  (eldoc-mode -1))
 
 (use-package! winum
   :defer t
@@ -161,12 +166,6 @@
   :config
   (load! "bindings/+easymotion"))
 
-(after! git-link
-  (map!
-   (:leader
-    (:prefix "f"
-     :desc "Yank git link" :n "g" #'git-link))))
-
 (use-package! org-roam
   :after org
   :defer t
@@ -189,6 +188,12 @@
   :config
   (load! "bindings/+org-journal"))
 
+(use-package! pipenv
+  :config
+  ;; +workspaces-switch-project-function #'ignore
+  ;; condition-case: Error in a Doom startup hook: projectile-after-switch-project-hook, #[0 "^H \207" [pipenv-projectile-after-switch-function] 1], (wrong-type-argument stringp nil)
+  (setq pipenv-with-projectile t))
+
 (use-package! refine
   :config
   (map!
@@ -200,26 +205,31 @@
   :defer t
   :hook (python-mode . evil-text-object-python-add-bindings))
 
-(use-package! tree-sitter
-  :demand t
-  :hook
-  ;; tree-sitter doesn't get confused by quotes in string interpolations
-  (ruby-mode . tree-sitter-hl-mode)
-  (enh-ruby-mode . tree-sitter-hl-mode)
-  (python-mode . tree-sitter-hl-mode)
-  :config
-  (global-tree-sitter-mode))
+;; (use-package! tree-sitter
+;;   :demand t
+;;   :hook
+;;   ;; tree-sitter doesn't get confused by quotes in string interpolations
+;;   (ruby-mode . tree-sitter-hl-mode)
+;;   (enh-ruby-mode . tree-sitter-hl-mode)
+;;   (python-mode . tree-sitter-hl-mode)
+;;   :config
+;;   (global-tree-sitter-mode))
 
 (use-package! ace-window
   :custom
-  (aw-keys home-row-keys))
+  (aw-keys (remove ?m home-row-keys)))
 
 (use-package! avy
   :custom
   (avy-keys home-row-keys))
 
-(use-package! tree-sitter-langs
-  :after tree-sitter)
+(use-package! format-all
+  :config
+  (set-formatter!
+    'js-prettier
+    "yarn prettier"
+    :modes
+    '(typescript-tsx-mode typescript-mode)))
 
 ;;
 ;; Modules
@@ -230,23 +240,58 @@
 
 ;; tools/lsp
 
-(use-package! lsp-mode
-  :custom
-  (lsp-modeline-diagnostics-enable t)
-  (lsp-idle-delay 2.0)
+;; (use-package! lsp-mode
+;;   :custom
+;;   (lsp-modeline-diagnostics-enable t)
+;;   (lsp-idle-delay 2.0)
+;;   :config
+;;   (setq-hook! 'rjsx-mode-hook +format-with-lsp t)
+;;   (setq-default
+;;    lsp-client-packages (remove 'lsp-steep lsp-client-packages)
+;;    lsp-eslint-format t
+;;    lsp-eslint-auto-fix-on-save nil))
+
+;; workaround for unpinned lsp change, Doom issues #5904
+;; (after! lsp-mode
+;;   (advice-remove #'lsp #'+lsp-dont-prompt-to-install-servers-maybe-a))
+
+;; (use-package! lsp-ui
+;;   ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
+;;   :init
+;;   (setq-default
+;;    lsp-ui-sideline-show-code-actions nil
+;;    lsp-ui-doc-enable nil))
+
+;; Toggle:
+
+(use-package! eglot
+  :init
+  ;; https://github.com/joaotavora/eglot/discussions/776
+  (defvar eglot-log-event-p nil)
+
+  (defun jsonrpc--log-event$toggle-event-log (f &rest args)
+    (when (and eglot-log-event-p
+               (ignore-errors
+                 (eq (type-of (car args)) 'eglot-lsp-server)))
+      (apply f args)))
+
+  (defun valrus/toggle-eglot-event-log ()
+    (interactive)
+    (setq eglot-log-event-p (not eglot-log-event-p))
+    (message "EGLOT event log is currently: %s"
+             (if eglot-log-event-p "ON" "OFF")))
   :config
-  (setq-hook! 'rjsx-mode-hook +format-with-lsp t)
-  (setq-default
-   lsp-client-packages (delete 'lsp-steep lsp-client-packages)
-   lsp-eslint-format t
-   lsp-eslint-auto-fix-on-save nil))
+  (setq-hook! '(typescript-tsx-mode-hook typescript-mode-hook) +format-with-lsp nil)
+  (add-to-list 'eglot-server-programs '(typescript-tsx-mode . ("typescript-language-server" "--stdio")))
+  (add-to-list 'eglot-server-programs '(tsx-mode . ("typescript-language-server" "--stdio")))
+  (advice-add #'jsonrpc--log-event :around #'jsonrpc--log-event$toggle-event-log)
 
-(after! lsp-ui
   (setq-default
-   lsp-ui-sideline nil))
-
-(after! lsp-rust
-  (setq lsp-rust-server 'rust-analyzer))
+   eglot-workspace-configuration
+   '((pylsp
+      (plugins
+       (jedi_completion (fuzzy . t))
+       (pycodestyle (enabled . nil)))))))
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
@@ -273,8 +318,7 @@
    ;; magit-rebase-arguments '("--autostash" "--gpg-sign=5F6C0EA160557395")
    ;; magit-pull-arguments   '("--rebase" "--autostash" "--gpg-sign=5F6C0EA160557395")
    ;; +magit-hub-features t
-   git-commit-summary-max-length 80
-   vc-handled-backends (delq 'Git vc-handled-backends)))
+   git-commit-summary-max-length 80))
 
 (load! "bindings/+magit")
 

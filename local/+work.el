@@ -11,12 +11,37 @@
   (set-face-attribute 'mode-line nil :box nil)
   (set-face-attribute 'mode-line-inactive nil :box nil))
 
-(add-hook 'python-mode-hook #'format-all-mode)
-(add-hook 'rjsx-mode-hook #'format-all-mode)
-(add-hook 'js2-mode-hook #'format-all-mode)
+(add-hook!
+  (python-mode-hook)
+  #'format-all-mode)
+
+(setq-hook!
+  '(rjsx-mode-hook
+   js2-mode-hook
+   typescript-tsx-mode-hook
+   typescript-mode-hook)
+  eslint-fix-auto-mode t)
 
 (add-to-list 'safe-local-variable-values
  '(lsp-python-ms-extra-paths . "/Users/ianmccowan/Code/external-api/thrift/out/gen-py"))
+
+;; (use-package! format-all
+;;   :config
+;;   (define-format-all-formatter eslint
+;;     (:executable "eslint")
+;;     (:install)
+;;     (:modes rjsx-mode js2-mode typescript-tsx-mode typescript-mode)
+;;     (:format
+;;      (format-all--buffer-easy
+;;       executable
+;;       "--fix-dry-run"
+;;       "--stdin"
+;;       (when (buffer-file-name)
+;;         (list "--output-file" (buffer-file-name))))))
+;;   (setq-hook! '(rjsx-mode-hook
+;;                 js2-mode-hook
+;;                 typescript-tsx-mode-hook typescript-mode-hook) +format-with 'eslint))
+
 
 ;; Some files have a LOT of errors; use a less resource-intensive highlight mode
 (use-package! flycheck
@@ -26,6 +51,19 @@
    flycheck-error-list-highlight-overlays t
    flycheck-highlighting-mode 'symbols
    flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
+
+(use-package! thrift-mode
+ :demand t
+ :config
+ (add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode)))
+
+(use-package! git-link
+  :defer t
+  :config
+  (map!
+   (:leader
+    (:prefix "f"
+     :desc "Yank git link" :n "g" #'git-link))))
 
 ;; emacs-mac-port only
 ;; (mac-auto-operator-composition-mode t)

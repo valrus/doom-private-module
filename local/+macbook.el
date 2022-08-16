@@ -11,19 +11,19 @@
  ;; doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light)
  ;; minibuffer-font-spec (font-spec :family "Inconsolata")
 
- doom-font (font-spec :family "Iosevka" :size 12 :weight 'normal)
- doom-serif-font (font-spec :family "Iosevka Slab" :size 12 :weight 'normal)
- doom-unicode-font (font-spec :family "Iosevka" :size 12 :weight 'normal)
- doom-big-font (font-spec :family "Iosevka" :size 20 :weight 'normal)
- doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 12)
- minibuffer-font-spec '((default :family "Iosevka"))
+ ;; doom-font (font-spec :family "Iosevka" :size 12 :weight 'normal)
+ ;; doom-serif-font (font-spec :family "Iosevka Slab" :size 12 :weight 'normal)
+ ;; doom-unicode-font (font-spec :family "Iosevka" :size 12 :weight 'normal)
+ ;; doom-big-font (font-spec :family "Iosevka" :size 20 :weight 'normal)
+ ;; doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 12)
+ ;; minibuffer-font-spec '((default :family "Iosevka"))
 
- ;; doom-font (font-spec :family "Victor Mono" :size 11 :weight 'semi-light)
- ;; doom-serif-font (font-spec :family "Victor Mono" :size 11 :weight 'semi-light)
- ;; doom-unicode-font (font-spec :family "Victor Mono" :size 11 :weight 'semi-light)
- ;; doom-big-font (font-spec :family "Victor Mono" :size 20 :weight 'normal)
- ;; doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 11)
- ;; minibuffer-font-spec '((default :family "Victor Mono"))
+ doom-font (font-spec :family "Iosevka Custom" :size 12)
+ doom-serif-font (font-spec :family "Iosevka Slab" :size 12 :weight 'semi-light)
+ doom-unicode-font (font-spec :family "Iosevka Custom" :size 12)
+ doom-big-font (font-spec :family "Iosevka Custom" :size 20)
+ doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 12)
+ minibuffer-font-spec '((default :family "Iosevka Custom"))
 
  ;; theme
  ;; doom-theme 'doom-solarized-light

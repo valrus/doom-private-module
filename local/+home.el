@@ -6,6 +6,9 @@
 (setq-hook! 'rjsx-mode-hook
   js-indent-level 4)
 
+(after! lsp-rust
+  (setq lsp-rust-server 'rust-analyzer))
+
 (after! olivetti
   (setq-default
   olivetti-minimum-body-width 70
