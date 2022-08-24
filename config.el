@@ -239,59 +239,12 @@
 ;;   (setq gcmh-high-cons-threshold #x10000000)) ;; 200MB or so
 
 ;; tools/lsp
+ (when (doom-module-p :tools 'lsp)
+   (if (featurep! :tools lsp +eglot)
+       (load! "+eglot.el")
+     (load! "+lsp-mode.el")))
 
-;; (use-package! lsp-mode
-;;   :custom
-;;   (lsp-modeline-diagnostics-enable t)
-;;   (lsp-idle-delay 2.0)
-;;   :config
-;;   (setq-hook! 'rjsx-mode-hook +format-with-lsp t)
-;;   (setq-default
-;;    lsp-client-packages (remove 'lsp-steep lsp-client-packages)
-;;    lsp-eslint-format t
-;;    lsp-eslint-auto-fix-on-save nil))
-
-;; workaround for unpinned lsp change, Doom issues #5904
-;; (after! lsp-mode
-;;   (advice-remove #'lsp #'+lsp-dont-prompt-to-install-servers-maybe-a))
-
-;; (use-package! lsp-ui
-;;   ;; https://emacs-lsp.github.io/lsp-mode/tutorials/how-to-turn-off/
-;;   :init
-;;   (setq-default
-;;    lsp-ui-sideline-show-code-actions nil
-;;    lsp-ui-doc-enable nil))
-
-;; Toggle:
-
-(use-package! eglot
-  :init
-  ;; https://github.com/joaotavora/eglot/discussions/776
-  (defvar eglot-log-event-p nil)
-
-  (defun jsonrpc--log-event$toggle-event-log (f &rest args)
-    (when (and eglot-log-event-p
-               (ignore-errors
-                 (eq (type-of (car args)) 'eglot-lsp-server)))
-      (apply f args)))
-
-  (defun valrus/toggle-eglot-event-log ()
-    (interactive)
-    (setq eglot-log-event-p (not eglot-log-event-p))
-    (message "EGLOT event log is currently: %s"
-             (if eglot-log-event-p "ON" "OFF")))
-  :config
-  (setq-hook! '(typescript-tsx-mode-hook typescript-mode-hook) +format-with-lsp nil)
-  (add-to-list 'eglot-server-programs '(typescript-tsx-mode . ("typescript-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs '(tsx-mode . ("typescript-language-server" "--stdio")))
-  (advice-add #'jsonrpc--log-event :around #'jsonrpc--log-event$toggle-event-log)
-
-  (setq-default
-   eglot-workspace-configuration
-   '((pylsp
-      (plugins
-       (jedi_completion (fuzzy . t))
-       (pycodestyle (enabled . nil)))))))
+ (load! "+eglot.el")
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
