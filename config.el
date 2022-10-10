@@ -68,7 +68,8 @@
   :config
   (setq-default evil-kill-on-visual-paste nil
                 evil-split-window-below t
-                evil-vsplit-window-right t))
+                evil-vsplit-window-right t
+                evil-want-Y-yank-to-eol t))
 
 (use-package! ivy
   :defer t
