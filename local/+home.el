@@ -6,6 +6,11 @@
 (setq-hook! 'rjsx-mode-hook
   js-indent-level 4)
 
+(after! elm
+  (setq-default
+   elm-format-on-save-mode t
+   elm-format-on-save t))
+
 (after! lsp-rust
   (setq lsp-rust-server 'rust-analyzer))
 

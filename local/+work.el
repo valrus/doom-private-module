@@ -16,10 +16,10 @@
   #'format-all-mode)
 
 (setq-hook!
-  '(rjsx-mode-hook
-   js2-mode-hook
-   typescript-tsx-mode-hook
-   typescript-mode-hook)
+    '(rjsx-mode-hook
+      js2-mode-hook
+      typescript-tsx-mode-hook
+      typescript-mode-hook)
   eslint-fix-auto-mode t)
 
 (add-to-list 'safe-local-variable-values
@@ -56,6 +56,10 @@
  :demand t
  :config
  (add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode)))
+
+(use-package! yaml-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode)))
 
 (use-package! git-link
   :defer t

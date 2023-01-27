@@ -14,6 +14,7 @@
 (package! indium)
 (package! snakemake-mode)
 (package! vimrc-mode)
+(package! json-process-client :recipe (:host github :repo "emacsmirror/json-process-client"))
 
 (unpin! org-roam)
 
@@ -46,7 +47,7 @@
 
 ;; Local-specific packages
 (when (local-config-work-p)
-  (package! eslint-fix)
+  (package! eslint-auto-fix-mode :recipe (:host github :repo "merrickluo/eslint-auto-fix-mode"))
   (package! thrift-mode
     :recipe (:host github
              :repo "davidmiller/thrift-mode"))

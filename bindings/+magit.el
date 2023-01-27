@@ -6,6 +6,16 @@
   (let ((buffers (magit-mode-get-buffers)))
     (mapc #'kill-buffer buffers)))
 
+;; From https://emacs.stackexchange.com/a/30496
+(defun valrus-magit-yank-current-branch ()
+  "Show the current branch in the echo-area and add it to the `kill-ring'."
+  (interactive)
+  (let ((branch (magit-get-current-branch)))
+    (if branch
+        (progn (kill-new branch)
+               (message "%s" branch))
+      (user-error "There is not current branch"))))
+
 (map!
  (:after magit
   (:map with-editor-mode-map

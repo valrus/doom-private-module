@@ -23,6 +23,10 @@
 (setq-default enable-local-variables t)
 (defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
   "Characters in the keyboard home row, for alternate layouts.")
+(add-to-list 'default-frame-alist '(undecorated-round . t))
+
+;; Temp workaround
+(defun lsp-deferred () (eglot-ensure))
 
 ;;
 ;; Host-specific config
@@ -34,6 +38,7 @@
 (defun make-fancy-minibuffer ()
   (setq
    show-trailing-whitespace nil
+   truncate-lines nil
    ;; room for icons (if not using childframes)
    ;; line-spacing 2
    )
@@ -123,12 +128,19 @@
 (after! eldoc
   (eldoc-mode -1))
 
+(after! anaconda-mode
+  (remove-hook 'anaconda-mode-hook #'anaconda-eldoc-mode))
+
 (use-package! winum
   :defer t
   :init
   (setq-default
    winum-scope 'frame-local
    winum-auto-assign-0-to-minibuffer t))
+
+(use-package! vertico
+  :config
+  (setq vertico-multiline (cons "\n" "…")))
 
 (use-package! which-key-posframe
   :after which-key
@@ -145,10 +157,11 @@
   :defer t
   :config
   (setq
+   ;; no auto-popups
    company-idle-delay nil)
-  (when (featurep! :completion company +tng)
+  (when (modulep! :completion company +tng)
     (add-to-list 'company-frontends 'company-tng-frontend))
-  (when (featurep! :completion company +childframe)
+  (when (modulep! :completion company +childframe)
     (add-to-list 'company-frontends 'company-box-frontend)))
 
 (use-package! deadgrep
@@ -230,7 +243,12 @@
     'js-prettier
     "yarn prettier"
     :modes
-    '(typescript-tsx-mode typescript-mode)))
+    '(typescript-tsx-mode typescript-mode rjsx-mode))
+  (setq +format-on-save-enabled-modes
+        '(python-mode
+          ;; rjsx-mode
+          typescript-tsx-mode
+          typescript-mode)))
 
 ;;
 ;; Modules
@@ -241,7 +259,7 @@
 
 ;; tools/lsp
  (when (doom-module-p :tools 'lsp)
-   (if (featurep! :tools lsp +eglot)
+   (if (modulep! :tools lsp +eglot)
        (load! "+eglot.el")
      (load! "+lsp-mode.el")))
 
@@ -320,11 +338,6 @@
 
 (after! rvm
   (rvm-use-default))
-
-(after! elm
-  (setq-default
-   elm-format-on-save-mode t
-   elm-format-on-save t))
 
 (after! vimish-fold
   (setq-default vimish-fold-include-last-empty-line t))

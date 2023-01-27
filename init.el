@@ -141,7 +141,9 @@
  ;; (haskell +intero) ; a language that's lazier than I am
  ;; hy                ; readability of scheme w/ speed of python
  ;; (java +meghanada) ; the poster child for carpal tunnel syndrome
- (javascript +lsp)    ; all(hope(abandon(ye(who(enter(here))))))
+ (javascript          ; all(hope(abandon(ye(who(enter(here))))))
+  +lsp
+  +tree-sitter)
  ;; julia             ; a better, faster MATLAB
  ;; kotlin            ; a better, slicker Java(Script)
  (:if (local-config-home-p) (latex +latexmk))
@@ -167,7 +169,8 @@
  ;; purescript        ; javascript, but functional
  (python           ; beautiful is better than ugly
   ;; +pyenv
-  +lsp)
+  +lsp
+  +tree-sitter)
  ;; qt                ; the 'cutest' gui framework ever
  ;; racket            ; a DSL for DSLs
  ;; rest              ; Emacs as a REST client
@@ -181,7 +184,7 @@
  (:if (local-config-home-p) tablature)
  ;; terra             ; Earth and Moon in alignment for performance.
  ;; vala              ; GObjective-C
- web               ; the tubes
+ (web +tree-sitter)               ; the tubes
  (yaml +lsp)
 
  :email

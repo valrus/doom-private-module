@@ -2,7 +2,7 @@
 
 (map!
  ;; Comma for shortcut to local-leader
- :n "," (λ! (push (cons t ?m) unread-command-events)
+ :nv "," (λ! (push (cons t ?m) unread-command-events)
             (push (cons t 32) unread-command-events))
 
  ;; Use C-a as the window operations prefix for when I accidentally think I'm in tmux
