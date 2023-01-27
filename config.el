@@ -123,9 +123,11 @@
 
 (use-package! eldoc
   :config
-  (global-eldoc-mode -1))
+  (global-eldoc-mode -1)
+  (setq eldoc-idle-delay 5.0))
 
 (after! eldoc
+  (setq python-eldoc-get-doc nil)
   (eldoc-mode -1))
 
 (after! anaconda-mode
