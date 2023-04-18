@@ -34,16 +34,20 @@
 
 (map!
  (:after eglot
-  (:leader
-   (:prefix "c"
-    :desc "Toggle event logging" :n "l" #'valrus/toggle-eglot-event-log))))
+         (:leader
+          (:prefix "c"
+           :desc "Toggle event logging" :n "l" #'valrus/toggle-eglot-event-log))))
 
 (map!
-  (:leader
-   (:prefix "c"
-    (:prefix ("~" . "Change string inflection")
-     :desc "snake_case" :nv "s" #'string-inflection-underscore
-     :desc "lowerCamelCase" :nv "l" #'string-inflection-lower-camelcase
-     :desc "kebab-case" :nv "k" #'string-inflection-kebab-case
-     :desc "SCREAMING_SNAKE_CASE" :nv "S" #'string-inflection-upcase
-     :desc "CamelCase" :nv "c" #'string-inflection-camelcase))))
+ (:leader
+  (:prefix "c"
+           (:prefix ("~" . "Change string inflection")
+            :desc "snake_case" :nv "s" #'string-inflection-underscore
+            :desc "lowerCamelCase" :nv "l" #'string-inflection-lower-camelcase
+            :desc "kebab-case" :nv "k" #'string-inflection-kebab-case
+            :desc "SCREAMING_SNAKE_CASE" :nv "S" #'string-inflection-upcase
+            :desc "CamelCase" :nv "c" #'string-inflection-camelcase))))
+
+(map!
+ (:prefix "g"
+          :nv "+" #'evil-numbers/inc-at-pt))

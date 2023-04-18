@@ -17,7 +17,6 @@
 
 (global-auto-revert-mode -1)
 (custom-set-variables '(tool-bar-mode nil))
-(tool-bar-mode -1)
 (global-eldoc-mode -1)
 (setq-default tool-bar-mode nil)
 (setq-default enable-local-variables t)
@@ -74,7 +73,12 @@
   (setq-default evil-kill-on-visual-paste nil
                 evil-split-window-below t
                 evil-vsplit-window-right t
-                evil-want-Y-yank-to-eol t))
+                evil-want-Y-yank-to-eol t)
+  ;; scroll to center after quick find commands
+  (advice-add #'evil-ex-search-word-forward :after 'evil-scroll-line-to-center)
+  (advice-add #'evil-ex-search-word-backward :after 'evil-scroll-line-to-center)
+  (advice-add #'evil-ex-search-next :after 'evil-scroll-line-to-center)
+  (advice-add #'evil-ex-search-previous :after 'evil-scroll-line-to-center))
 
 (use-package! ivy
   :defer t
@@ -166,6 +170,15 @@
   (when (modulep! :completion company +childframe)
     (add-to-list 'company-frontends 'company-box-frontend)))
 
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
 (use-package! deadgrep
   :defer t
   :config
@@ -233,11 +246,16 @@
 
 (use-package! ace-window
   :custom
-  (aw-keys (remove ?m home-row-keys)))
+  (aw-keys (remove ?m home-row-keys))
+  (aw-dispatch-always t))
 
 (use-package! avy
   :custom
   (avy-keys home-row-keys))
+
+(use-package! flymake
+  :custom
+  (flymake-no-changes-timeout 3.0))
 
 (use-package! format-all
   :config
@@ -251,6 +269,12 @@
           ;; rjsx-mode
           typescript-tsx-mode
           typescript-mode)))
+
+(use-package! rjsx-mode
+  :config
+  (setq auto-mode-alist (delete '("\\.tsx\\'" . typescript-mode) auto-mode-alist))
+  (setq sgml-basic-offset 4)
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode)))
 
 ;;
 ;; Modules

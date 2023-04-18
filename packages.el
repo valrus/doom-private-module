@@ -15,6 +15,17 @@
 (package! snakemake-mode)
 (package! vimrc-mode)
 (package! json-process-client :recipe (:host github :repo "emacsmirror/json-process-client"))
+(package! ef-themes)
+(package! chatgpt-shell
+  :recipe (:host github :repo "xenodium/chatgpt-shell"))
+(package! copilot
+  :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")))
+
+;; tsx-mode?
+;; (package! tsi :recipe (:host github :repo "orzechowskid/tsi.el" :branch "main"))
+;; (package! coverlay)
+;; (package! origami)
+;; (package! tsx-mode :recipe (:host github :repo "orzechowskid/tsx-mode.el" :branch "emacs29"))
 
 (unpin! org-roam)
 

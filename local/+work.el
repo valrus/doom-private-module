@@ -4,7 +4,7 @@
  so-long-threshold 500
 
  ;; theme
- doom-theme 'modus-operandi
+ doom-theme 'ef-spring
  require-final-newline nil)
 
 (add-hook! doom-load-theme
@@ -63,11 +63,19 @@
 
 (use-package! git-link
   :defer t
+  :commands (git-link)
   :config
   (map!
    (:leader
     (:prefix "f"
      :desc "Yank git link" :n "g" #'git-link))))
+
+(use-package! rjsx-mode
+  :config
+  (setq auto-mode-alist (delete '("\\.tsx\\'" . typescript-mode) auto-mode-alist))
+  (setq sgml-basic-offset 4)
+  (setq js2-basic-offset 4)
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode)))
 
 ;; emacs-mac-port only
 ;; (mac-auto-operator-composition-mode t)

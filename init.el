@@ -184,7 +184,7 @@
  (:if (local-config-home-p) tablature)
  ;; terra             ; Earth and Moon in alignment for performance.
  ;; vala              ; GObjective-C
- (web +tree-sitter)               ; the tubes
+ ;; (web +tree-sitter)               ; the tubes
  (yaml +lsp)
 
  :email
