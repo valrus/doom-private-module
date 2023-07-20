@@ -40,3 +40,26 @@
                "-"
                (repeat 12 hex-digit)) nil t)
         (replace-match "'\\&'")))))
+
+;; https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/
+(defvar valrus/copilot-manual-mode nil
+  "When `t' will only show completions when manually triggered.")
+
+;;;###autoload
+(defun valrus/copilot-change-activation ()
+  "Switch between three activation modes:
+- automatic: copilot will automatically overlay completions
+- manual: you need to press a key (M-C-<return>) to trigger completions
+- off: copilot is completely disabled."
+  (interactive)
+  (if (and copilot-mode valrus/copilot-manual-mode)
+      (progn
+        (message "deactivating copilot")
+        (global-copilot-mode -1)
+        (setq valrus/copilot-manual-mode nil))
+    (if copilot-mode
+        (progn
+          (message "activating copilot manual mode")
+          (setq valrus/copilot-manual-mode t))
+      (message "activating copilot mode")
+      (global-copilot-mode))))

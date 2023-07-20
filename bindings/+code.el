@@ -51,3 +51,54 @@
 (map!
  (:prefix "g"
           :nv "+" #'evil-numbers/inc-at-pt))
+
+(defun valrus/clear-copilot-and-delete ()
+  (interactive)
+  (copilot-clear-overlay)
+  (evil-delete-backward-char)
+  (copilot-clear-overlay))
+
+(defun valrus/copilot-change-activation ()
+  "Switch between three activation modes:
+- automatic: copilot will automatically overlay completions
+- manual: you need to press a key to trigger completions
+- off: copilot is completely disabled."
+  (interactive)
+  (if (and copilot-mode valrus/copilot-manual-mode)
+      (progn
+        (message "deactivating copilot")
+        (global-copilot-mode -1)
+        (setq valrus/copilot-manual-mode nil))
+    (if copilot-mode
+        (progn
+          (message "activating copilot manual mode")
+          (setq valrus/copilot-manual-mode t))
+      (message "activating copilot mode")
+      (global-copilot-mode))))
+
+(map!
+ ;; explicit copilot complete
+ :desc "Copilot complete" :i "M-<return>" #'copilot-complete
+ :desc "Copilot activation toggle" "M-<escape>" #'valrus/copilot-change-activation
+  ;; accept completion from copilot and fallback to company
+ (:map copilot-completion-map
+  "M-<right>" #'copilot-accept-completion-by-word
+  "M-<down>" #'copilot-accept-completion-by-word
+  "M-p" #'copilot-previous-completion
+  "M-n" #'copilot-next-completion
+  "M-<return>" #'copilot-accept-completion
+  "C-g" #'copilot-clear-overlay
+  "<backspace>" #'valrus/clear-copilot-and-delete))
+
+(defun valrus/pytest-copy-test-name ()
+  (interactive)
+  (let ((test-name (format "%s::%s" (buffer-file-name) (python-pytest--current-defun))))
+    (print test-name)
+    (kill-new test-name)
+    (message "Copied %s" test-name)))
+
+(map!
+ (:map python-mode-map
+  :localleader
+  (:prefix "t"
+   :desc "Copy test name" :n "c" #'valrus/pytest-copy-test-name)))
