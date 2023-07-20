@@ -9,7 +9,6 @@
 (package! refine)
 (package! typo)
 ;; (package! poet-theme)
-;; (package! olivetti)
 ;; (package! lsp-ui)
 (package! indium)
 (package! snakemake-mode)
@@ -66,3 +65,6 @@
     :recipe (:host github
              :repo "davidmiller/thrift-mode"))
   (package! git-link))
+
+;; async formatting, commit hash "ffa8d5865118bb33299a429e9c25577a79410542"
+(package! apheleia :pin "ffa8d5865118bb33299a429e9c25577a79410542")
