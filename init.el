@@ -62,6 +62,7 @@
 
  :editor
  (evil +everywhere)
+ ;; (meow +override +leader +colemak)
  file-templates    ; auto-snippets for empty files
  fold
  (format +onsave)
@@ -159,7 +160,7 @@
   +roam2
   -brain
   -dragndrop
-  -jupyter
+  +jupyter
   -pandoc
   -gnuplot
   +present)
