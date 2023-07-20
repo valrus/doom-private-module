@@ -2,7 +2,7 @@
 
 (setq
  show-trailing-whitespace t
- org-directory "~/Dropbox/Work Share/org/"
+ org-directory "~/Code/personal-wiki/"
 
  ;; fonts
  doom-font (font-spec :family "Iosevka" :size 12 :weight 'light)

@@ -162,7 +162,7 @@
   -jupyter
   -pandoc
   -gnuplot
-  -present)
+  +present)
  ;; perl              ; write code no one else can comprehend
  ;; php               ; perl's insecure younger brother
  ;; plantuml          ; diagrams for confusing people more

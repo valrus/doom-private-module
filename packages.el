@@ -29,6 +29,9 @@
 
 (unpin! org-roam)
 
+;; workaround for straight issue
+;; (package! straight :pin "3eca3d")
+
 ;; for Spacehammer
 (package! fennel-mode)
 

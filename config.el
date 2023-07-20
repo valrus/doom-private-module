@@ -22,10 +22,13 @@
 (setq-default enable-local-variables t)
 (defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
   "Characters in the keyboard home row, for alternate layouts.")
-(add-to-list 'default-frame-alist '(undecorated-round . t))
 
 ;; Temp workaround
 (defun lsp-deferred () (eglot-ensure))
+
+(if (>= 29 emacs-major-version)
+    (pixel-scroll-precision-mode)
+  (add-to-list 'default-frame-alist '(undecorated-round . t)))
 
 ;;
 ;; Host-specific config

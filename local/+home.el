@@ -11,6 +11,9 @@
    elm-format-on-save-mode t
    elm-format-on-save t))
 
+;; web mode formatter doesn't play nice with jinja templates
+(setq-hook! 'web-mode-hook +format-with :none)
+
 (after! lsp-rust
   (setq lsp-rust-server 'rust-analyzer))
 
