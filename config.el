@@ -26,7 +26,7 @@
 ;; Temp workaround
 (defun lsp-deferred () (eglot-ensure))
 
-(if (>= 29 emacs-major-version)
+(if (>= emacs-major-version 29)
     (pixel-scroll-precision-mode)
   (add-to-list 'default-frame-alist '(undecorated-round . t)))
 
