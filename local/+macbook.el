@@ -1,7 +1,7 @@
 ;;; ~/.doom.d/+mbp-settings.el -*- lexical-binding: t; -*-
 
 (setq
- org-directory "~/Dropbox/Work Share/org/"
+ org-directory "~/Code/personal-wiki/"
 
  ;; Fonts
  ;; doom-font (font-spec :family "Inconsolata" :size 13 :width 'semi-condensed)
