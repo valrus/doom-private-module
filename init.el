@@ -65,7 +65,7 @@
  ;; (meow +override +leader +colemak)
  file-templates    ; auto-snippets for empty files
  fold
- (format +onsave)
+ ;; (format +onsave)
  ;; god
  ;; lispy             ; vim for lisp, for people who dont like vim
  multiple-cursors  ; editing in many places at once

@@ -81,7 +81,20 @@
 
 ;; add formatters
 ;;; this is configured to lazy load automatically
-(apheleia-global-mode +1)
+(use-package! apheleia
+  :hook ((tsx-mode
+          typescript-mode
+          js-mode
+          json-mode
+          css-mode
+          scss-mode). apheleia-mode)
+  :defer t
+  :config
+  (apheleia-global-mode +1)
+  (push '(tsx-mode . prettier) apheleia-mode-alist)
+  (push '(scss-mode . prettier) apheleia-mode-alist)
+  (push '(css-mode . prettier) apheleia-mode-alist))
+
 (map!
  :after apheleia
  :leader
