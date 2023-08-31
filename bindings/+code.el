@@ -27,10 +27,15 @@
   (interactive)
   (hs-hide-level 2))
 
+(defalias 'valrus/py-convert-optional-typing
+   (kmacro "d i w % i SPC | SPC N o n e <escape> d s ]"))
+
 (map!
- :map python-mode-map
- (:prefix "z"
-  :desc "Fold class" :n "C" #'hs-hide-level))
+ (:map python-mode-map
+       (:prefix "z"
+        :desc "Fold class" :n "C" #'hs-hide-level)
+       (:localleader
+        :desc "Update Optional syntax" :n "o" #'valrus/py-convert-optional-typing)))
 
 (map!
  (:after eglot
@@ -87,8 +92,7 @@
   "M-p" #'copilot-previous-completion
   "M-n" #'copilot-next-completion
   "M-<return>" #'copilot-accept-completion
-  "C-g" #'copilot-clear-overlay
-  "<backspace>" #'valrus/clear-copilot-and-delete))
+  "C-g" #'copilot-clear-overlay))
 
 (defun valrus/pytest-copy-test-name ()
   (interactive)

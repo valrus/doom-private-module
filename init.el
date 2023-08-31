@@ -7,6 +7,7 @@
 ;;; Actual init starts here
 (doom!
  :input
+ ;; bidi
  ;; chinese
  ;; japanese
  ;; layout            ; auie,ctsrnm is the superior home row
@@ -24,18 +25,15 @@
  ;;  -prescient
  ;;  -icons           ; slowish
  ;;  +fuzzy)          ; enable fuzzy search backend for ivy
- ;; (selectrum
- ;;  +prescient)
  (vertico
   +icons)
 
  :ui
- deft              ; notational velocity for Emacs
+ ;; deft              ; notational velocity for Emacs
  doom              ; what makes DOOM look the way it does
  doom-dashboard    ; a nifty splash screen for Emacs
  ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
  ;; (emoji +unicode)
- ;; fill-column    ; a `fill-column' indicator
  hl-todo           ; highlight TODO/FIXME/NOTE tags
  hydra
  ;; indent-guides
@@ -43,7 +41,6 @@
  ;; minimap        ; show a map of the code on the side
  (modeline         ; snazzy, Atom-inspired modeline, plus API
   +light)
- ;; nano
  nav-flash         ; blink the current line after jumping
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
@@ -52,11 +49,11 @@
   +defaults)
  ;; tabs              ; FIXME an (incomplete) tab bar for Emacs
  ;; treemacs          ; a project drawer, like neotree but cooler
+ ;; unicode
  ;; vc-gutter         ; vcs diff in the fringe
  ;; vi-tilde-fringe   ; fringe tildes to mark beyond EOB
  (window-select    ; visually switch windows
   +numbers)
- ;; unicode
  workspaces        ; tab emulation, persistence & separate workspaces
  (:if (local-config-home-p) zen)
 
@@ -93,8 +90,8 @@
  :checkers
  ;; grammar
  ;; spell
- ;; (syntax
- ;;  +childframe)
+ ;; (syntax +childframe)
+ (syntax +flymake)
 
  :tools
  ;; ansible
@@ -102,14 +99,13 @@
  direnv
  editorconfig      ; let someone else argue about tabs vs spaces
  ;; ein               ; tame Jupyter notebooks with emacs
- eval              ; run code, run (also, repls)
+ (eval +overlay)      ; run code, run (also, repls)
  ;; gist              ; interacting with github gists
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
  (lsp +eglot)
  magit
- tree-sitter
  ;; make              ; run make tasks from Emacs
  ;; pass              ; password manager for nerds
  ;; pdf               ; pdf enhancements
@@ -118,10 +114,12 @@
  ;; taskrunner        ; taskrunner for all your projects
  ;; terraform
  ;; tmux              ; an API for interacting with tmux
+ tree-sitter
  ;; upload            ; map local to remote projects via ssh/ftp
 
  :os
  ;; macos             ; MacOS-specific commands
+ ;; tty               ; improve the terminal Emacs experience
 
  :lang
  ;;agda              ; types of types of types of types...
@@ -177,7 +175,7 @@
  ;; rest              ; Emacs as a REST client
  ;; (:if (local-config-work-p) (ruby +lsp +rvm +rails))
  ;; (ruby +rvm +lsp)
- (:if (local-config-home-p) (rust +lsp))
+ (rust +lsp)
  ;; scala             ; java, but good
  (sh +zsh)        ; she sells (ba|z)sh shells on the C xor
  ;; solidity          ; do you need a blockchain? No.

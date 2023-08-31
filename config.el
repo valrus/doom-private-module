@@ -4,16 +4,14 @@
  user-full-name    "Ian McCowan"
  user-mail-address "imccowan@gmail.com"
 
- +pretty-code-enabled-modes '(emacs-lisp-mode org-mode enh-ruby-mode ruby-mode)
  display-line-numbers-type nil
 
  ;; native-comp settings per
  ;; https://github.com/shshkn/emacs.d/blob/master/docs/nativecomp.md
- comp-speed 3
+ ;; native-comp-speed 3
  ;; disable this; doom has native-comp integration to handle it
  ;; comp-deferred-compilation t
  ;;
- straight-vc-git-default-protocol 'ssh
  fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png"))
 
 (global-auto-revert-mode -1)
@@ -22,7 +20,8 @@
 (setq-default tool-bar-mode nil)
 (setq-default enable-local-variables t)
 (defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
-  "Characters in the keyboard home row, for alternate layouts.")
+  "Characters in the keyboard home row, for alternate layouts."
+  :type '(repeat character))
 
 ;; Temp workaround
 (defun lsp-deferred () (eglot-ensure))
@@ -93,7 +92,8 @@
   (apheleia-global-mode +1)
   (push '(tsx-mode . prettier) apheleia-mode-alist)
   (push '(scss-mode . prettier) apheleia-mode-alist)
-  (push '(css-mode . prettier) apheleia-mode-alist))
+  (push '(css-mode . prettier) apheleia-mode-alist)
+  (setf (alist-get 'python-mode apheleia-mode-alist) '(isort black)))
 
 (map!
  :after apheleia
@@ -222,31 +222,29 @@
   (add-hook! 'python-mode-hook (modify-syntax-entry ?_ "w"))
 
   (use-package! evil-text-object-python
-    :hook (python-mode . evil-text-object-python-add-bindings)))
+    :hook (python-mode . evil-text-object-python-add-bindings))
+
+  (use-package! evil-surround
+    :hook (python-mode . (lambda () (push '(?~ . ("\"\"\"" . "\"\"\"")) evil-surround-pairs-alist)))))
 
 (after! flycheck
-  ;; (advice-add #'flycheck-may-check-automatically :override #'ignore)
   (setq-default
    +flycheck-on-escape nil
    flycheck-check-syntax-automatically '(save idle-change mode-enabled)
    flycheck-display-errors-delay 1))
 
-(use-package! flymake
-  :custom
-  (flymake-no-changes-timeout 3.0))
-
-(use-package! format-all
-  :config
-  (set-formatter!
-    'js-prettier
-    "yarn prettier"
-    :modes
-    '(typescript-tsx-mode typescript-mode rjsx-mode))
-  (setq +format-on-save-enabled-modes
-        '(python-mode
-          ;; rjsx-mode
-          typescript-tsx-mode
-          typescript-mode)))
+;; (use-package! format-all
+;;   :config
+;;   (set-formatter!
+;;     'js-prettier
+;;     "yarn prettier"
+;;     :modes
+;;     '(typescript-tsx-mode typescript-mode rjsx-mode))
+;;   (setq +format-on-save-enabled-modes
+;;         '(python-mode
+;;           ;; rjsx-mode
+;;           typescript-tsx-mode
+;;           typescript-mode)))
 
 (after! irc
   (set-irc-server! "chat.freenode.net"

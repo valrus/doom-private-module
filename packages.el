@@ -26,6 +26,7 @@
 ;; (package! origami)
 ;; (package! tsx-mode :recipe (:host github :repo "orzechowskid/tsx-mode.el" :branch "emacs29"))
 
+(unpin! eglot)
 (unpin! org-roam)
 
 ;; workaround for straight issue
