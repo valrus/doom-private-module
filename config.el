@@ -219,6 +219,8 @@
     :config
     (load! "bindings/+easymotion"))
 
+  (add-hook! 'python-mode-hook (modify-syntax-entry ?_ "w"))
+
   (use-package! evil-text-object-python
     :hook (python-mode . evil-text-object-python-add-bindings)))
 
