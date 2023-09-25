@@ -30,8 +30,18 @@
 (defalias 'valrus/py-convert-optional-typing
    (kmacro "d i w % i SPC | SPC N o n e <escape> d s ]"))
 
+(defun valrus/search-symbol-forward ()
+  (interactive)
+  (evil-ex-search-word-forward 1 t))
+
+(defun valrus/search-symbol-backward ()
+  (interactive)
+  (evil-ex-search-word-backward 1 t))
+
 (map!
  (:map python-mode-map
+       :desc "Search symbol forward" :nv "*" #'valrus/search-symbol-forward
+       :desc "Search symbol backward" :nv "#" #'valrus/search-symbol-backward
        (:prefix "z"
         :desc "Fold class" :n "C" #'hs-hide-level)
        (:localleader

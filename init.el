@@ -13,9 +13,13 @@
  ;; layout            ; auie,ctsrnm is the superior home row
 
  :completion
- (company          ; the ultimate code completion backend
-  +tng ; complete using only TAB
-  +childframe)
+ ;; (company          ; the ultimate code completion backend
+ ;;  +tng ; complete using only TAB
+ ;;  +childframe)
+ (corfu
+  +orderless
+  +icons
+  +minibuffer)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
  ;;  +fuzzy)          ; enable fuzzy search backend for helm
@@ -62,7 +66,7 @@
  ;; (meow +override +leader +colemak)
  file-templates    ; auto-snippets for empty files
  fold
- ;; (format +onsave)
+ (apheleia +onsave)
  ;; god
  ;; lispy             ; vim for lisp, for people who dont like vim
  multiple-cursors  ; editing in many places at once

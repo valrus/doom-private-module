@@ -90,10 +90,23 @@
   :defer t
   :config
   (apheleia-global-mode +1)
-  (push '(tsx-mode . prettier) apheleia-mode-alist)
-  (push '(scss-mode . prettier) apheleia-mode-alist)
-  (push '(css-mode . prettier) apheleia-mode-alist)
-  (setf (alist-get 'python-mode apheleia-mode-alist) '(isort black)))
+  (setf (alist-get 'python-mode apheleia-mode-alist) '(isort black))
+  (setf (alist-get 'yarn-prettier apheleia-formatters)
+      '("yarn" "--silent" "prettier" "--loglevel" "silent" "--stdin-filepath" filepath))
+  (setf (alist-get 'tsx-ts-mode apheleia-mode-alist)
+        'yarn-prettier)
+  (setf (alist-get 'typescript-ts-mode apheleia-mode-alist)
+        'yarn-prettier)
+  (setf (alist-get 'typescript-mode apheleia-mode-alist)
+        'yarn-prettier)
+  (setf (alist-get 'rjsx-mode apheleia-mode-alist)
+        'yarn-prettier)
+  (setf (alist-get 'yarn-stylelint apheleia-formatters)
+      '("yarn" "stylelint" "--fix" filepath))
+  (setf (alist-get 'scss-mode apheleia-mode-alist)
+        'yarn-stylelint)
+  (setf (alist-get 'css-mode apheleia-mode-alist)
+        'yarn-stylelint))
 
 (map!
  :after apheleia
@@ -163,7 +176,7 @@
       (member major-mode valrus/no-copilot-modes)
       (company--active-p)))
 
-(defvar valrus/copilot-manual-mode nil
+(defvar valrus/copilot-manual-mode t
   "When `t' will only show completions when manually triggered.")
 
 (use-package! copilot
@@ -203,10 +216,10 @@
                 evil-vsplit-window-right t
                 evil-want-Y-yank-to-eol t)
   ;; scroll to center after quick find commands
-  (advice-add #'evil-ex-search-word-forward :after 'evil-scroll-line-to-center)
-  (advice-add #'evil-ex-search-word-backward :after 'evil-scroll-line-to-center)
-  (advice-add #'evil-ex-search-next :after 'evil-scroll-line-to-center)
-  (advice-add #'evil-ex-search-previous :after 'evil-scroll-line-to-center))
+  (advice-add #'evil-ex-search-word-forward :after (lambda (&rest _) (evil-scroll-line-to-center nil)))
+  (advice-add #'evil-ex-search-word-backward :after (lambda (&rest _) (evil-scroll-line-to-center nil)))
+  (advice-add #'evil-ex-search-next :after (lambda (&rest _) (evil-scroll-line-to-center nil)))
+  (advice-add #'evil-ex-search-previous :after (lambda (&rest _) (evil-scroll-line-to-center nil))))
 
 (when (modulep! :editor evil)
   (use-package! evil-goggles
@@ -218,8 +231,6 @@
     (evilem-keys home-row-keys)
     :config
     (load! "bindings/+easymotion"))
-
-  (add-hook! 'python-mode-hook (modify-syntax-entry ?_ "w"))
 
   (use-package! evil-text-object-python
     :hook (python-mode . evil-text-object-python-add-bindings))
@@ -245,6 +256,11 @@
 ;;           ;; rjsx-mode
 ;;           typescript-tsx-mode
 ;;           typescript-mode)))
+
+(use-package! flymake
+  :custom
+  (flymake-popon-delay 3)
+  (flymake-start-on-save-buffer nil))
 
 (after! irc
   (set-irc-server! "chat.freenode.net"
