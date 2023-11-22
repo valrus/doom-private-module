@@ -27,8 +27,9 @@
   (interactive)
   (hs-hide-level 2))
 
-(defalias 'valrus/py-convert-optional-typing
-   (kmacro "d i w % i SPC | SPC N o n e <escape> d s ]"))
+(when (local-config-work-p)
+  (defalias 'valrus/py-convert-optional-typing
+    (kmacro "d i w % i SPC | SPC N o n e <escape> d s ]")))
 
 (defun valrus/search-symbol-forward ()
   (interactive)
