@@ -15,6 +15,10 @@
 (package! vimrc-mode)
 (package! json-process-client :recipe (:host github :repo "emacsmirror/json-process-client"))
 (package! ef-themes)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 4be46cb (make some stuff work only)
 (when (local-config-work-p)
   (package! chatgpt-shell
     :recipe (:host github :repo "xenodium/chatgpt-shell"))

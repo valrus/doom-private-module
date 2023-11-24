@@ -424,7 +424,145 @@
 
 (use-package! winum
   :defer t
-  :init
+  :config
+  (setq
+   ;; no auto-popups
+   company-idle-delay nil)
+  (when (modulep! :completion company +tng)
+    (add-to-list 'company-frontends 'company-tng-frontend))
+  (when (modulep! :completion company +childframe)
+    (add-to-list 'company-frontends 'company-box-frontend)))
+
+;; accept completion from copilot and fallback to company
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :bind (:map copilot-completion-map
+              ("<tab>" . 'copilot-accept-completion)
+              ("TAB" . 'copilot-accept-completion)
+              ("C-TAB" . 'copilot-accept-completion-by-word)
+              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+
+(use-package! deadgrep
+  :defer t
+  :config
+  (setq-default deadgrep-project-root-function #'doom-project-root)
+  (load! "bindings/+deadgrep"))
+
+(use-package! evil-goggles
+  :config
+  (setq evil-goggles-pulse t))
+
+(use-package! evil-easymotion
+  :custom
+  (evilem-keys home-row-keys)
+  :config
+  (load! "bindings/+easymotion"))
+
+(use-package! org-roam
+  :after org
+  :defer t
+  :custom
+  (org-roam-directory (concat org-directory "roam"))
+  (org-roam-buffer-position 'top)
+  (org-roam-buffer-height 0.15)
+  :config
+  (load! "bindings/+org-roam"))
+
+(use-package! org-journal
+  :after org
+  :defer t
+  :custom
+  ;; Enable journal entries to work with org-roam
+  (org-journal-dir (concat org-directory "roam"))
+  (org-journal-file-format "%Y-%m-%d.org")
+  (org-journal-date-prefix "#+TITLE: ")
+  (org-journal-date-format "%Y-%m-%d")
+  :config
+  (load! "bindings/+org-journal"))
+
+(use-package! pipenv
+  :config
+  ;; +workspaces-switch-project-function #'ignore
+  ;; condition-case: Error in a Doom startup hook: projectile-after-switch-project-hook, #[0 "^H \207" [pipenv-projectile-after-switch-function] 1], (wrong-type-argument stringp nil)
+  (setq pipenv-with-projectile t))
+
+(use-package! refine
+  :config
+  (map!
+   (:leader
+    (:prefix "h"
+     :desc "Set variable with refine" :n "C-v" #'refine))))
+
+(use-package! evil-text-object-python
+  :defer t
+  :hook (python-mode . evil-text-object-python-add-bindings))
+
+;; (use-package! tree-sitter
+;;   :demand t
+;;   :hook
+;;   ;; tree-sitter doesn't get confused by quotes in string interpolations
+;;   (ruby-mode . tree-sitter-hl-mode)
+;;   (enh-ruby-mode . tree-sitter-hl-mode)
+;;   (python-mode . tree-sitter-hl-mode)
+;;   :config
+;;   (global-tree-sitter-mode))
+
+(use-package! ace-window
+  :custom
+  (aw-keys (remove ?m home-row-keys))
+  (aw-dispatch-always t))
+
+(use-package! avy
+  :custom
+  (avy-keys home-row-keys))
+
+(use-package! flymake
+  :custom
+  (flymake-no-changes-timeout 3.0))
+
+(when (local-config-work-p)
+  (use-package! format-all
+    :config
+    (set-formatter!
+      'js-prettier
+      "yarn prettier"
+      :modes
+      '(typescript-tsx-mode typescript-mode rjsx-mode))
+    (setq +format-on-save-enabled-modes
+          '(python-mode
+            ;; rjsx-mode
+            typescript-tsx-mode
+            typescript-mode))))
+
+(use-package! rjsx-mode
+  :config
+  (setq auto-mode-alist (delete '("\\.tsx\\'" . typescript-mode) auto-mode-alist))
+  (setq sgml-basic-offset 4)
+  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode)))
+
+;;
+;; Modules
+;;
+
+;; (after! gcmh-mode
+;;   (setq gcmh-high-cons-threshold #x10000000)) ;; 200MB or so
+
+;; tools/lsp
+ (when (doom-module-p :tools 'lsp)
+   (if (modulep! :tools lsp +eglot)
+       (load! "+eglot.el")
+     (load! "+lsp-mode.el")))
+
+(after! dumb-jump
+  (setq dumb-jump-prefer-searcher 'rg))
+
+(after! modeline
+  (setq
+   doom-modeline-height 29
+   doom-modeline-icon t
+   doom-modeline-major-mode-color-icon t))
+
+(after! popup
   (setq-default
    winum-scope 'frame-local
    winum-auto-assign-0-to-minibuffer t))
