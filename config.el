@@ -434,13 +434,14 @@
     (add-to-list 'company-frontends 'company-box-frontend)))
 
 ;; accept completion from copilot and fallback to company
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :bind (:map copilot-completion-map
-              ("<tab>" . 'copilot-accept-completion)
-              ("TAB" . 'copilot-accept-completion)
-              ("C-TAB" . 'copilot-accept-completion-by-word)
-              ("C-<tab>" . 'copilot-accept-completion-by-word)))
+(if (local-config-work-p)
+    (use-package! copilot
+      :hook (prog-mode . copilot-mode)
+      :bind (:map copilot-completion-map
+                  ("<tab>" . 'copilot-accept-completion)
+                  ("TAB" . 'copilot-accept-completion)
+                  ("C-TAB" . 'copilot-accept-completion-by-word)
+                  ("C-<tab>" . 'copilot-accept-completion-by-word))))
 
 (use-package! deadgrep
   :defer t
