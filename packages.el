@@ -22,17 +22,8 @@
   (package! copilot
     :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist"))))
 
-;; tsx-mode?
-;; (package! tsi :recipe (:host github :repo "orzechowskid/tsi.el" :branch "main"))
-;; (package! coverlay)
-;; (package! origami)
-;; (package! tsx-mode :recipe (:host github :repo "orzechowskid/tsx-mode.el" :branch "emacs29"))
-
 (unpin! eglot)
 (unpin! org-roam)
-
-;; workaround for straight issue
-;; (package! straight :pin "3eca3d")
 
 ;; for Spacehammer
 (package! fennel-mode)
@@ -54,8 +45,6 @@
 
 ;; Unpinned packages
 (unpin! doom-themes)
-;; (unpin! lsp-mode)
-;; (unpin! lsp-python-ms)
 
 ;; Disabled packages
 (package! magit-todos :disable t)
@@ -68,6 +57,3 @@
     :recipe (:host github
              :repo "davidmiller/thrift-mode"))
   (package! git-link))
-
-;; async formatting, commit hash "ffa8d5865118bb33299a429e9c25577a79410542"
-(package! apheleia :pin "ffa8d5865118bb33299a429e9c25577a79410542")
