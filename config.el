@@ -147,46 +147,47 @@
   (setq counsel-rg-base-command "rg -S --no-heading --line-number --color never %s ."
         counsel-ag-base-command "ag -S --nocolor --nogroup %s"))
 
-(defun cae-copilot-clear-overlay-h ()
-  "Like `copilot-clear-overlay', but returns `t' if the overlay was visible."
-  (when (copilot--overlay-visible)
-    (copilot-clear-overlay) t))
+(when (local-config-work-p)
+  (defun cae-copilot-clear-overlay-h ()
+    "Like `copilot-clear-overlay', but returns `t' if the overlay was visible."
+    (when (copilot--overlay-visible)
+      (copilot-clear-overlay) t))
 
-;; https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/#restricting-when-to-show-completions
-(defun valrus/no-copilot-mode ()
-  "Helper for `valrus/no-copilot-modes'."
-  (copilot-mode -1))
+  ;; https://robert.kra.hn/posts/2023-02-22-copilot-emacs-setup/#restricting-when-to-show-completions
+  (defun valrus/no-copilot-mode ()
+    "Helper for `valrus/no-copilot-modes'."
+    (copilot-mode -1))
 
-(defvar valrus/no-copilot-modes '(shell-mode
-                                  inferior-python-mode
-                                  eshell-mode
-                                  term-mode
-                                  vterm-mode
-                                  comint-mode
-                                  compilation-mode
-                                  debugger-mode
-                                  dired-mode-hook
-                                  compilation-mode-hook
-                                  minibuffer-mode-hook)
-  "Modes in which copilot is inconvenient.")
+  (defvar valrus/no-copilot-modes '(shell-mode
+                                    inferior-python-mode
+                                    eshell-mode
+                                    term-mode
+                                    vterm-mode
+                                    comint-mode
+                                    compilation-mode
+                                    debugger-mode
+                                    dired-mode-hook
+                                    compilation-mode-hook
+                                    minibuffer-mode-hook)
+    "Modes in which copilot is inconvenient.")
 
-(defun valrus/copilot-disable-predicate ()
-  "When copilot should not automatically show completions."
-  (or valrus/copilot-manual-mode
-      (member major-mode valrus/no-copilot-modes)
-      (company--active-p)))
+  (defun valrus/copilot-disable-predicate ()
+    "When copilot should not automatically show completions."
+    (or valrus/copilot-manual-mode
+        (member major-mode valrus/no-copilot-modes)
+        (company--active-p)))
 
-(defvar valrus/copilot-manual-mode t
-  "When `t' will only show completions when manually triggered.")
+  (defvar valrus/copilot-manual-mode t
+    "When `t' will only show completions when manually triggered.")
 
-(use-package! copilot
-  :ensure t
-  :hook (prog-mode . copilot-mode)
-  :config
-  (add-to-list 'copilot-disable-predicates #'valrus/copilot-disable-predicate))
+  (use-package! copilot
+    :ensure t
+    :hook (prog-mode . copilot-mode)
+    :config
+    (add-to-list 'copilot-disable-predicates #'valrus/copilot-disable-predicate))
 
-(after! copilot
-  (add-hook! 'doom-escape-hook #'cae-copilot-clear-overlay-h))
+  (after! copilot
+    (add-hook! 'doom-escape-hook #'cae-copilot-clear-overlay-h)))
 
 (use-package! deadgrep
   :defer t
