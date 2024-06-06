@@ -3,7 +3,6 @@
 (map!
  :localleader
  :map emacs-lisp-mode-map
- "e" nil
  :nv "x" #'macrostep-expand
  (:prefix "e"
-   :nv "e" #'eval-last-sexp))
+  :nv "e" #'eval-last-sexp))

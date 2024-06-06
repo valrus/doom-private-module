@@ -4,6 +4,10 @@
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
 
+;; alias since i always forget this function name
+(defun valrus/fix-too-many-open-files ()
+  (file-notify-rm-all-watches))
+
 (map!
  :desc "Redo" :n "U" #'undo-fu-only-redo
  :desc "Page up" :nvi "C-k" #'evil-scroll-page-up

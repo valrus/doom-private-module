@@ -18,11 +18,6 @@
  (:prefix "r"
   :nv "h" #'valrus/rb-replace-hash-format))
 
-(map!
- (:prefix "z"
-  :desc "Fold top level" :n [return] #'hs-hide-all
-  :desc "Toggle hiding" :n "SPC" #'hs-toggle-hiding))
-
 (defun valrus/py-fold-class ()
   (interactive)
   (hs-hide-level 2))
@@ -41,12 +36,12 @@
 
 (map!
  (:map python-mode-map
-       :desc "Search symbol forward" :nv "*" #'valrus/search-symbol-forward
-       :desc "Search symbol backward" :nv "#" #'valrus/search-symbol-backward
-       (:prefix "z"
-        :desc "Fold class" :n "C" #'hs-hide-level)
-       (:localleader
-        :desc "Update Optional syntax" :n "o" #'valrus/py-convert-optional-typing)))
+  :desc "Search symbol forward" :nv "*" #'valrus/search-symbol-forward
+  :desc "Search symbol backward" :nv "#" #'valrus/search-symbol-backward
+  (:prefix "z"
+   :desc "Hide class" :n "C" #'hs-hide-level)
+  (:localleader
+   :desc "Update Optional syntax" :n "o" #'valrus/py-convert-optional-typing)))
 
 (map!
  (:after eglot
@@ -66,7 +61,40 @@
 
 (map!
  (:prefix "g"
-          :nv "+" #'evil-numbers/inc-at-pt))
+  :nv "+" #'evil-numbers/inc-at-pt
+  :nv "R" #'+lookup/references
+  :nv "D" #'xref-find-definitions-other-window))
+
+(defun valrus/copilot-change-activation ()
+  "Switch between three activation modes:
+- automatic: copilot will automatically overlay completions
+- manual: you need to press a key to trigger completions
+- off: copilot is completely disabled."
+  (interactive)
+  (if (and copilot-mode valrus/copilot-manual-mode)
+      (progn
+        (message "deactivating copilot")
+        (global-copilot-mode -1)
+        (setq valrus/copilot-manual-mode nil))
+    (if copilot-mode
+        (progn
+          (message "activating copilot manual mode")
+          (setq valrus/copilot-manual-mode t))
+      (message "activating copilot mode")
+      (global-copilot-mode))))
+
+(map!
+ ;; explicit copilot complete
+ :desc "Copilot complete" :i "M-<return>" #'copilot-complete
+ :desc "Copilot activation toggle" "M-<escape>" #'valrus/copilot-change-activation
+ ;; accept completion from copilot and fallback to company
+ (:map copilot-completion-map
+       "M-<right>" #'copilot-accept-completion-by-word
+       "M-<down>" #'copilot-accept-completion-by-word
+       "M-p" #'copilot-previous-completion
+       "M-n" #'copilot-next-completion
+       "M-<return>" #'copilot-accept-completion
+       "C-g" #'copilot-clear-overlay))
 
 (defun valrus/pytest-copy-test-name ()
   (interactive)
@@ -118,3 +146,15 @@
          "M-n" #'copilot-next-completion
          "M-<return>" #'copilot-accept-completion
          "C-g" #'copilot-clear-overlay)))
+
+(map!
+ (:prefix "z"
+  :desc "open all folds" :n "O" #'+fold/open-all
+  :desc "close all folds" :n "C" #'+fold/close-all))
+
+(map!
+ :localleader
+ "e" nil
+ (:prefix "e"
+  :nv "b" #'+eval/buffer
+  :nv "r" #'+eval:region))
