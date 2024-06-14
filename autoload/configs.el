@@ -4,7 +4,7 @@
 ;;;###autoload
 (defun local-config-name ()
   (pcase (system-name)
-    ((or "iMac.local" "iMac.lan") "imac-home")
+    ((or "iMac.local" "iMac.lan" "Mac-Studio.local") "mac-home")
     ("Ians-MBP" "macbook")
     ("Ians-MBP.lan" "macbook")
     ("Ians-MacBook-Pro.local" "macbook")
@@ -17,8 +17,8 @@
 
 ;;;###autoload
 (defun local-config-work-p ()
-  (member (local-config-name) '("imac-work" "macbook")))
+  (member (local-config-name) '("mac-work" "macbook")))
 
 ;;;###autoload
 (defun local-config-home-p ()
-  (member (local-config-name) '("imac-home" "gallium")))
+  (member (local-config-name) '("mac-home" "gallium")))
