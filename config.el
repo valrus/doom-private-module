@@ -27,7 +27,7 @@
 (defun lsp-deferred () (eglot-ensure))
 
 (if (>= emacs-major-version 29)
-    (pixel-scroll-precision-mode)
+    (pixel-scroll-precision-mode 0)
   (add-to-list 'default-frame-alist '(undecorated-round . t)))
 
 ;;
