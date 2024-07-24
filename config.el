@@ -81,7 +81,9 @@
 ;; add formatters
 ;;; this is configured to lazy load automatically
 (use-package! apheleia
-  :hook ((tsx-ts-mode
+  :hook ((elm-mode
+          tsx-mode
+          tsx-ts-mode
           typescript-mode
           typescript-tsx-mode
           js-mode
@@ -107,8 +109,15 @@
   ;; (setf (alist-get 'eslint-d apheleia-formatters)
   ;;       '("eslint_d" "--fix-to-stdout" "--stdin" "--stdin-filepath" filepath))
 
-  (setf (alist-get 'python-mode apheleia-mode-alist)
-        '(black isort))
+  (setf (alist-get 'yarn-prettier apheleia-formatters)
+        '("yarn" "--silent" "prettier" "--loglevel" "silent" "--stdin-filepath" filepath))
+  (setf (alist-get 'yarn-stylelint apheleia-formatters)
+        '("yarn" "stylelint" "--fix" filepath))
+  (setf (alist-get 'elm-format apheleia-formatters)
+        '("elm-format" "--yes" "--stdin"))
+
+  (setf (alist-get 'python-mode apheleia-mode-alist) '(isort black))
+
   (setf (alist-get 'tsx-ts-mode apheleia-mode-alist)
         '(prettier))
   (setf (alist-get 'typescript-ts-mode apheleia-mode-alist)
