@@ -13,13 +13,13 @@
  ;; layout            ; auie,ctsrnm is the superior home row
 
  :completion
- ;; (company          ; the ultimate code completion backend
- ;;  +tng ; complete using only TAB
- ;;  +childframe)
- (corfu
-  +orderless
-  +icons
-  +minibuffer)
+ (company          ; the ultimate code completion backend
+  +tng ; complete using only TAB
+  +childframe)
+ ;; (corfu
+ ;;  +orderless
+ ;;  +icons
+ ;;  +minibuffer)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
  ;;  +fuzzy)          ; enable fuzzy search backend for helm
@@ -59,7 +59,7 @@
  (window-select    ; visually switch windows
   +numbers)
  workspaces        ; tab emulation, persistence & separate workspaces
- (:if (local-config-home-p) zen)
+ (zen :if (local-config-home-p))
 
  :editor
  (evil +everywhere)
@@ -136,7 +136,7 @@
  data              ; config/data formats
  ;; erlang            ; an elegant language for a more civilized age
  ;; elixir            ; erlang done right
- (:if (local-config-home-p) elm)
+ (elm +lsp +tree-sitter :if (local-config-home-p))
  emacs-lisp        ; drown in parentheses
  ;; ess               ; emacs speaks statistics
  ;; fsharp           ; ML stands for Microsoft's Language
@@ -149,7 +149,7 @@
   +tree-sitter)
  ;; julia             ; a better, faster MATLAB
  ;; kotlin            ; a better, slicker Java(Script)
- (:if (local-config-home-p) (latex +latexmk))
+ (latex +latexmk :if (local-config-home-p))
  ;; ledger            ; an accounting system in Emacs
  lua               ; one-based indices? one-based indices
  markdown          ; writing docs for people to ignore
@@ -184,7 +184,7 @@
  (sh +zsh)        ; she sells (ba|z)sh shells on the C xor
  ;; solidity          ; do you need a blockchain? No.
  ;; swift             ; who asked for emoji variables?
- (:if (local-config-home-p) tablature)
+ (tablature :if (local-config-home-p))
  ;; terra             ; Earth and Moon in alignment for performance.
  ;; vala              ; GObjective-C
  (web +lsp +tree-sitter)               ; the tubes
