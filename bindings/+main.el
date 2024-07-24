@@ -1,16 +1,6 @@
 ;;; ~/.doom.d/bindings/+main.el -*- lexical-binding: t; -*-
 
 
-(define-key key-translation-map (kbd "ESC") (kbd "C-g"))
-(define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
-
-(defun valrus/evil-delete-blackhole-with-universal-arg (orig-fn beg end &optional type register &rest args)
-  (if current-prefix-arg
-      (apply orig-fn beg end type ?_ args)
-    (apply orig-fn beg end type register args)))
-(advice-add 'evil-delete :around 'valrus/evil-delete-blackhole-with-universal-arg)
-(advice-remove 'evil-delete 'valrus/evil-delete-blackhole-with-universal-arg)
-
 (map!
  :desc "Redo" :n "U" #'undo-fu-only-redo
  :desc "Page up" :nvi "C-k" #'evil-scroll-page-up
