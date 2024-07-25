@@ -50,16 +50,16 @@
    flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
 
 (use-package! thrift-mode
- :demand t
- :config
- (add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode)))
+  :demand t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode)))
 
 (use-package! yaml-mode
   :config
   (add-to-list 'auto-mode-alist '("\\.sls\\'" . yaml-mode)))
 
 (use-package! git-link
-  :defer t
+  :defer nil
   :commands (git-link)
   :config
   (map!
@@ -69,10 +69,8 @@
 
 (use-package! rjsx-mode
   :config
-  (setq auto-mode-alist (delete '("\\.tsx\\'" . typescript-mode) auto-mode-alist))
   (setq sgml-basic-offset 4)
-  (setq js2-basic-offset 4)
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode)))
+  (setq js2-basic-offset 4))
 
 ;; emacs-mac-port only
-;; (mac-auto-operator-composition-mode t)
+(mac-auto-operator-composition-mode t)
