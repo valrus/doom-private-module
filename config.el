@@ -182,6 +182,7 @@
                                     inferior-python-mode
                                     eshell-mode
                                     term-mode
+                                    text-mode
                                     vterm-mode
                                     comint-mode
                                     compilation-mode
