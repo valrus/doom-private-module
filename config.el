@@ -214,6 +214,11 @@
   (after! copilot
     (add-hook! 'doom-escape-hook #'cae-copilot-clear-overlay-h)))
 
+(use-package! dash-docs
+  :defer t
+  :config
+  (setq-default dash-docs-docsets-path "~/.config/dash"))
+
 (use-package! deadgrep
   :defer t
   :config
