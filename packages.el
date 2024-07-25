@@ -14,6 +14,8 @@
 (package! snakemake-mode)
 (package! vimrc-mode)
 (package! json-process-client :recipe (:host github :repo "emacsmirror/json-process-client"))
+
+;; https://protesilaos.com/emacs/ef-themes-pictures
 (package! ef-themes)
 
 (when (local-config-work-p)
@@ -21,6 +23,9 @@
     :recipe (:host github :repo "xenodium/chatgpt-shell"))
   (package! copilot
     :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist"))))
+
+(package! dash-docs
+  :recipe (:host github :repo "dash-docs-el/dash-docs"))
 
 (unpin! eglot)
 (unpin! org-roam)
