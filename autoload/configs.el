@@ -8,6 +8,7 @@
     ("Ians-MBP" "macbook")
     ("Ians-MBP.lan" "macbook")
     ("Ians-MacBook-Pro.local" "macbook")
+    ("Brutus.local" "macbook")
     ("galliumos" "gallium")
     (_ "default")))
 
