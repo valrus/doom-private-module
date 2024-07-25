@@ -143,6 +143,8 @@
   :defer t
   :config
   (setq chatgpt-shell-openai-key
+        ;; To set this up, add this to ~/.authinfo:
+        ;;  machine api.openai.com password OPENAI_KEY
         (auth-source-pick-first-password :host "api.openai.com")))
 
 (use-package! company
