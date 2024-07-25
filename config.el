@@ -200,9 +200,13 @@
   (defvar valrus/copilot-manual-mode t
     "When `t' will only show completions when manually triggered.")
 
+
   (use-package! copilot
     :ensure t
     :hook (prog-mode . copilot-mode)
+    :custom
+    (copilot-max-char -1)
+    (copilot-indent-offset-warning-disable t)
     :config
     (add-to-list 'copilot-disable-predicates #'valrus/copilot-disable-predicate))
 
@@ -306,10 +310,10 @@
   (load! "bindings/+ivy"))
 
 (add-hook! 'json-mode-hook
-          (lambda ()
-            (make-local-variable 'js-indent-level)
-            (setq tab-width 2)
-            (setq js-indent-level 2)))
+  (lambda ()
+    (make-local-variable 'js-indent-level)
+    (setq tab-width 2)
+    (setq js-indent-level 2)))
 
 ;; tools/magit
 (use-package! magit
@@ -570,10 +574,10 @@
 ;;   (setq gcmh-high-cons-threshold #x10000000)) ;; 200MB or so
 
 ;; tools/lsp
- (when (doom-module-p :tools 'lsp)
-   (if (modulep! :tools lsp +eglot)
-       (load! "+eglot.el")
-     (load! "+lsp-mode.el")))
+(when (doom-module-p :tools 'lsp)
+  (if (modulep! :tools lsp +eglot)
+      (load! "+eglot.el")
+    (load! "+lsp-mode.el")))
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
