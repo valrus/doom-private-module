@@ -4,9 +4,12 @@
 (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
 (define-key key-translation-map (kbd "C-<escape>") (kbd "ESC"))
 
-;; alias since i always forget this function name
-(defun valrus/fix-too-many-open-files ()
-  (file-notify-rm-all-watches))
+(defun valrus/evil-delete-blackhole-with-universal-arg (orig-fn beg end &optional type register &rest args)
+  (if current-prefix-arg
+      (apply orig-fn beg end type ?_ args)
+    (apply orig-fn beg end type register args)))
+(advice-add 'evil-delete :around 'valrus/evil-delete-blackhole-with-universal-arg)
+(advice-remove 'evil-delete 'valrus/evil-delete-blackhole-with-universal-arg)
 
 (map!
  :desc "Redo" :n "U" #'undo-fu-only-redo
@@ -25,8 +28,8 @@
  :gn "C-t" nil
 
  (:after evil
-  (:map evil-insert-state-map
-   "C-u" nil))
+         (:map evil-insert-state-map
+               "C-u" nil))
 
  (:leader
   :desc "Enter command" :n "SPC" #'execute-extended-command
@@ -34,32 +37,32 @@
    :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
 
  (:after ivy
-  (:leader
-   (:prefix "/"
-    :desc "Search all buffers" :n "a" #'swiper-all
-    :desc "Search project" :n "/" #'+ivy/project-search)))
+         (:leader
+          (:prefix "/"
+           :desc "Search all buffers" :n "a" #'swiper-all
+           :desc "Search project" :n "/" #'+ivy/project-search)))
 
  (:after vertico
-  (:leader
-   (:prefix "/"
-    :desc "Search project" :n "/" #'+default/search-project)))
+         (:leader
+          (:prefix "/"
+           :desc "Search project" :n "/" #'+default/search-project)))
 
  (:after projectile-rails
-   (:map enh-ruby-mode-map
-     (:localleader
-       (:prefix "r"
-         (:prefix ("f" . "find")
-           :desc "Find view" :n "v" #'projectile-rails-find-view)))))
+         (:map enh-ruby-mode-map
+               (:localleader
+                (:prefix "r"
+                         (:prefix ("f" . "find")
+                          :desc "Find view" :n "v" #'projectile-rails-find-view)))))
 
  (:after org
-   (:map org-mode-map
-     (:localleader
-       (:prefix ("c" . "controls")
-         :desc "Org C-c C-c" :n "c" #'org-ctrl-c-ctrl-c))))
+         (:map org-mode-map
+               (:localleader
+                (:prefix ("c" . "controls")
+                 :desc "Org C-c C-c" :n "c" #'org-ctrl-c-ctrl-c))))
 
  (:map smerge-mode-map
-  (:leader
-   :desc "Smerge hydra" :n "=" #'+vc/smerge-hydra/body))
+       (:leader
+        :desc "Smerge hydra" :n "=" #'+vc/smerge-hydra/body))
 
  ;; global bindings
  (:leader
@@ -70,10 +73,10 @@
    :desc "Flycheck buffer" :n "c" #'flycheck-buffer)
 
   (:prefix "o"
-   (:prefix ("o" . "open org file")
-    :desc "Open work notes" :n "w" #'popup-work-notes
-    :desc "Open journal for today" :n "j" #'org-journal-new-entry
-    :desc "Open todo file" :n "t" #'popup-todo-file))
+           (:prefix ("o" . "open org file")
+            :desc "Open work notes" :n "w" #'popup-work-notes
+            :desc "Open journal for today" :n "j" #'org-journal-new-entry
+            :desc "Open todo file" :n "t" #'popup-todo-file))
 
   (:prefix "TAB"
    :desc "Switch workspace" :n "SPC" #'+workspace/switch-to
@@ -86,4 +89,8 @@
    :desc "Window left" :n [left] #'evil-window-left
    :desc "Window down" :n [down] #'evil-window-down
    :desc "Window up" :n [up] #'evil-window-up
-   :desc "Window up" :n [right] #'evil-window-right)))
+   :desc "Window up" :n [right] #'evil-window-right
+   :desc "Other window prefix" :n "o" #'other-window-prefix)
+
+  (:prefix "W"
+   :desc "Other frame" :n "w" #'other-frame)))
