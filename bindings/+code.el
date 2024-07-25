@@ -63,7 +63,7 @@
  (:prefix "g"
   :nv "+" #'evil-numbers/inc-at-pt
   :nv "R" #'+lookup/references
-  :nv "D" #'xref-find-definitions-other-window))
+  :nv "D" #'valrus/goto-def-ace-window))
 
 (defun valrus/copilot-change-activation ()
   "Switch between three activation modes:
