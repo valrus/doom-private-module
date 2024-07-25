@@ -4,7 +4,7 @@
  so-long-threshold 500
 
  ;; theme
- doom-theme 'ef-spring
+ doom-theme 'ef-maris-light
  require-final-newline nil)
 
 (add-hook! doom-load-theme
@@ -21,9 +21,6 @@
       typescript-tsx-mode-hook
       typescript-mode-hook)
   eslint-fix-auto-mode t)
-
-(add-to-list 'safe-local-variable-values
- '(lsp-python-ms-extra-paths . "/Users/ianmccowan/Code/external-api/thrift/out/gen-py"))
 
 ;; (use-package! format-all
 ;;   :config

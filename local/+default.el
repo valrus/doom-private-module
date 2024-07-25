@@ -10,14 +10,14 @@
  doom-unicode-font (font-spec :family "Iosevka" :size 10 :weight 'light)
  doom-big-font (font-spec :family "Iosevka" :size 20)
  doom-variable-pitch-font (font-spec :family "PT Sans")
- minibuffer-font-spec '((default :family "Iosevka")))
+ minibuffer-font-spec '((default :family "Iosevka" :height 1.0)))
 
- ;; theme
- ;; doom-theme 'modus-operandi)
+;; theme
+;; doom-theme 'modus-operandi)
 
 ;; line numbers must be monospaced
 (custom-set-faces!
- '((line-number line-number-current-line) :family "Iosevka"))
+  '((line-number line-number-current-line) :family "Iosevka"))
 
 ;; this is like courier or something... yuck
 (set-face-attribute 'fixed-pitch nil :family "Iosevka" :weight 'regular :height 120)
@@ -60,7 +60,7 @@
    ivy-posframe-parameters '((left-fringe . 0)
                              (right-fringe . 0)
                              (internal-border-width . 10))))
-   ;; ivy-posframe-font (apply #'font-spec
-   ;;                          (plist-put
-   ;;                           (plist-put (font-face-attributes doom-font) :size 18)
-   ;;                           :weight 'medium))))
+;; ivy-posframe-font (apply #'font-spec
+;;                          (plist-put
+;;                           (plist-put (font-face-attributes doom-font) :size 18)
+;;                           :weight 'medium))))
