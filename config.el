@@ -88,25 +88,43 @@
           css-mode
           scss-mode). apheleia-mode)
   :defer t
+  :custom
+  (apheleia-log-only-errors nil)
   :config
   (apheleia-global-mode +1)
-  (setf (alist-get 'python-mode apheleia-mode-alist) '(isort black))
-  (setf (alist-get 'yarn-prettier apheleia-formatters)
-      '("yarn" "--silent" "prettier" "--loglevel" "silent" "--stdin-filepath" filepath))
+  ;; .dir-locals.el example for ruff:
+  ;; ((python-mode . ((apheleia-formatter . (ruff-format ruff-fix)))))
+  ;;
+  ;; ruff format $(modules)
+  ;; ruff check --fix-only $(modules)
+  (setf (alist-get 'ruff-format apheleia-formatters)
+        '("ruff" "format" "--silent" "--stdin-filename" filepath "-"))
+  (setf (alist-get 'ruff-fix apheleia-formatters)
+        '("ruff" "check" "--fix-only" "--silent" "--stdin-filename" filepath "-"))
+  ;; (setf (alist-get 'yarn-prettier apheleia-formatters)
+  ;;       '("apheleia-npx" "prettier" "--loglevel" "silent" "--stdin-filepath" filepath))
+  ;; (setf (alist-get 'eslint-d apheleia-formatters)
+  ;;       '("eslint_d" "--fix-to-stdout" "--stdin" "--stdin-filepath" filepath))
+
+  (setf (alist-get 'python-mode apheleia-mode-alist)
+        '(black isort))
   (setf (alist-get 'tsx-ts-mode apheleia-mode-alist)
-        'yarn-prettier)
+        '(prettier))
   (setf (alist-get 'typescript-ts-mode apheleia-mode-alist)
-        'yarn-prettier)
+        '(prettier))
   (setf (alist-get 'typescript-mode apheleia-mode-alist)
-        'yarn-prettier)
+        '(prettier))
   (setf (alist-get 'rjsx-mode apheleia-mode-alist)
-        'yarn-prettier)
-  (setf (alist-get 'yarn-stylelint apheleia-formatters)
-      '("yarn" "stylelint" "--fix" filepath))
+        '(prettier))
   (setf (alist-get 'scss-mode apheleia-mode-alist)
         'yarn-stylelint)
   (setf (alist-get 'css-mode apheleia-mode-alist)
         'yarn-stylelint))
+
+;; $ apheleia-npx --silent prettier --loglevel silent --stdin-filepath /Users/ianmccowan/Code/external-web/packages/admin-app/src/components/tickets/templates/Escalation/index.test.tsx
+
+;; /Users/ianmccowan/.config/emacs/.local/straight/repos/apheleia/scripts/formatters/apheleia-npx: line 71: exec: --: invalid option
+;; exec: usage: exec [-cl] [-a name] file [redirection ...]
 
 (map!
  :after apheleia
