@@ -66,7 +66,7 @@
  ;; (meow +override +leader +colemak)
  file-templates    ; auto-snippets for empty files
  fold
- (apheleia +onsave)
+ (format +onsave)
  ;; god
  ;; lispy             ; vim for lisp, for people who dont like vim
  multiple-cursors  ; editing in many places at once
@@ -94,8 +94,8 @@
  :checkers
  ;; grammar
  ;; spell
- ;; (syntax +childframe)
- (syntax +flymake)
+ ;; (syntax +flymake)
+ (syntax +childframe)
 
  :tools
  ;; ansible
@@ -216,8 +216,8 @@
  ;; and additional ex commands for evil-mode. Use it as a reference for
  ;; your own modules.
  (default
- +bindings
- -smartparens))
+  +bindings
+  -smartparens))
 
 ;; If a :pre-init / :pre-config hook returns nil, it overwrites that package's
 ;; original :init / :config block. Exploit this to overwrite Doom's config.
