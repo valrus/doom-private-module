@@ -420,7 +420,7 @@
 (after! rvm
   (rvm-use-default))
 
-(when (doom-module-p :tools 'lsp)
+(when (modulep! :tools lsp)
   (if (modulep! :tools lsp +eglot)
       (load! "+eglot.el")
     (load! "+lsp-mode.el")))
@@ -596,12 +596,6 @@
 
 ;; (after! gcmh-mode
 ;;   (setq gcmh-high-cons-threshold #x10000000)) ;; 200MB or so
-
-;; tools/lsp
-(when (doom-module-p :tools 'lsp)
-  (if (modulep! :tools lsp +eglot)
-      (load! "+eglot.el")
-    (load! "+lsp-mode.el")))
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
