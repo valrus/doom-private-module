@@ -60,9 +60,9 @@
                 (:prefix ("c" . "controls")
                  :desc "Org C-c C-c" :n "c" #'org-ctrl-c-ctrl-c))))
 
- (:map smerge-mode-map
-       (:leader
-        :desc "Smerge hydra" :n "=" #'+vc/smerge-hydra/body))
+ ;; (:map smerge-mode-map
+ ;;       (:leader
+ ;;        :desc "Smerge hydra" :n "=" #'+vc/smerge-hydra/body))
 
  ;; global bindings
  (:leader
