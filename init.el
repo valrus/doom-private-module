@@ -39,7 +39,7 @@
  ;; doom-quit         ; DOOM quit-message prompts when you quit Emacs
  ;; (emoji +unicode)
  hl-todo           ; highlight TODO/FIXME/NOTE tags
- hydra
+ ;; hydra
  ;; indent-guides
  ;; ligatures      ; ligatures and symbols to make your code pretty again
  ;; minimap        ; show a map of the code on the side
