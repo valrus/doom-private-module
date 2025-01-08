@@ -49,7 +49,7 @@
  ;; neotree           ; a project drawer, like NERDTree for vim
  ophints           ; display visual hints when editing in evil
  (popup            ; tame sudden yet inevitable temporary windows
-  +all             ; catch all popups that start with an asterix
+  ;; +all             ; catch all popups that start with an asterix
   +defaults)
  ;; tabs              ; FIXME an (incomplete) tab bar for Emacs
  ;; treemacs          ; a project drawer, like neotree but cooler
