@@ -22,6 +22,7 @@
 (defcustom home-row-keys '(?a ?r ?s ?t ?g ?m ?n ?e ?i ?o)
   "Characters in the keyboard home row, for alternate layouts."
   :type '(repeat character))
+(setq-default reb-re-syntax 'rx)
 
 ;; Temp workaround
 (defun lsp-deferred () (eglot-ensure))
