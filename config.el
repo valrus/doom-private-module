@@ -25,7 +25,7 @@
 (setq-default reb-re-syntax 'rx)
 
 ;; Temp workaround
-(defun lsp-deferred () (eglot-ensure))
+;; (defun lsp-deferred () (eglot-ensure))
 
 (if (>= emacs-major-version 29)
     (pixel-scroll-precision-mode 0)
