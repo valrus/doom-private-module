@@ -19,11 +19,14 @@
   :config
   (setq-hook! '(typescript-tsx-mode-hook typescript-mode-hook) +format-with-lsp nil)
   (add-to-list 'eglot-server-programs
-               '(typescript-tsx-mode . ("typescript-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs
-               '(tsx-ts-mode . ("typescript-language-server" "--stdio")))
-  (add-to-list 'eglot-server-programs
-               '(tsx-mode . ("typescript-language-server" "--stdio")))
+               '(((js-mode :language-id "javascript")
+                  (js-ts-mode :language-id "javascript")
+                  (tsx-ts-mode :language-id "typescriptreact")
+                  (tsx-mode :language-id "typescriptreact")
+                  (typescript-tsx-mode :language-id "typescriptreact")
+                  (typescript-ts-mode :language-id "typescript")
+                  (typescript-mode :language-id "typescript"))
+                 "typescript-language-server" "--stdio"))
   (assoc-delete-all 'yaml-mode eglot-server-programs)
   (advice-add #'jsonrpc--log-event :around #'jsonrpc--log-event$toggle-event-log)
 
