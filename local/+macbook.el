@@ -19,18 +19,25 @@
  ;; minibuffer-font-spec '((default :family "Iosevka"))
 
  ;; doom-font (font-spec :family "Iosevka Custom" :size 12 :weight 'normal)
- doom-serif-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 12 :weight 'semi-light)
  ;; doom-unicode-font (font-spec :family "Iosevka Custom" :size 12)
  ;; doom-big-font (font-spec :family "Iosevka Custom" :size 20)
- doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 12)
  ;; minibuffer-font-spec '((default :family "Iosevka Custom"))
-
- doom-font (font-spec :family "Iosevka Comfy" :size 12 :weight 'extra-light)
  ;; doom-serif-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 12 :weight 'semi-light)
+ ;; doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 12)
+ 
+ doom-font (font-spec :family "Iosevka Comfy" :size 12 :weight 'extra-light)
+ doom-serif-font (font-spec :family "Iosevka Comfy Motion Fixed" :size 12 :weight 'semi-light)
+ doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 12)
  doom-unicode-font (font-spec :family "Iosevka Comfy" :size 12)
  doom-big-font (font-spec :family "Iosevka Comfy" :size 20)
- ;; doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 12)
  minibuffer-font-spec '((default :family "Iosevka Comfy"))
+
+ ;; doom-font (font-spec :family "Maple Mono" :size 12 :weight 'extra-light)
+ ;; doom-serif-font (font-spec :family "Maple Mono" :size 12 :weight 'semi-light)
+ ;; doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 12)
+ ;; doom-symbol-font (font-spec :family "Maple Mono" :size 12)
+ ;; doom-big-font (font-spec :family "Maple Mono" :size 20)
+ ;; minibuffer-font-spec '((default :family "Maple Mono"))
 
  ;; theme
  ;; doom-theme 'doom-solarized-light
