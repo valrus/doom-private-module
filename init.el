@@ -157,7 +157,7 @@
  ;; nix               ; I hereby declare "nix geht mehr!"
  ;; ocaml             ; an objective camel
  (org              ; organize your plain life in plain text
-  +journal
+  -journal ; use org-roam-dailies instead
   +pretty
   +roam2
   -brain
@@ -187,7 +187,7 @@
  (:if (local-config-home-p) tablature)
  ;; terra             ; Earth and Moon in alignment for performance.
  ;; vala              ; GObjective-C
- ;; (web +tree-sitter)               ; the tubes
+ (web +lsp +tree-sitter)               ; the tubes
  (yaml +lsp)
 
  :email
