@@ -20,12 +20,20 @@
  ;; doom-font (font-spec :family "Iosevka" :size 14 :weight 'semi-light)
 
  ;; fonts: iosevka custom
- doom-font (font-spec :family "Iosevka Custom" :size 14 :weight 'light)
+ ;; doom-font (font-spec :family "Iosevka Custom" :size 14 :weight 'light)
+ ;; doom-serif-font (font-spec :family "Iosevka Slab" :size 14 :weight 'semi-light)
+ ;; doom-unicode-font (font-spec :family "Iosevka Custom" :size 14 :weight 'light)
+ ;; doom-big-font (font-spec :family "Iosevka Custom" :size 20 :weight 'light)
+ ;; doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 14)
+ ;; minibuffer-font-spec '((default :family "Iosevka Custom"))
+
+ ;; fonts: maple mono
+ doom-font (font-spec :family "Maple Mono" :size 14 :weight 'light)
  doom-serif-font (font-spec :family "Iosevka Slab" :size 14 :weight 'semi-light)
- doom-unicode-font (font-spec :family "Iosevka Custom" :size 14 :weight 'light)
- doom-big-font (font-spec :family "Iosevka Custom" :size 20 :weight 'light)
+ doom-unicode-font (font-spec :family "Maple Mono" :size 14 :weight 'light)
+ doom-big-font (font-spec :family "Maple Mono" :size 20 :weight 'light)
  doom-variable-pitch-font (font-spec :family "PT Sans" :weight 'light :size 14)
- minibuffer-font-spec '((default :family "Iosevka Custom"))
+ minibuffer-font-spec '((default :family "Maple Mono"))
 
  ;; fonts: cartograph
  ;; doom-font (font-spec :family "Cartograph Mono CF" :size 14 :weight 'light)
@@ -39,4 +47,4 @@
  doom-theme 'doom-nord)
 
 ;; (set-face-attribute 'minibuffer-prompt nil :family "IBM Plex Mono" :weight 'bold)
-(apply #'set-face-attribute 'minibuffer-prompt nil (font-face-attributes doom-big-font))
+;; (apply #'set-face-attribute 'minibuffer-prompt nil (font-face-attributes doom-big-font))
