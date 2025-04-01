@@ -81,8 +81,9 @@
 ;; add formatters
 ;;; this is configured to lazy load automatically
 (use-package! apheleia
-  :hook ((tsx-mode
+  :hook ((tsx-ts-mode
           typescript-mode
+          typescript-tsx-mode
           js-mode
           json-mode
           css-mode
@@ -111,6 +112,8 @@
   (setf (alist-get 'tsx-ts-mode apheleia-mode-alist)
         '(prettier))
   (setf (alist-get 'typescript-ts-mode apheleia-mode-alist)
+        '(prettier))
+  (setf (alist-get 'typescript-tsx-mode apheleia-mode-alist)
         '(prettier))
   (setf (alist-get 'typescript-mode apheleia-mode-alist)
         '(prettier))
@@ -275,19 +278,6 @@
    flycheck-check-syntax-automatically '(save idle-change mode-enabled)
    flycheck-display-errors-delay 1))
 
-;; (use-package! format-all
-;;   :config
-;;   (set-formatter!
-;;     'js-prettier
-;;     "yarn prettier"
-;;     :modes
-;;     '(typescript-tsx-mode typescript-mode rjsx-mode))
-;;   (setq +format-on-save-enabled-modes
-;;         '(python-mode
-;;           ;; rjsx-mode
-;;           typescript-tsx-mode
-;;           typescript-mode)))
-
 (use-package! flymake
   :custom
   (flymake-popon-delay 3)
@@ -409,9 +399,9 @@
 
 (use-package! rjsx-mode
   :config
-  (setq auto-mode-alist (delete '("\\.tsx\\'" . typescript-mode) auto-mode-alist))
-  (setq sgml-basic-offset 4)
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode)))
+  ;; (setq auto-mode-alist (delete '("\\.tsx\\'" . typescript-mode) auto-mode-alist))
+  ;; (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode)))
+  (setq sgml-basic-offset 4))
 
 (use-package! ruby-mode
   :hook
@@ -442,6 +432,9 @@
           (make "https://github.com/alemuller/tree-sitter-make")
           (markdown "https://github.com/ikatyang/tree-sitter-markdown")
           (python "https://github.com/tree-sitter/tree-sitter-python")
+          ;; ugh
+          ;; https://www.masteringemacs.org/article/lets-write-a-treesitter-major-mode
+          (thrift "https://github.com/tree-sitter-grammars/tree-sitter-thrift")
           (toml "https://github.com/tree-sitter/tree-sitter-toml")
           (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
           (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
@@ -547,16 +540,6 @@
   :defer t
   :hook (python-mode . evil-text-object-python-add-bindings))
 
-;; (use-package! tree-sitter
-;;   :demand t
-;;   :hook
-;;   ;; tree-sitter doesn't get confused by quotes in string interpolations
-;;   (ruby-mode . tree-sitter-hl-mode)
-;;   (enh-ruby-mode . tree-sitter-hl-mode)
-;;   (python-mode . tree-sitter-hl-mode)
-;;   :config
-;;   (global-tree-sitter-mode))
-
 (use-package! ace-window
   :custom
   (aw-keys (remove ?m home-row-keys))
@@ -570,32 +553,9 @@
   :custom
   (flymake-no-changes-timeout 3.0))
 
-(when (local-config-work-p)
-  (use-package! format-all
-    :config
-    (set-formatter!
-      'js-prettier
-      "yarn prettier"
-      :modes
-      '(typescript-tsx-mode typescript-mode rjsx-mode))
-    (setq +format-on-save-enabled-modes
-          '(python-mode
-            ;; rjsx-mode
-            typescript-tsx-mode
-            typescript-mode))))
-
-(use-package! rjsx-mode
-  :config
-  (setq auto-mode-alist (delete '("\\.tsx\\'" . typescript-mode) auto-mode-alist))
-  (setq sgml-basic-offset 4)
-  (add-to-list 'auto-mode-alist '("\\.tsx\\'" . rjsx-mode)))
-
 ;;
 ;; Modules
 ;;
-
-;; (after! gcmh-mode
-;;   (setq gcmh-high-cons-threshold #x10000000)) ;; 200MB or so
 
 (after! dumb-jump
   (setq dumb-jump-prefer-searcher 'rg))
@@ -609,4 +569,6 @@
 (after! popup
   (setq-default
    winum-scope 'frame-local
-   winum-auto-assign-0-to-minibuffer t))
+   winum-auto-assign-0-to-minibuffer t)
+  ;; TODO: persist python debuggers too
+  (set-popup-rule! "^\\*chatgpt" :ttl nil))
