@@ -19,26 +19,9 @@
     '(rjsx-mode-hook
       js2-mode-hook
       typescript-tsx-mode-hook
+      tsx-ts-mode
       typescript-mode-hook)
   eslint-fix-auto-mode t)
-
-;; (use-package! format-all
-;;   :config
-;;   (define-format-all-formatter eslint
-;;     (:executable "eslint")
-;;     (:install)
-;;     (:modes rjsx-mode js2-mode typescript-tsx-mode typescript-mode)
-;;     (:format
-;;      (format-all--buffer-easy
-;;       executable
-;;       "--fix-dry-run"
-;;       "--stdin"
-;;       (when (buffer-file-name)
-;;         (list "--output-file" (buffer-file-name))))))
-;;   (setq-hook! '(rjsx-mode-hook
-;;                 js2-mode-hook
-;;                 typescript-tsx-mode-hook typescript-mode-hook) +format-with 'eslint))
-
 
 ;; Some files have a LOT of errors; use a less resource-intensive highlight mode
 (use-package! flycheck
@@ -48,11 +31,6 @@
    flycheck-error-list-highlight-overlays t
    flycheck-highlighting-mode 'symbols
    flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
-
-(use-package! thrift-mode
-  :demand t
-  :config
-  (add-to-list 'auto-mode-alist '("\\.thrift\\'" . thrift-mode)))
 
 (use-package! yaml-mode
   :config
@@ -73,4 +51,4 @@
   (setq js2-basic-offset 4))
 
 ;; emacs-mac-port only
-(mac-auto-operator-composition-mode t)
+;; (mac-auto-operator-composition-mode t)
