@@ -13,13 +13,13 @@
  ;; layout            ; auie,ctsrnm is the superior home row
 
  :completion
- (company          ; the ultimate code completion backend
-  +tng ; complete using only TAB
-  +childframe)
- ;; (corfu
- ;;  +orderless
- ;;  +icons
- ;;  +minibuffer)
+ ;; (company          ; the ultimate code completion backend
+ ;;  +tng ; complete using only TAB
+ ;;  +childframe)
+ (corfu
+  +orderless
+  +icons
+  +minibuffer)
  ;; (helm             ; the *other* search engine for love and life
  ;;  +childframe
  ;;  +fuzzy)          ; enable fuzzy search backend for helm
@@ -154,7 +154,7 @@
  lua               ; one-based indices? one-based indices
  markdown          ; writing docs for people to ignore
  ;; nim               ; python + lisp at the speed of c
- ;; nix               ; I hereby declare "nix geht mehr!"
+ nix               ; I hereby declare "nix geht mehr!"
  ;; ocaml             ; an objective camel
  (org              ; organize your plain life in plain text
   -journal ; use org-roam-dailies instead
