@@ -12,7 +12,7 @@
  ;; disable this; doom has native-comp integration to handle it
  ;; comp-deferred-compilation t
  ;;
- fancy-splash-image (concat doom-private-dir "splash-images/lion-head.png"))
+ fancy-splash-image (concat doom-user-dir "splash-images/lion-head.png"))
 
 (global-auto-revert-mode -1)
 (custom-set-variables '(tool-bar-mode nil))
@@ -48,12 +48,12 @@
 
 (add-hook! 'minibuffer-setup-hook 'make-fancy-minibuffer)
 
-(when IS-MAC
+(when (featurep :system 'macos)
   (setq ns-use-thin-smoothing t)
   ;; maximize first frame
   (set-frame-parameter nil 'fullscreen 'maximized)
   ;; (load! "+fadeouts")
-  )
+  (setq ns-right-option-modifier 'meta))
 
 ;; Keyboard
 
