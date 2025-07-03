@@ -253,19 +253,19 @@
 (after! elisp-mode
   (load! "bindings/+elisp"))
 
-(use-package! evil
-  :config
-  (setq-default evil-kill-on-visual-paste nil
-                evil-split-window-below t
-                evil-vsplit-window-right t
-                evil-want-Y-yank-to-eol t)
-  ;; scroll to center after quick find commands
-  (advice-add #'evil-ex-search-word-forward :after (lambda (&rest _) (evil-scroll-line-to-center nil)))
-  (advice-add #'evil-ex-search-word-backward :after (lambda (&rest _) (evil-scroll-line-to-center nil)))
-  (advice-add #'evil-ex-search-next :after (lambda (&rest _) (evil-scroll-line-to-center nil)))
-  (advice-add #'evil-ex-search-previous :after (lambda (&rest _) (evil-scroll-line-to-center nil))))
-
 (when (modulep! :editor evil)
+  (use-package! evil
+    :config
+    (setq-default evil-kill-on-visual-paste nil
+                  evil-split-window-below t
+                  evil-vsplit-window-right t
+                  evil-want-Y-yank-to-eol t)
+    ;; scroll to center after quick find commands
+    (advice-add #'evil-ex-search-word-forward :after (lambda (&rest _) (evil-scroll-line-to-center nil)))
+    (advice-add #'evil-ex-search-word-backward :after (lambda (&rest _) (evil-scroll-line-to-center nil)))
+    (advice-add #'evil-ex-search-next :after (lambda (&rest _) (evil-scroll-line-to-center nil)))
+    (advice-add #'evil-ex-search-previous :after (lambda (&rest _) (evil-scroll-line-to-center nil))))
+
   (use-package! evil-goggles
     :config
     (setq evil-goggles-pulse t))
@@ -277,6 +277,7 @@
     (load! "bindings/+easymotion"))
 
   (use-package! evil-text-object-python
+    :defer t
     :hook (python-mode . evil-text-object-python-add-bindings))
 
   (use-package! evil-surround
@@ -501,16 +502,6 @@
   (setq-default deadgrep-project-root-function #'doom-project-root)
   (load! "bindings/+deadgrep"))
 
-(use-package! evil-goggles
-  :config
-  (setq evil-goggles-pulse t))
-
-(use-package! evil-easymotion
-  :custom
-  (evilem-keys home-row-keys)
-  :config
-  (load! "bindings/+easymotion"))
-
 (use-package! org-roam
   :after org
   :defer t
@@ -545,10 +536,6 @@
    (:leader
     (:prefix "h"
      :desc "Set variable with refine" :n "C-v" #'refine))))
-
-(use-package! evil-text-object-python
-  :defer t
-  :hook (python-mode . evil-text-object-python-add-bindings))
 
 (use-package! ace-window
   :custom
