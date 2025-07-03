@@ -26,14 +26,6 @@
   (:prefix "h"
    :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
 
- ;; Use / as a prefix
- (:leader
-  "/" nil)
-
- (:leader
-  (:prefix "/"
-   :desc "Search project" :n "/" #'+default/search-project))
-
  (:after projectile-rails
          (:map enh-ruby-mode-map
                (:localleader
