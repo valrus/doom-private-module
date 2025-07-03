@@ -26,16 +26,13 @@
   (:prefix "h"
    :desc "Toggle profiler" :n "t" #'doom/toggle-profiler))
 
- (:after ivy
-         (:leader
-          (:prefix "/"
-           :desc "Search all buffers" :n "a" #'swiper-all
-           :desc "Search project" :n "/" #'+ivy/project-search)))
+ ;; Use / as a prefix
+ (:leader
+  "/" nil)
 
- (:after vertico
-         (:leader
-          (:prefix "/"
-           :desc "Search project" :n "/" #'+default/search-project)))
+ (:leader
+  (:prefix "/"
+   :desc "Search project" :n "/" #'+default/search-project))
 
  (:after projectile-rails
          (:map enh-ruby-mode-map
