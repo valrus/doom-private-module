@@ -63,7 +63,7 @@
 
  :editor
  (evil +everywhere)
- ;; (meow +override +leader +colemak)
+ ;; (meow +colemak)
  file-templates    ; auto-snippets for empty files
  fold
  (format +onsave)
@@ -108,7 +108,7 @@
  (lookup           ; helps you navigate your code and documentation
   +devdocs         ; ...on devdocs.io online
   +docsets)        ; ...or in Dash docsets locally
- (lsp +eglot)
+ (lsp +peek)
  magit
  ;; make              ; run make tasks from Emacs
  ;; pass              ; password manager for nerds
