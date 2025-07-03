@@ -7,6 +7,7 @@
   :config
   (setq-hook! 'rjsx-mode-hook +format-with-lsp t)
   (setq-default
+   lsp-ruff-server-command '("ruff" "server" "--preview")
    lsp-client-packages (remove 'lsp-steep lsp-client-packages)
    lsp-eslint-format t
    lsp-eslint-auto-fix-on-save nil))
