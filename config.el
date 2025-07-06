@@ -100,15 +100,11 @@
   ;; ((python-mode . ((apheleia-formatter . (ruff-format ruff-fix)))))
   ;;
   ;; ruff format $(modules)
-  ;; ruff check --fix-only $(modules)
   (setf (alist-get 'ruff-format apheleia-formatters)
         '("ruff" "format" "--silent" "--stdin-filename" filepath "-"))
+  ;; ruff check --fix-only $(modules)
   (setf (alist-get 'ruff-fix apheleia-formatters)
         '("ruff" "check" "--fix-only" "--silent" "--stdin-filename" filepath "-"))
-  ;; (setf (alist-get 'yarn-prettier apheleia-formatters)
-  ;;       '("apheleia-npx" "prettier" "--loglevel" "silent" "--stdin-filepath" filepath))
-  ;; (setf (alist-get 'eslint-d apheleia-formatters)
-  ;;       '("eslint_d" "--fix-to-stdout" "--stdin" "--stdin-filepath" filepath))
 
   (setf (alist-get 'yarn-prettier apheleia-formatters)
         '("yarn" "--silent" "prettier" "--loglevel" "silent" "--stdin-filepath" filepath))
